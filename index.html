@@ -3,66 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXT GEAR | Members & Space</title>
+    <title>NEXT GEAR | SHIL - LUA - MIA</title>
     <style>
         :root {
-            --bg-main: #e0e0e0;
-            --bg-dark: #1a1a1a;
-            --text-main: #222;
-            --m1-color: #0088ff; /* 1人目のカラー */
-            --m2-color: #ff4400; /* 2人目のカラー（仮） */
-            --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --bg-main: #eeeeee;    /* 質感のあるライトグレー */
+            --bg-dark: #0f0f0f;    /* パネルは深い黒 */
+            --text-main: #111111;
+            --text-sub: #999999;
+            --m1-color: #0088ff;   /* LUAさんのカラー（青） */
+            --m2-color: #ff3366;   /* MIAさんのカラー（ピンク系） */
+            --transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         body {
             margin: 0;
             background-color: var(--bg-main);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 💡 ギミック：SHIL, LUA, MIAの名前が流れる斜め背景 */
+        .kanji-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.06; /* 絶妙な薄さ */
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .kanji-scroll {
+            display: flex;
+            font-size: 10rem;
+            font-weight: 900;
+            line-height: 1;
+            white-space: nowrap;
+            color: #aaa;
+            transform: rotate(-12deg); 
+            animation: scrollText 30s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% { transform: rotate(-12deg) translateX(0%); }
+            100% { transform: rotate(-12deg) translateX(-50%); }
         }
 
         /* --- HERO --- */
         .hero {
-            height: 60vh;
+            height: 40vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(to bottom, #d0d0d0, var(--bg-main));
+            text-align: center;
         }
 
-        .hero h1 { font-size: 8vw; font-weight: 900; margin: 0; letter-spacing: -0.02em; }
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .hero p {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            letter-spacing: 0.6em;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
 
         /* --- MEMBERS SECTION --- */
-        .members-section { padding: 100px 10%; text-align: center; }
+        .members-section {
+            padding: 60px 10%;
+        }
         
-        /* 互い違いのグリッド */
         .member-nav {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 40px;
             max-width: 1000px;
             margin: 0 auto;
         }
 
         .member-btn {
-            background: #f5f5f5;
+            background: #fff;
             border: none;
             padding: 0;
             cursor: pointer;
             overflow: hidden;
-            border-radius: 15px;
+            border-radius: 4px; /* あえて少し角を残してシャープに */
             transition: var(--transition);
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 16 / 10;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
         }
 
-        /* 互い違いにするための調整（2番目を少し下げる等） */
-        .member-btn:nth-child(even) { transform: translateY(40px); }
+        /* 互い違いのレイアウト */
+        .member-btn:nth-child(1) { transform: translateY(-15px); }
+        .member-btn:nth-child(2) { transform: translateY(15px); }
 
         .member-btn img {
             width: 100%;
@@ -72,132 +119,126 @@
             transition: var(--transition);
         }
 
+        .member-btn:hover, .member-btn.active {
+            transform: translateY(0) scale(1.03);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
         .member-btn:hover img, .member-btn.active img {
             filter: grayscale(0%);
-            transform: scale(1.1);
         }
 
-        .member-btn::after {
-            content: attr(data-name);
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: white;
-            font-weight: 800;
-            font-size: 1.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-
-        /* --- DETAIL PANEL (タブの中身) --- */
+        /* --- DETAIL PANEL --- */
         .detail-container {
             max-width: 1000px;
-            margin: 80px auto 0;
-            min-height: 0;
+            margin: 60px auto 0;
             height: 0;
             overflow: hidden;
             transition: var(--transition);
             opacity: 0;
             background: var(--bg-dark);
-            border-radius: 30px;
+            border-radius: 8px;
             color: white;
-            text-align: left;
         }
 
         .detail-container.open {
             height: auto;
             padding: 60px;
             opacity: 1;
-            margin-top: 100px;
+            margin-top: 80px;
         }
 
         .member-content { display: none; }
         .member-content.active {
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 40px;
-            animation: fadeIn 0.8s ease;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            animation: fadeIn 0.8s ease forwards;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .color-bar { height: 5px; width: 50px; margin-bottom: 20px; }
+        .color-bar { height: 3px; width: 30px; margin-bottom: 20px; }
 
-        /* 会員カラーの反映 */
-        .m1-theme { border-top: 8px solid var(--m1-color); }
+        .m1-theme h2 { color: var(--m1-color); font-size: 2.5rem; margin: 0; }
         .m1-theme .color-bar { background: var(--m1-color); }
-        .m1-theme h2 { color: var(--m1-color); }
-
-        .m2-theme { border-top: 8px solid var(--m2-color); }
+        .m2-theme h2 { color: var(--m2-color); font-size: 2.5rem; margin: 0; }
         .m2-theme .color-bar { background: var(--m2-color); }
-        .m2-theme h2 { color: var(--m2-color); }
+
+        .member-meta { color: #666; font-size: 0.9rem; margin-top: 5px; letter-spacing: 0.1em; }
 
         /* スマホ対応 */
         @media (max-width: 768px) {
             .member-nav { grid-template-columns: 1fr; }
-            .member-btn:nth-child(even) { transform: translateY(0); }
+            .member-btn:nth-child(1), .member-btn:nth-child(2) { transform: translateY(0); }
             .member-content { grid-template-columns: 1fr; }
+            .detail-container.open { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="kanji-bg">
+        <div class="kanji-scroll">
+            NEXT GEAR SHIL LUA MIA NEXT GEAR SHIL LUA MIA NEXT GEAR SHIL LUA MIA
+        </div>
+    </div>
+
     <header class="hero">
         <h1>NEXT GEAR</h1>
-        <p>SELECT YOUR CREATOR</p>
+        <p>Managed by Shil</p>
     </header>
 
     <section class="members-section">
-        <!-- メンバー選択ボタン -->
         <div class="member-nav">
-            <button class="member-btn" data-target="member01" data-name="MEMBER 01" onclick="openTab(this, 'member01')">
-                <img src="./member01.jpg" alt="Member 01">
+            <button class="member-btn" onclick="openTab(this, 'member01')">
+                <img src="./member01.jpg" alt="Lua">
             </button>
-            <button class="member-btn" data-target="member02" data-name="MEMBER 02" onclick="openTab(this, 'member02')">
-                <img src="./member02.jpg" alt="Member 02">
+            <button class="member-btn" onclick="openTab(this, 'member02')">
+                <img src="./member02.jpg" alt="Mia">
             </button>
         </div>
 
-        <!-- 詳細表示パネル -->
         <div id="detailPanel" class="detail-container">
             
-            <!-- メンバー01の中身 -->
             <div id="member01" class="member-content m1-theme">
-                <div>
-                    <img src="./member01.jpg" style="width:100%; border-radius:15px;">
-                </div>
+                <img src="./member01.jpg" style="width:100%; border-radius:4px;">
                 <div>
                     <div class="color-bar"></div>
-                    <h2>Member 01</h2>
-                    <p style="color:#888;">Minecraft System Engineer / Leader</p>
-                    <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
-                    <p>ここに自己紹介文が入ります。マイクラサーバーの運営やシステムの構築を得意としています。Next Gearの技術的支柱として活動中。</p>
-                    <ul style="list-style:none; padding:0; color:#ccc;">
-                        <li>🚀 VALORANT: Radiant Peak</li>
-                        <li>🛠️ Tech: Mohist, Docker, Linux</li>
-                    </ul>
+                    <h2>LUA</h2>
+                    <p class="member-meta">NEXT GEAR / MEMBER 01</p>
+                    <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
+                    <p style="line-height: 1.8; color: #ccc;">
+                        るあです。Next Gearのメンバーとして活動しています。<br>
+                        ここに詳しい自己紹介文を自由に入れてください。
+                    </p>
                 </div>
             </div>
 
-            <!-- メンバー02の中身 -->
             <div id="member02" class="member-content m2-theme">
-                <div>
-                    <img src="./member02.jpg" style="width:100%; border-radius:15px;">
-                </div>
+                <img src="./member02.jpg" style="width:100%; border-radius:4px;">
                 <div>
                     <div class="color-bar"></div>
-                    <h2>Member 02</h2>
-                    <p style="color:#888;">Video Editor / VTuber Support</p>
-                    <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
-                    <p>動画編集とLive2Dの導入支援を担当。クリエイターの「見せ方」をプロデュースし、最高のクオリティでリスナーに届けます。</p>
-                    <ul style="list-style:none; padding:0; color:#ccc;">
-                        <li>✂️ Tools: Premiere Pro, After Effects</li>
-                        <li>🎨 Live2D: Cubism support</li>
-                    </ul>
+                    <h2>MIA</h2>
+                    <p class="member-meta">NEXT GEAR / MEMBER 02</p>
+                    <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
+                    <p style="line-height: 1.8; color: #ccc;">
+                        みあです。Next Gearのメンバーとして活動しています。<br>
+                        ここに詳しい自己紹介文を自由に入れてください。
+                    </p>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <footer style="padding: 100px 0 40px; text-align: center; color: var(--text-sub); font-size: 0.7rem; letter-spacing: 0.2em;">
+        &copy; 2026 NEXT GEAR / SHIL0ZER
+    </footer>
 
     <script>
         function openTab(btn, memberId) {
@@ -205,18 +246,13 @@
             const contents = document.querySelectorAll('.member-content');
             const buttons = document.querySelectorAll('.member-btn');
 
-            // すべてのコンテンツとボタンの状態をリセット
             contents.forEach(content => content.classList.remove('active'));
             buttons.forEach(b => b.classList.remove('active'));
 
-            // 選択されたものをアクティブに
             document.getElementById(memberId).classList.add('active');
             btn.classList.add('active');
-
-            // パネルを開く
             panel.classList.add('open');
 
-            // パネルの位置までスムーズにスクロール
             setTimeout(() => {
                 panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 300);
