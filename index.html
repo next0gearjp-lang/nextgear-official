@@ -56,11 +56,29 @@
         section { padding: 120px 15%; position: relative; }
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
-        /* HERO */
+        /* 💡 HERO & オープニングアニメーション */
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 0 15%; }
-        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; color: #fff; }
+        
+        .hero-top-text {
+            letter-spacing: 0.6em; color: #444; margin-bottom: 20px; font-size: 0.7rem;
+            opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 1, 0.2, 1) forwards; animation-delay: 0.2s;
+        }
+        
+        .hero h1 { 
+            font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; color: #fff;
+            opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 1, 0.2, 1) forwards; animation-delay: 0.4s;
+        }
         .hero h1 span { display: block; font-weight: 800; }
-        .hero-sub { color: var(--text-sub); letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem; }
+        
+        .hero-sub { 
+            color: var(--text-sub); letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem;
+            opacity: 0; animation: fadeUp 1s cubic-bezier(0.2, 1, 0.2, 1) forwards; animation-delay: 0.6s;
+        }
         
         /* ABOUT */
         .mission-text { font-size: 2rem; line-height: 1.8; font-weight: 300; letter-spacing: 0.05em; max-width: 800px; color: #ccc; }
@@ -185,7 +203,8 @@
     </div>
 
     <section class="hero">
-        <p style="letter-spacing: 0.6em; color: #444; margin-bottom: 20px; font-size: 0.7rem;">MANAGED BY SHIL</p>
+        <!-- 💡 クラス名を追加してアニメーションを適用 -->
+        <p class="hero-top-text">MANAGED BY SHIL</p>
         <h1>NEXT<span>GEAR</span></h1>
         <p class="hero-sub">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
     </section>
@@ -230,7 +249,7 @@
             <div class="service-card" onclick="openService('creative')">
                 <i class="fa-solid fa-video"></i>
                 <h3>Creative Design</h3>
-                <p>動画編集からLive2D、配信デザインまで。世界観をトータルでサポート。</p>
+                <p>動画編集からLive2D、配信デザインまで。世界観をトータルプロデュース。</p>
             </div>
             <div class="service-card" onclick="openService('tech')">
                 <i class="fa-solid fa-microchip"></i>
@@ -245,7 +264,8 @@
         <div class="management-profile" onclick="openMember('shil')">
             <div class="shil-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
             <div class="management-info">
-                <h3>SHIL / 酒井</h3>
+                <!-- 💡 「酒井」を削除 -->
+                <h3>SHIL</h3>
                 <p>
                     「Next Gear」代表 / プロジェクトマネージャー。<br>
                     クリエイターが『表現・配信』というコアな活動にのみ集中できるよう、サーバーインフラからクリエイティブ制作まで、全方位のロジスティクスを統括・支援します。
@@ -308,7 +328,8 @@
     <script>
         const memberData = {
             shil: {
-                name: "SHIL / 酒井",
+                // 💡 「酒井」を削除
+                name: "SHIL",
                 text: "「Next Gear」の代表・管理者。インフラ構築から配信支援のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談、サーバー構築等の技術的なお問い合わせは、X(Twitter)のDMへ直接ご連絡ください。",
                 color: "var(--accent-shil)", img: "./shil.jpg",
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }],
