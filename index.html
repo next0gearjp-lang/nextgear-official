@@ -93,7 +93,7 @@
         .game-icons { margin-top: 20px; display: flex; gap: 15px; font-size: 1.2rem; color: #333; }
         .service-card:hover .game-icons { color: #888; }
 
-        /* 💡 MANAGEMENT (運営者セクション) */
+        /* MANAGEMENT */
         .management-profile { display: flex; align-items: center; gap: 50px; background: #0a0a0a; padding: 50px; border: 1px solid #111; cursor: pointer; transition: var(--transition); border-radius: 2px; margin-top: 20px; max-width: 900px; }
         .management-profile:hover { background: #111; border-color: #333; transform: translateY(-5px); }
         .shil-wrapper { width: 150px; height: 150px; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 1px solid #333; filter: grayscale(100%) brightness(0.8); transition: var(--transition); }
@@ -104,7 +104,7 @@
         .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: #fff; border-bottom: 1px solid #444; padding-bottom: 3px; transition: 0.3s; }
         .management-profile:hover .view-details { border-bottom-color: #fff; }
 
-        /* MEMBERS GRID (2名用に調整) */
+        /* MEMBERS GRID */
         .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 700px; margin: 0 auto; }
         .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 280px; margin: 0 auto; transition: var(--transition); }
         .member-item:nth-child(2) { margin-top: 80px; }
@@ -148,14 +148,10 @@
             .info-item { gap: 15px; flex-direction: column; align-items: flex-start; padding: 20px 0; }
             .service-card { padding: 40px 25px; }
             .service-card h3 { font-size: 1.1rem; }
-            
-            /* マネジメント用スマホ調整 */
             .management-profile { flex-direction: column; text-align: center; gap: 20px; padding: 40px 20px; }
             .shil-wrapper { width: 120px; height: 120px; }
-            
             .members-grid { grid-template-columns: 1fr; gap: 40px; }
             .member-item:nth-child(2) { margin-top: 0; }
-            
             .detail-text h2 { font-size: 2.2rem; }
             .detail-content { grid-template-columns: 1fr; gap: 30px; padding: 20% 6% 10%; }
             .close-btn { right: 6%; top: 30px; }
@@ -234,7 +230,7 @@
             <div class="service-card" onclick="openService('creative')">
                 <i class="fa-solid fa-video"></i>
                 <h3>Creative Design</h3>
-                <p>動画編集からLive2D、配信デザインまで。世界観をトータルプロデュース。</p>
+                <p>動画編集からLive2D、配信デザインまで。世界観をトータルでサポート。</p>
             </div>
             <div class="service-card" onclick="openService('tech')">
                 <i class="fa-solid fa-microchip"></i>
@@ -244,7 +240,6 @@
         </div>
     </section>
 
-    <!-- 💡 新設：MANAGEMENT (運営者) セクション -->
     <section id="management">
         <span class="section-label">Project Management</span>
         <div class="management-profile" onclick="openMember('shil')">
@@ -260,7 +255,6 @@
         </div>
     </section>
 
-    <!-- MEMBERS セクション (LIFE, NYATSUMEのみ) -->
     <section id="members">
         <span class="section-label">Selected Members</span>
         <div class="members-grid">
@@ -356,10 +350,9 @@
                 color: "#fff", 
                 specs: ["10Gbps Network", "Ryzen 9 9950X3D", "64GB RAM", "Unlimited Data"]
             },
-            /* 💡 CREATIVE SUPPORT を大幅ブラッシュアップ */
             creative: {
                 name: "CREATIVE SUPPORT",
-                text: "「ただ編集する、ただ絵を動かす」だけではありません。ロゴ、配信画面（オーバーレイ）、サムネイルからLive2Dの魅せ方まで、あなただけの『世界観』をトータルプロデュースし、ワンランク上のクリエイターへと引き上げます。\n\n面倒な作業はすべて我々に任せ、クリエイターは「配信・収録」というコアな活動に100%集中してください。\n\n* 動画編集：\nYouTube本編からTikTok用のショート動画まで対応。視聴者を惹きつけるテンポの良い編集を提供します。\n\n* 配信デザイン：\nオーバーレイ、待機画面、トランジションなど、配信のクオリティを決定づける各種デザインを統一感のある世界観で制作します。\n\n* Live2Dモデル導入：\nイラストを動かすだけでなく、トラッキングソフトへの組み込みからOBSでの綺麗な魅せ方まで、配信デビューを完全サポートします。",
+                text: "あなただけの『世界観』づくりを、ビジュアル面からトータルでサポートします。\n\n制作に必要な外注費用や進行管理はすべてNext Gearが負担・担当します。クリエイターの皆様は費用や制作の手間を気にせず、「配信・収録」という活動そのものに100%集中していただけます。妥協せず、完全に納得いくまで一緒にクオリティを追求できる環境です。\n\n* 動画編集：\nYouTube本編からTikTok用のショート動画まで対応。視聴者を惹きつけるテンポの良い編集を、ご納得いただけるまで調整します。\n\n* 配信デザイン：\nオーバーレイ、待機画面、トランジションなど、各種デザインを統一感のある世界観で制作します。理想のイメージを形にするため、細部まで徹底的にこだわります。\n\n* Live2Dモデル導入：\nイラスト制作やモデリングに関わる外注手配・費用も当社でカバー。ソフトへの組み込みからOBSでの綺麗な魅せ方まで、活動のスタートを丁寧にサポートします。",
                 color: "#fff", 
                 specs: ["Total Branding", "Video Editing", "Stream Design", "Live2D Setup"]
             },
@@ -382,7 +375,6 @@
             if(isMember) { 
                 imgBox.style.display = "block"; 
                 document.getElementById('innerImg').src = data.img; 
-                // 💡 マネージャーの場合は画像を丸くする
                 if(data.linksShil) {
                     document.getElementById('innerImg').style.borderRadius = "50%";
                 } else {
