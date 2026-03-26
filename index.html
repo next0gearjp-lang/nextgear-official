@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXT GEAR | Professional Creative Logistics</title>
+    <title>NEXT GEAR | Professional Logistics by Shil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
+            /* 💡 配色調整：管理者は少し重厚なグレーをアクセントに */
             --bg-base: #050505; 
             --bg-sub: #0f0f0f;  
             --text-main: #f0f0f0; 
             --text-sub: #888888;  
+            --accent-shil: #aaaaaa; /* Shilさんのテーマカラー */
             --m1-color: #0088ff; 
             --m2-color: #4CAF50; 
-            --transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            --transition: 0.8s cubic-bezier(0.2, 1, 0.2, 1);
         }
 
         body {
@@ -25,123 +27,130 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 背景ギミック */
+        /* 背景ギミック：無限ループする SHIL / LIFE / NATUME */
         .marquee-bg {
             position: fixed;
-            top: 25%; left: 0; width: 100%; z-index: -1;
-            pointer-events: none; overflow: hidden; opacity: 0.015; 
+            top: 15%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: flex;
+            align-items: center;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.02; /* 💡 ReeL風：極限まで薄く */
         }
-        .marquee-inner {
-            display: flex; white-space: nowrap; font-size: 15rem; font-weight: 900;
-            animation: marquee 60s linear infinite;
+
+        .scroll-text {
+            display: flex;
+            white-space: nowrap;
+            font-size: 15rem; /* 巨大な文字 */
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05); /* ネオン風 */
+            transform: rotate(-10deg);
         }
+
+        .scroll-text span {
+            display: inline-block;
+            padding-right: 50px;
+            animation: marquee 25s linear infinite; /* 25秒で一周 */
+        }
+
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* ナビゲーション */
+        /* --- NAVIGATION --- */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 30px 10%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; box-sizing: border-box; 
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.8), transparent);
+            backdrop-filter: blur(10px); /* すりガラス効果 */
         }
+
         .logo { font-weight: 900; letter-spacing: 0.2em; font-size: 1.2rem; }
         .nav-links { display: flex; gap: 40px; font-size: 0.7rem; letter-spacing: 0.2em; }
-        .nav-links a { 
-            color: var(--text-main); 
-            text-decoration: none; 
-            opacity: 0.4; 
-            transition: var(--transition);
-            position: relative;
-            padding-bottom: 5px;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
-            background: #fff; transition: var(--transition);
-        }
-        .nav-links a:hover { opacity: 1; }
-        .nav-links a:hover::after { width: 100%; }
+        .nav-links a { color: var(--text-main); text-decoration: none; opacity: 0.4; transition: var(--transition); padding-bottom: 5px; }
+        .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
 
-        section { padding: 120px 15%; position: relative; }
+        /* セクション共通 */
+        section { padding: 120px 15%; }
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
-        /* HERO */
-        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 0 15%; }
-        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; }
-        .hero h1 span { display: block; font-weight: 800; }
-
-        /* INFO */
-        .info-list { margin-top: 40px; border-top: 1px solid #222; }
-        .info-item { 
-            padding: 30px 20px; 
-            border-bottom: 1px solid #222; 
-            display: flex; gap: 40px; 
-            align-items: center; 
-            transition: var(--transition);
-            cursor: default;
-        }
-        .info-item:hover { background-color: rgba(255, 255, 255, 0.03); transform: translateX(10px); }
-        .info-date { font-size: 0.8rem; color: var(--text-sub); min-width: 100px; }
-        .info-tag { font-size: 0.6rem; padding: 2px 8px; border: 1px solid #444; color: #888; transition: var(--transition); }
-        .info-item:hover .info-tag { border-color: #fff; color: #fff; }
-
-        /* 💡 SERVICE: ゲームサーバー対応を強化 */
-        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
-        .service-card {
-            background: #0a0a0a;
-            padding: 50px 40px;
-            border: 1px solid #111;
-            transition: var(--transition);
-            border-radius: 2px;
-        }
-        .service-card:hover {
-            background: #111;
-            border-color: #333;
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-        .service-card i { font-size: 1.5rem; margin-bottom: 25px; color: #fff; opacity: 0.3; transition: var(--transition); }
-        .service-card:hover i { opacity: 1; transform: scale(1.1); }
-        .service-card h3 { font-size: 1.1rem; margin-bottom: 20px; letter-spacing: 0.1em; }
-        .service-card p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
+        /* --- HERO --- */
+        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 0 15%; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; color: #fff; }
+        .hero h1 span { display: block; font-weight: 800; color: #fff; }
         
-        /* 💡 ゲームアイコンのリスト */
-        .game-icons {
-            margin-top: 20px;
-            display: flex;
-            gap: 15px;
-            font-size: 1.2rem;
-            color: #444;
-        }
+        /* 💡 補足：理念セクション */
+        .mission-text { font-size: 2rem; line-height: 1.8; font-weight: 300; letter-spacing: 0.05em; max-width: 800px; color: #ccc; }
+        .mission-text b { color: #fff; font-weight: 700; }
+
+        /* --- INFO --- */
+        .info-list { margin-top: 40px; border-top: 1px solid #222; }
+        .info-item { padding: 25px 0; border-bottom: 1px solid #222; display: flex; gap: 40px; transition: 0.3s; cursor: default; }
+        .info-item:hover { transform: translateX(10px); }
+        .info-date { font-size: 0.8rem; color: var(--text-sub); min-width: 100px; font-family: 'Courier New', Courier, monospace; }
+        .info-tag { font-size: 0.6rem; padding: 2px 8px; border: 1px solid #444; color: #888; text-transform: uppercase; border-radius: 2px; }
+        .info-title { font-size: 1rem; flex-grow: 1; }
+
+        /* --- SERVICE --- */
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
+        .service-card { background: #0a0a0a; padding: 60px 40px; border: 1px solid #111; transition: var(--transition); cursor: pointer; border-radius: 2px; }
+        .service-card:hover { border-color: #333; transform: translateY(-10px); }
+        .service-card i { font-size: 1.5rem; margin-bottom: 25px; color: #fff; opacity: 0.3; }
+        .service-card:hover i { opacity: 1; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 0.1em; }
+        .service-card p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
+        .spec-badge { display: inline-block; padding: 5px 12px; background: #222; color: #fff; font-size: 0.65rem; letter-spacing: 0.1em; margin-right: 5px; margin-top: 5px; border-radius: 2px; }
+        
+        /* 💡 ゲームアイコン */
+        .game-icons { margin-top: 20px; display: flex; gap: 15px; font-size: 1.2rem; color: #333; }
         .service-card:hover .game-icons { color: #888; }
 
-        /* MEMBERS GRID */
-        .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; }
-        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 280px; margin: 0 auto; transition: var(--transition); }
-        .member-item:nth-child(even) { margin-top: 80px; }
-        .member-item:hover { transform: translateY(-10px); }
-        .image-wrapper { width: 100%; overflow: hidden; aspect-ratio: 3 / 4; background-color: #111; }
-        .member-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.6); transition: 1s cubic-bezier(0.22, 1, 0.36, 1); }
+        /* --- MEMBERS --- */
+        .members-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
+        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 250px; margin: 0 auto; transition: var(--transition); }
+        .member-item:nth-child(2) { margin-top: 50px; }
+        .member-item:nth-child(3) { margin-top: 100px; }
+        
+        .image-wrapper { width: 100%; overflow: hidden; aspect-ratio: 3 / 4; background-color: #111; position: relative; border-radius: 2px; }
+        .member-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7); transition: 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .member-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
+        .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; }
 
-        /* DETAIL PANEL */
+        /* --- DETAIL OVERLAY --- */
         .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-base); z-index: 2000; display: flex; transform: translateY(100%); transition: var(--transition); overflow-y: auto; }
         .detail-overlay.open { transform: translateY(0); }
-        .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; }
-        .detail-text h2 { font-size: 3rem; margin: 0; font-weight: 800; color: #fff; }
-        .sns-links { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 20px; padding-bottom: 50px; }
-        .sns-links a { color: #fff; text-decoration: none; font-size: 0.7rem; border-bottom: 1px solid #333; padding-bottom: 5px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-        .sns-links a:hover { opacity: 0.7; border-bottom-color: #fff; transform: translateY(-3px); }
-        .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #888; z-index: 2100; border-bottom: 1px solid #444; }
+        .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; gap: 80px; }
+        .detail-text h2 { font-size: 3.5rem; margin: 0; font-weight: 800; color: #fff; letter-spacing: 0.1em; }
+        .detail-text p { font-size: 0.95rem; line-height: 2.2; color: #ccc; margin-top: 30px; }
+        .shil-contact-btn { display: inline-block; padding: 15px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.3em; margin-top: 30px; transition: 0.4s; }
+        .shil-contact-btn:hover { background: #fff; color: #000; }
+        .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #666; z-index: 2100; border-bottom: 1px solid #333; }
 
         /* CONTACT */
-        .contact-box { background-color: #080808; padding: 100px 40px; text-align: center; border: 1px solid #111; }
-        .contact-btn { display: inline-block; padding: 20px 60px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.3em; margin-top: 30px; transition: 0.4s; }
-        .contact-btn:hover { background: #fff; color: #000; }
+        .contact-box { background-color: var(--bg-sub); padding: 100px 40px; text-align: center; border: 1px solid #111; border-radius: 4px; }
+        .contact-box h2 { font-size: 3rem; margin-bottom: 20px; font-weight: 200; }
+        .contact-box span { display: block; font-size: 1rem; color: #666; letter-spacing: 0.2em; margin-top: 30px; cursor: pointer; text-decoration: underline; }
 
-        footer { padding: 100px 15% 50px; font-size: 0.6rem; color: #333; letter-spacing: 0.2em; border-top: 1px solid #111; display: flex; justify-content: space-between; }
+        footer { padding: 120px 15% 50px; font-size: 0.65rem; color: #444; letter-spacing: 0.1em; border-top: 1px solid #111; display: flex; justify-content: space-between; align-items: flex-end; }
+        .shil-credit { text-align: right; }
+        .shil-credit img { width: 60px; border-radius: 50%; border: 2px solid var(--accent-shil); transition: 0.4s; }
+        .shil-credit:hover img { transform: rotate(15deg) scale(1.1); }
+        .shil-name { font-weight: 800; color: #666; font-size: 0.8rem; margin-top: 10px; }
 
         @media (max-width: 768px) {
-            section, .hero { padding: 80px 8%; }
-            .service-grid, .members-grid, .detail-content { grid-template-columns: 1fr; gap: 30px; }
+            section, .hero { padding: 100px 8%; }
+            .service-grid, .members-grid, .detail-content { grid-template-columns: 1fr; gap: 40px; }
+            .hero h1 { font-size: 2.5rem; }
+            .detail-img-box { display: none; }
         }
     </style>
 </head>
@@ -150,6 +159,7 @@
     <nav>
         <div class="logo">NEXT GEAR</div>
         <div class="nav-links">
+            <a href="#about">ABOUT</a>
             <a href="#info">INFO</a>
             <a href="#service">SERVICE</a>
             <a href="#members">MEMBERS</a>
@@ -158,29 +168,39 @@
     </nav>
 
     <div class="marquee-bg">
-        <div class="marquee-inner">
-            NEXT GEAR SHIL LIFE NYATSUME / NEXT GEAR SHIL LIFE NYATSUME / 
+        <div class="scroll-text">
+            <span>NEXT GEAR SHIL LIFE NATUME NEXT GEAR SHIL LIFE NATUME</span>
+            <span>NEXT GEAR SHIL LIFE NATUME NEXT GEAR SHIL LIFE NATUME</span>
         </div>
     </div>
 
     <section class="hero">
-        <p style="letter-spacing: 0.6em; color: #333; margin-bottom: 20px; font-size: 0.7rem;">MANAGED BY SHIL</p>
+        <p style="letter-spacing: 0.6em; color: #444; margin-bottom: 20px; font-size: 0.7rem;">MANAGED BY SHIL</p>
         <h1>NEXT<span>GEAR</span></h1>
         <p style="color: #444; letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem;">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
     </section>
 
+    
+<section id="about">
+        <span class="section-label">Our Mission</span>
+        <div class="mission-text">
+            クリエイターの表現を<b>ロジスティクス（物流・支援）</b>の側面から支え抜く。
+            技術的な障壁を排除し、最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させる。
+        </div>
+    </section>
+
     <section id="info">
-        <span class="section-label">Information</span>
+        <span class="section-label">Latest Information</span>
         <div class="info-list">
             <div class="info-item">
                 <div class="info-date">2026.03.27</div>
                 <div class="info-tag">RELEASE</div>
-                <div class="info-title">Official Website "Next Gear" 公開</div>
+                <div class="info-title">Next Gear Official Website 公開開始</div>
             </div>
             <div class="info-item">
                 <div class="info-date">2026.03.20</div>
-                <div class="info-tag">PROJECT</div>
-                <div class="info-title">マルチゲームサーバーホスティング対応開始</div>
+                <div class="info-tag">UPDATE</div>
+                <div class="info-title">Ryzen 9 9950X3D搭載 10Gbpsサーバー提供準備完了</div>
             </div>
         </div>
     </section>
@@ -188,27 +208,25 @@
     <section id="service">
         <span class="section-label">Our Service</span>
         <div class="service-grid">
-            <!-- 💡 マルチサーバー対応のカード -->
-            <div class="service-card">
+            <div class="service-card" onclick="openService('hosting')">
                 <i class="fa-solid fa-cloud-sun"></i>
-                <h3>Multi-Server Hosting</h3>
-                <p>Minecraftをはじめ、ARK, Rust, Palworldなど多種多様なタイトルのサーバー構築・運用に対応。最新スペックのサーバーで快適な環境を提供します。</p>
+                <h3>Multi-Hosting</h3>
+                <p>10Gbps・Ryzen 9 9950X3D。最高峰スペックのストレスフリーな環境。</p>
                 <div class="game-icons">
-                    <i class="fa-solid fa-cube" title="Minecraft"></i>
-                    <i class="fa-solid fa-dragon" title="ARK"></i>
-                    <i class="fa-solid fa-person-rifle" title="Rust"></i>
-                    <i class="fa-solid fa-ghost" title="Palworld"></i>
+                    <i class="fa-solid fa-cube"></i>
+                    <i class="fa-solid fa-dragon"></i>
+                    <i class="fa-solid fa-person-rifle"></i>
                 </div>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openService('creative')">
                 <i class="fa-solid fa-video"></i>
                 <h3>Creative Design</h3>
-                <p>動画編集、Live2D導入、配信オーバーレイ制作など、ビジュアル面からクリエイターのアイデンティティを形にします。</p>
+                <p>動画編集、Live2D、オーバーレイ制作。クリエイターの個性を形にします。</p>
             </div>
-            <div class="service-card">
+            <div class="service-card" onclick="openService('tech')">
                 <i class="fa-solid fa-microchip"></i>
                 <h3>Streaming Tech</h3>
-                <p>配信環境の構築支援やPCスペックの最適化アドバイス。最新のテクノロジーを活用し、安定した活動をサポートします。</p>
+                <p>配信環境・PCスペックの最適化支援。最新テクノロジーで活動をサポート。</p>
             </div>
         </div>
     </section>
@@ -216,11 +234,18 @@
     <section id="members">
         <span class="section-label">Selected Members</span>
         <div class="members-grid">
-            <div class="member-item" onclick="openDetail('life')">
+            
+            <div class="member-item" onclick="openDetail('shil', true)">
+                <div class="image-wrapper"><img src="./shil.png" alt="SHIL"></div>
+                <div class="member-name">SHIL / 酒井</div>
+            </div>
+            
+            <div class="member-item" onclick="openDetail('life', false)">
                 <div class="image-wrapper"><img src="./zero.png" alt="LIFE"></div>
                 <div class="member-name">LIFE</div>
             </div>
-            <div class="member-item" onclick="openDetail('nyatsume')">
+            
+            <div class="member-item" onclick="openDetail('nyatsume', false)">
                 <div class="image-wrapper"><img src="./natume.png" alt="NYATSUME"></div>
                 <div class="member-name">NYATSUME</div>
             </div>
@@ -230,16 +255,19 @@
     <section id="contact">
         <div class="contact-box">
             <span class="section-label" style="margin-bottom: 20px;">Contact</span>
-            <h2>Project Inquiry</h2>
+            <h2>Get In Touch</h2>
             <p style="color: #555; font-size: 0.9rem; letter-spacing: 0.1em;">お仕事の依頼、所属に関するお問い合わせは公式DMまで</p>
-            <a href="https://x.com/0life_game" class="contact-btn">GET IN TOUCH</a>
+            <span onclick="openDetail('shil', true)">または管理者「Shil」へ直接連絡 🡒</span>
         </div>
     </section>
 
-    <div id="detailOverlay" class="detail-overlay">
+    
+<div id="detailOverlay" class="detail-overlay">
         <div class="close-btn" onclick="closeDetail()">Back — Index</div>
         <div id="detailContent" class="detail-content">
-            <div class="detail-img-box"><img id="innerImg" src="" style="width: 70%; aspect-ratio: 3/4; object-fit: cover;"></div>
+            <div class="detail-img-box" id="detailImgBox">
+                <img id="innerImg" src="" style="width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
+            </div>
             <div class="detail-text">
                 <h2 id="innerName">NAME</h2>
                 <div id="innerColor" style="height: 1px; width: 40px; margin: 25px 0;"></div>
@@ -250,63 +278,130 @@
     </div>
 
     <footer>
-        <div>&copy; 2026 NEXT GEAR.</div>
-        <div style="opacity: 0.3;">MANAGED BY SHIL / DESIGN BY SHIL0ZER</div>
+        <div>
+            &copy; 2026 NEXT GEAR.<br>
+            All Rights Reserved.
+        </div>
+        
+        <div class="shil-credit" onclick="openDetail('shil', true)" style="cursor: pointer;">
+            <img src="./shil.png" alt="Shil">
+            <div class="shil-name">PROJECT MANAGED BY SHIL</div>
+        </div>
     </footer>
 
     <script>
         const memberData = {
+            shil: {
+                name: "SHIL / 酒井",
+                text: "「Next Gear」の管理者。配信やサーバー運営のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談は、XのDMへ直接ご連絡ください。",
+                color: "var(--accent-shil)", img: "./shil.png",
+                links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }],
+                isShil: true // Shilさん専用の特別なフラグ
+            },
             life: {
                 name: "LIFE",
-                text: "ゲーム配信、雑談をメインに活動中！\n配信時間は夜がメイン！告知はなく急に始まるので「やってるから行こう」位の気軽さで来てください。\n飲み会配信やラジオもしてるので、ジュース片手に覗きに来てね。ROMも大歓迎です！",
-                color: "var(--m1-color)",
-                img: "./zero.png",
+                text: "ゲーム配信や雑談配信、ラジオ等ワイワイ楽しく配信しています！告知はなく急に始まるのでROMも歓迎覗きに来てね。",
+                color: "var(--m1-color)", img: "./zero.png",
                 links: [
-                    { label: "X", url: "https://x.com/0life_game", icon: "fa-brands fa-x-twitter" },
                     { label: "YOUTUBE", url: "https://t.co/6HemoVdTf8", icon: "fa-brands fa-youtube" },
                     { label: "TWITCH", url: "https://t.co/4KlyfNtd5x", icon: "fa-brands fa-twitch" },
-                    { label: "TIKTOK", url: "https://www.tiktok.com/@user324520832", icon: "fa-brands fa-tiktok" },
-                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/tz1xglj9o5cscso?t=Jl9HTW&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
-                    { label: "LIT.LINK (RULES)", url: "https://t.co/w4wRHskof3", icon: "fa-solid fa-link" }
+                    { label: "LIT.LINK", url: "https://t.co/w4wRHskof3", icon: "fa-solid fa-link" }
                 ]
             },
             nyatsume: {
                 name: "NYATSUME",
-                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\n【基本配信時間】\n火水日：15時～25時のどこか（配信通知ON推奨！）\n\n【Game】\nAPEX / Minecraft / R.E.P.O. / ForzaHorizon / Switch / Among US / WoTB / Shadowverse(Los所属) / Fortnite / VALORANT / OW2 / Marvel Rivals / GTA V\n\n【Goal】\n・SNS合計フォロワー3000人\n・Twitch配信平均同接10人以上\n・ストグラに参加する\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
-                color: "var(--m2-color)",
-                img: "./natume.png",
+                text: "誕生日：12月8日\nみどりとゲーム大好き。記憶力おじいちゃん。ShadowverseLos所属",
+                color: "var(--m2-color)", img: "./natume.png",
                 links: [
-                    { label: "X", url: "https://x.com/Natume_1208", icon: "fa-brands fa-x-twitter" },
                     { label: "TWITCH", url: "https://t.co/U65Dds4tE0", icon: "fa-brands fa-twitch" },
-                    { label: "YOUTUBE", url: "https://www.youtube.com/@%E3%81%AA%E3%82%83%E3%81%A4%E3%82%81", icon: "fa-brands fa-youtube" },
-                    { label: "TIKTOK", url: "https://www.tiktok.com/@natume_1208", icon: "fa-brands fa-tiktok" },
-                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/yz10pr3nyqdn60a?t=lV0LIb&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
-                    { label: "WISH LIST", url: "https://www.amazon.jp/hz/wishlist/ls/2EJG6OJG9CTPB?ref_=wl_share", icon: "fa-solid fa-gift" },
                     { label: "LIT.LINK", url: "https://t.co/s37Zw484HZ", icon: "fa-solid fa-link" }
                 ]
             }
         };
 
-        function openDetail(id) {
-            const data = memberData[id];
+        const serviceData = {
+            hosting: {
+                name: "MULTI-HOSTING",
+                text: "10Gbps回線・Ryzen 9 9950X3D。夕方の混雑時でも速度が落ちにくく、安定した最高峰のスペックサーバー環境を提供します。データ転送量は無制限です。",
+                color: "#fff", specs: ["10Gbps回線", "Ryzen 9 9950X3D", "64GB RAM", "無制限"]
+            },
+            creative: {
+                name: "CREATIVE SUPPORT",
+                text: "動画編集、Live2D、配信オーバーレイ制作など、ビジュアル面からクリエイターのアイデンティティを形にします。",
+                color: "#fff", specs: ["動画編集", "Live2D", "ビジュアルデザイン"]
+            },
+            tech: {
+                name: "STREAMING TECH",
+                text: "配信機材、PCスペックの最適化アドバイス。最新のテクノロジーを活用し、安定した活動をサポートします。",
+                color: "#fff", specs: ["OBS設定", "PC構成相談", "配信技術"]
+            }
+        };
+
+        function openDetail(id, isMemberOrShil) {
+            const data = isMemberOrShil ? memberData[id] : serviceData[id];
+            
             document.getElementById('innerName').innerText = data.name;
             document.getElementById('innerText').style.whiteSpace = "pre-wrap"; 
             document.getElementById('innerText').innerText = data.text;
-            document.getElementById('innerImg').src = data.img;
             document.getElementById('innerColor').style.backgroundColor = data.color;
+            
+            const imgBox = document.getElementById('detailImgBox');
             const snsArea = document.getElementById('snsArea');
+            
+            // スペック表示をリセット
             snsArea.innerHTML = "";
-            if(data.links) {
-                data.links.forEach(link => {
-                    const a = document.createElement('a');
-                    a.href = link.url;
-                    a.target = "_blank";
-                    a.innerHTML = `<i class="${link.icon}"></i>${link.label}`;
-                    snsArea.appendChild(a);
-                });
+
+            if(isMemberOrShil) {
+                // メンバーまたはShilさんの詳細
+                imgBox.style.display = "block";
+                document.getElementById('innerImg').src = data.img;
+                
+                // Shilさんの時は画像を円形にする、などの特別な処理が可能
+                if(data.isShil) {
+                    // document.getElementById('innerImg').style.borderRadius = "50%"; // Shilさんだけ円形に
+                } else {
+                    // document.getElementById('innerImg').style.borderRadius = "4px"; // 通常
+                }
+
+                // SNSリンクを生成
+                if(data.links) {
+                    data.links.forEach(link => {
+                        const a = document.createElement('a');
+                        a.href = link.url; a.target = "_blank";
+                        a.innerHTML = `<i class="${link.icon}"></i>${link.label}`;
+                        
+                        // ShilさんのDMボタン風のデザインにする
+                        if(data.isShil) {
+                            a.className = "shil-contact-btn";
+                            a.innerHTML = `OPEN DM — SHIL 🡒`;
+                            // 文字を元のlabelに戻す
+                            a.innerHTML = `<i class="fa-brands fa-x-twitter"></i>${link.label}`;
+                        }
+
+                        snsArea.appendChild(a);
+                    });
+                }
+            } else {
+                // サービス詳細
+                imgBox.style.display = "none";
+                
+                // スペックバッジを生成
+                if(data.specs) {
+                    data.specs.forEach(spec => {
+                        const span = document.createElement('span');
+                        span.className = "spec-badge";
+                        span.innerText = spec;
+                        snsArea.appendChild(span);
+                    });
+                }
             }
+
             document.getElementById('detailOverlay').classList.add('open');
             document.body.style.overflow = 'hidden'; 
+        }
+
+        function openService(id) {
+            openDetail(id, false);
         }
 
         function closeDetail() {
@@ -314,6 +409,5 @@
             document.body.style.overflow = 'auto';
         }
     </script>
-
 </body>
 </html>
