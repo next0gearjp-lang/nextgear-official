@@ -81,7 +81,27 @@
         
         /* ABOUT */
         .mission-text { font-size: 2rem; line-height: 1.8; font-weight: 300; letter-spacing: 0.05em; max-width: 800px; color: #ccc; }
-        .mission-text b { color: #fff; font-weight: 700; }
+        
+        /* 💡 下線アニメーション用のスタイル */
+        .underline-magic {
+            position: relative;
+            display: inline-block;
+            color: #fff;
+            font-weight: 700;
+        }
+        .underline-magic::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px; /* 文字の少し下に配置 */
+            width: 0;
+            height: 2px; /* 線の太さ */
+            background: #fff;
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .underline-magic.active::after {
+            width: 100%; /* activeクラスが付くと線が100%まで伸びる */
+        }
 
         /* INFO */
         .info-list { margin-top: 40px; border-top: 1px solid #222; }
@@ -172,11 +192,12 @@
         <p class="hero-sub">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
     </section>
 
+    <!-- 💡 ABOUT セクションの変更箇所 -->
     <section id="about">
         <span class="section-label">Our Mission</span>
         <div class="mission-text">
-            クリエイターの表現を<b>ロジスティクス（物流・支援）</b>の側面から支え抜く。
-            技術的な障壁を排除し、最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させる。
+            クリエイターの表現を<span class="underline-magic">ロジスティクス（支援）</span>の側面から支え抜く。<br>
+            技術的な障壁を排除し、最高峰のサーバーインフラと洗練されたビジュアル制作で、<span class="underline-magic">次世代のクリエイティブを加速させる。</span>
         </div>
     </section>
 
@@ -370,6 +391,19 @@
         }
 
         function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); document.body.style.overflow = 'auto'; }
+
+        // 💡 追加：スクロール連動アニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // 要素が画面内に入ったら 'active' クラスを付与して線を引く
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.5 }); // 要素が50%見えたら発火
+
+        // .underline-magic クラスがついた要素を監視
+        document.querySelectorAll('.underline-magic').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
