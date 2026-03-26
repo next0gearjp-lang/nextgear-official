@@ -56,7 +56,7 @@
         section { padding: 120px 15%; position: relative; }
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
-        /* 💡 HERO & オープニングアニメーション */
+        /* HERO & オープニングアニメーション */
         @keyframes fadeUp {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -83,7 +83,6 @@
         /* ABOUT */
         .mission-text { font-size: 2rem; line-height: 1.8; font-weight: 300; letter-spacing: 0.05em; max-width: 800px; color: #ccc; }
         
-        /* 下線アニメーション */
         .underline-magic { position: relative; display: inline-block; color: #fff; font-weight: 700; }
         .underline-magic::after {
             content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px;
@@ -203,7 +202,6 @@
     </div>
 
     <section class="hero">
-        <!-- 💡 クラス名を追加してアニメーションを適用 -->
         <p class="hero-top-text">MANAGED BY SHIL</p>
         <h1>NEXT<span>GEAR</span></h1>
         <p class="hero-sub">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
@@ -249,7 +247,7 @@
             <div class="service-card" onclick="openService('creative')">
                 <i class="fa-solid fa-video"></i>
                 <h3>Creative Design</h3>
-                <p>動画編集からLive2D、配信デザインまで。世界観をトータルプロデュース。</p>
+                <p>動画編集からLive2D、配信デザインまで。世界観をトータルでサポート。</p>
             </div>
             <div class="service-card" onclick="openService('tech')">
                 <i class="fa-solid fa-microchip"></i>
@@ -264,7 +262,6 @@
         <div class="management-profile" onclick="openMember('shil')">
             <div class="shil-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
             <div class="management-info">
-                <!-- 💡 「酒井」を削除 -->
                 <h3>SHIL</h3>
                 <p>
                     「Next Gear」代表 / プロジェクトマネージャー。<br>
@@ -328,7 +325,6 @@
     <script>
         const memberData = {
             shil: {
-                // 💡 「酒井」を削除
                 name: "SHIL",
                 text: "「Next Gear」の代表・管理者。インフラ構築から配信支援のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談、サーバー構築等の技術的なお問い合わせは、X(Twitter)のDMへ直接ご連絡ください。",
                 color: "var(--accent-shil)", img: "./shil.jpg",
@@ -435,8 +431,40 @@
                 }
             });
         }, { threshold: 0.5 });
-
         document.querySelectorAll('.underline-magic').forEach(el => observer.observe(el));
+
+        // 💡 ナビゲーションの「ヌルッと」スムーススクロール
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+                    const duration = 1200; // 1.2秒かけて移動
+                    let start = null;
+
+                    function animation(currentTime) {
+                        if (start === null) start = currentTime;
+                        const timeElapsed = currentTime - start;
+                        const progress = Math.min(timeElapsed / duration, 1);
+                        
+                        // easeInOutQuart (ヌルッと加速してヌルッと減速する計算式)
+                        const ease = progress < 0.5 ? 8 * Math.pow(progress, 4) : 1 - Math.pow(-2 * progress + 2, 4) / 2;
+                        
+                        window.scrollTo(0, startPosition + distance * ease);
+                        
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        }
+                    }
+                    requestAnimationFrame(animation);
+                }
+            });
+        });
     </script>
 </body>
 </html>
