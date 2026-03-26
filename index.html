@@ -93,11 +93,21 @@
         .game-icons { margin-top: 20px; display: flex; gap: 15px; font-size: 1.2rem; color: #333; }
         .service-card:hover .game-icons { color: #888; }
 
-        /* MEMBERS */
-        .members-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; }
-        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 250px; margin: 0 auto; transition: var(--transition); }
-        .member-item:nth-child(2) { margin-top: 50px; }
-        .member-item:nth-child(3) { margin-top: 100px; }
+        /* 💡 MANAGEMENT (運営者セクション) */
+        .management-profile { display: flex; align-items: center; gap: 50px; background: #0a0a0a; padding: 50px; border: 1px solid #111; cursor: pointer; transition: var(--transition); border-radius: 2px; margin-top: 20px; max-width: 900px; }
+        .management-profile:hover { background: #111; border-color: #333; transform: translateY(-5px); }
+        .shil-wrapper { width: 150px; height: 150px; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 1px solid #333; filter: grayscale(100%) brightness(0.8); transition: var(--transition); }
+        .management-profile:hover .shil-wrapper { filter: grayscale(0%) brightness(1); transform: scale(1.05); border-color: #666; }
+        .shil-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .management-info h3 { font-size: 1.5rem; margin: 0 0 15px 0; letter-spacing: 0.2em; color: #fff; }
+        .management-info p { color: var(--text-sub); font-size: 0.85rem; line-height: 1.8; margin: 0; }
+        .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: #fff; border-bottom: 1px solid #444; padding-bottom: 3px; transition: 0.3s; }
+        .management-profile:hover .view-details { border-bottom-color: #fff; }
+
+        /* MEMBERS GRID (2名用に調整) */
+        .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 700px; margin: 0 auto; }
+        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 280px; margin: 0 auto; transition: var(--transition); }
+        .member-item:nth-child(2) { margin-top: 80px; }
         .image-wrapper { width: 100%; overflow: hidden; aspect-ratio: 3 / 4; background-color: #111; position: relative; border-radius: 2px; }
         .member-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7); transition: 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .member-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
@@ -128,47 +138,32 @@
         .shil-credit:hover img { transform: rotate(15deg) scale(1.1); }
         .shil-name { font-weight: 800; color: #666; font-size: 0.8rem; margin-top: 10px; }
 
-        /* 💡 ここから下がスマホ用の最適化調整です */
         @media (max-width: 768px) {
-            /* 左右の余白を少し狭くして画面を広く使う */
             nav { padding: 20px 6%; }
             section, .hero { padding: 80px 6%; }
-            
             .logo { font-size: 1rem; }
-            
-            /* タイトルサイズをシュッとさせる */
             .hero h1 { font-size: 2.2rem; }
             .hero-sub { font-size: 0.7rem; }
-            
-            /* ABOUTの文字サイズを大幅に小さく */
             .mission-text { font-size: 1.2rem; line-height: 1.8; }
-            
-            /* INFOリストを少しコンパクトに */
             .info-item { gap: 15px; flex-direction: column; align-items: flex-start; padding: 20px 0; }
-            
-            /* SERVICEカードの余白を小さく */
             .service-card { padding: 40px 25px; }
             .service-card h3 { font-size: 1.1rem; }
-
-            /* メンバー画像を一直線に並べる際のズレをなくす */
-            .member-item:nth-child(2), .member-item:nth-child(3) { margin-top: 0; }
             
-            /* 詳細パネルを開いたときの文字を小さく */
+            /* マネジメント用スマホ調整 */
+            .management-profile { flex-direction: column; text-align: center; gap: 20px; padding: 40px 20px; }
+            .shil-wrapper { width: 120px; height: 120px; }
+            
+            .members-grid { grid-template-columns: 1fr; gap: 40px; }
+            .member-item:nth-child(2) { margin-top: 0; }
+            
             .detail-text h2 { font-size: 2.2rem; }
             .detail-content { grid-template-columns: 1fr; gap: 30px; padding: 20% 6% 10%; }
             .close-btn { right: 6%; top: 30px; }
-            
-            /* CONTACTの文字を小さく */
             .contact-box { padding: 60px 20px; }
             .contact-box h2 { font-size: 2rem; }
             .contact-box span { font-size: 0.8rem; }
-            
-            /* グリッドを縦並びに */
-            .service-grid, .members-grid { grid-template-columns: 1fr; gap: 30px; }
-            
-            /* 詳細パネルの画像はスマホだと画面が埋まるので非表示 */
+            .service-grid { grid-template-columns: 1fr; gap: 30px; }
             .detail-img-box { display: none; }
-            
             footer { padding: 80px 6% 40px; flex-direction: column; gap: 30px; align-items: flex-start; }
             .shil-credit { text-align: left; }
         }
@@ -182,8 +177,8 @@
             <a href="#about">ABOUT</a>
             <a href="#info">INFO</a>
             <a href="#service">SERVICE</a>
+            <a href="#management">MANAGEMENT</a>
             <a href="#members">MEMBERS</a>
-            <a href="#contact">CONTACT</a>
         </div>
     </nav>
 
@@ -220,11 +215,6 @@
                 <div class="info-tag">UPDATE</div>
                 <div class="info-title">Ryzen 9 9950X3D搭載 10Gbpsサーバー提供準備完了</div>
             </div>
-            <div class="info-item">
-                <div class="info-date">2026.03.15</div>
-                <div class="info-tag">MEMBER</div>
-                <div class="info-title">「LIFE」「NYATSUME」のプロフィールを追加</div>
-            </div>
         </div>
     </section>
 
@@ -244,7 +234,7 @@
             <div class="service-card" onclick="openService('creative')">
                 <i class="fa-solid fa-video"></i>
                 <h3>Creative Design</h3>
-                <p>動画編集、Live2D、オーバーレイ制作。クリエイターの個性を形にします。</p>
+                <p>動画編集からLive2D、配信デザインまで。世界観をトータルプロデュース。</p>
             </div>
             <div class="service-card" onclick="openService('tech')">
                 <i class="fa-solid fa-microchip"></i>
@@ -254,13 +244,26 @@
         </div>
     </section>
 
+    <!-- 💡 新設：MANAGEMENT (運営者) セクション -->
+    <section id="management">
+        <span class="section-label">Project Management</span>
+        <div class="management-profile" onclick="openMember('shil')">
+            <div class="shil-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
+            <div class="management-info">
+                <h3>SHIL / 酒井</h3>
+                <p>
+                    「Next Gear」代表 / プロジェクトマネージャー。<br>
+                    クリエイターが『表現・配信』というコアな活動にのみ集中できるよう、サーバーインフラからクリエイティブ制作まで、全方位のロジスティクスを統括・支援します。
+                </p>
+                <span class="view-details">VIEW PROFILE 🡒</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBERS セクション (LIFE, NYATSUMEのみ) -->
     <section id="members">
         <span class="section-label">Selected Members</span>
         <div class="members-grid">
-            <div class="member-item" onclick="openMember('shil')">
-                <div class="image-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
-                <div class="member-name">SHIL / 酒井</div>
-            </div>
             <div class="member-item" onclick="openMember('life')">
                 <div class="image-wrapper"><img src="./zero.png" alt="LIFE"></div>
                 <div class="member-name">LIFE</div>
@@ -277,7 +280,7 @@
             <span class="section-label" style="margin-bottom: 20px;">Contact</span>
             <h2>Get In Touch</h2>
             <p style="color: #555; font-size: 0.9rem; letter-spacing: 0.1em;">お仕事の依頼、所属に関するお問い合わせは公式DMまで</p>
-            <span onclick="openMember('shil')">または管理者「Shil」へ直接連絡 🡒</span>
+            <span onclick="openMember('shil')">またはマネージャー「Shil」へ直接連絡 🡒</span>
         </div>
     </section>
 
@@ -312,7 +315,7 @@
         const memberData = {
             shil: {
                 name: "SHIL / 酒井",
-                text: "「Next Gear」の管理者。配信やサーバー運営のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談は、XのDMへ直接ご連絡ください。",
+                text: "「Next Gear」の代表・管理者。インフラ構築から配信支援のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談、サーバー構築等の技術的なお問い合わせは、X(Twitter)のDMへ直接ご連絡ください。",
                 color: "var(--accent-shil)", img: "./shil.jpg",
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }],
                 linksShil: true
@@ -353,10 +356,12 @@
                 color: "#fff", 
                 specs: ["10Gbps Network", "Ryzen 9 9950X3D", "64GB RAM", "Unlimited Data"]
             },
+            /* 💡 CREATIVE SUPPORT を大幅ブラッシュアップ */
             creative: {
                 name: "CREATIVE SUPPORT",
-                text: "クリエイターの「表現したい」という意思を形にするためのクリエイティブ支援。動画編集から、Live2Dの導入、オーバーレイ制作まで。活動の解像度を高めるビジュアルをトータルプロデュースします。",
-                color: "#fff", specs: ["Video Editing", "Live2D Introduction", "Visual Design"]
+                text: "「ただ編集する、ただ絵を動かす」だけではありません。ロゴ、配信画面（オーバーレイ）、サムネイルからLive2Dの魅せ方まで、あなただけの『世界観』をトータルプロデュースし、ワンランク上のクリエイターへと引き上げます。\n\n面倒な作業はすべて我々に任せ、クリエイターは「配信・収録」というコアな活動に100%集中してください。\n\n* 動画編集：\nYouTube本編からTikTok用のショート動画まで対応。視聴者を惹きつけるテンポの良い編集を提供します。\n\n* 配信デザイン：\nオーバーレイ、待機画面、トランジションなど、配信のクオリティを決定づける各種デザインを統一感のある世界観で制作します。\n\n* Live2Dモデル導入：\nイラストを動かすだけでなく、トラッキングソフトへの組み込みからOBSでの綺麗な魅せ方まで、配信デビューを完全サポートします。",
+                color: "#fff", 
+                specs: ["Total Branding", "Video Editing", "Stream Design", "Live2D Setup"]
             },
             tech: {
                 name: "STREAMING TECH",
@@ -374,7 +379,18 @@
             document.getElementById('innerText').innerText = data.text;
             document.getElementById('innerColor').style.backgroundColor = data.color;
             const imgBox = document.getElementById('detailImgBox');
-            if(isMember) { imgBox.style.display = "block"; document.getElementById('innerImg').src = data.img; } else { imgBox.style.display = "none"; }
+            if(isMember) { 
+                imgBox.style.display = "block"; 
+                document.getElementById('innerImg').src = data.img; 
+                // 💡 マネージャーの場合は画像を丸くする
+                if(data.linksShil) {
+                    document.getElementById('innerImg').style.borderRadius = "50%";
+                } else {
+                    document.getElementById('innerImg').style.borderRadius = "4px";
+                }
+            } else { 
+                imgBox.style.display = "none"; 
+            }
             const snsArea = document.getElementById('snsArea');
             snsArea.innerHTML = "";
             if(isMember && data.links) {
