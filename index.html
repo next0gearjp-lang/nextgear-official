@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXT GEAR | Professional Logistics by Shil</title>
+    <title>NEXT GEAR | Professional Creative Logistics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            /* 💡 配色調整：管理者は少し重厚なグレーをアクセントに */
+            /* 💡 配色：漆黒にグレーと、メンバー独自のカラー */
             --bg-base: #050505; 
             --bg-sub: #0f0f0f;  
             --text-main: #f0f0f0; 
             --text-sub: #888888;  
-            --accent-shil: #aaaaaa; /* Shilさんのテーマカラー */
-            --m1-color: #0088ff; 
-            --m2-color: #4CAF50; 
+            --accent-shil: #888888; /* 💡 Shilさんのテーマカラー（洗練されたグレー） */
+            --m1-color: #0088ff; /* ライフさんのカラー */
+            --m2-color: #4CAF50; /* なゃつめさんのカラー */
             --transition: 0.8s cubic-bezier(0.2, 1, 0.2, 1);
         }
 
@@ -30,31 +30,22 @@
         /* 背景ギミック：無限ループする SHIL / LIFE / NATUME */
         .marquee-bg {
             position: fixed;
-            top: 15%;
+            top: 25%;
             left: 0;
             width: 100%;
-            height: 100%;
             z-index: -1;
-            display: flex;
-            align-items: center;
             pointer-events: none;
             overflow: hidden;
-            opacity: 0.02; /* 💡 ReeL風：極限まで薄く */
+            opacity: 0.015; 
         }
 
-        .scroll-text {
+        .marquee-inner {
             display: flex;
             white-space: nowrap;
-            font-size: 15rem; /* 巨大な文字 */
+            font-size: 15rem;
             font-weight: 900;
-            color: rgba(255, 255, 255, 0.05); /* ネオン風 */
-            transform: rotate(-10deg);
-        }
-
-        .scroll-text span {
-            display: inline-block;
-            padding-right: 50px;
-            animation: marquee 25s linear infinite; /* 25秒で一周 */
+            color: #ddd;
+            animation: marquee 60s linear infinite;
         }
 
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -80,15 +71,16 @@
         .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
 
         /* セクション共通 */
-        section { padding: 120px 15%; }
+        section { padding: 120px 15%; position: relative; }
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
         /* --- HERO --- */
-        .hero { height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 0 15%; }
+        .hero { height: 90vh; display: flex; flex-direction: column; justify-content: center; padding: 0 15%; }
         .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; color: #fff; }
-        .hero h1 span { display: block; font-weight: 800; color: #fff; }
+        .hero h1 span { display: block; font-weight: 800; }
+        .hero-sub { color: var(--text-sub); letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem; }
         
-        /* 💡 補足：理念セクション */
+        /* 補足：理念セクション */
         .mission-text { font-size: 2rem; line-height: 1.8; font-weight: 300; letter-spacing: 0.05em; max-width: 800px; color: #ccc; }
         .mission-text b { color: #fff; font-weight: 700; }
 
@@ -110,7 +102,7 @@
         .service-card p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
         .spec-badge { display: inline-block; padding: 5px 12px; background: #222; color: #fff; font-size: 0.65rem; letter-spacing: 0.1em; margin-right: 5px; margin-top: 5px; border-radius: 2px; }
         
-        /* 💡 ゲームアイコン */
+        /* ゲームアイコン */
         .game-icons { margin-top: 20px; display: flex; gap: 15px; font-size: 1.2rem; color: #333; }
         .service-card:hover .game-icons { color: #888; }
 
@@ -131,8 +123,9 @@
         .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; gap: 80px; }
         .detail-text h2 { font-size: 3.5rem; margin: 0; font-weight: 800; color: #fff; letter-spacing: 0.1em; }
         .detail-text p { font-size: 0.95rem; line-height: 2.2; color: #ccc; margin-top: 30px; }
-        .shil-contact-btn { display: inline-block; padding: 15px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 0.75rem; letter-spacing: 0.3em; margin-top: 30px; transition: 0.4s; }
-        .shil-contact-btn:hover { background: #fff; color: #000; }
+        .sns-links { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 20px; padding-bottom: 50px; }
+        .sns-links a { color: #fff; text-decoration: none; font-size: 0.7rem; border-bottom: 1px solid #333; padding-bottom: 5px; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+        .sns-links a:hover { opacity: 0.7; border-bottom-color: #fff; transform: translateY(-2px); }
         .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #666; z-index: 2100; border-bottom: 1px solid #333; }
 
         /* CONTACT */
@@ -151,6 +144,7 @@
             .service-grid, .members-grid, .detail-content { grid-template-columns: 1fr; gap: 40px; }
             .hero h1 { font-size: 2.5rem; }
             .detail-img-box { display: none; }
+            nav { padding: 20px 8%; }
         }
     </style>
 </head>
@@ -168,16 +162,15 @@
     </nav>
 
     <div class="marquee-bg">
-        <div class="scroll-text">
-            <span>NEXT GEAR SHIL LIFE NATUME NEXT GEAR SHIL LIFE NATUME</span>
-            <span>NEXT GEAR SHIL LIFE NATUME NEXT GEAR SHIL LIFE NATUME</span>
+        <div class="marquee-inner">
+            NEXT GEAR SHIL LIFE NYATSUME NEXT GEAR SHIL LIFE NYATSUME / 
         </div>
     </div>
 
     <section class="hero">
         <p style="letter-spacing: 0.6em; color: #444; margin-bottom: 20px; font-size: 0.7rem;">MANAGED BY SHIL</p>
         <h1>NEXT<span>GEAR</span></h1>
-        <p style="color: #444; letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem;">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
+        <p class="hero-sub">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
     </section>
 
     
@@ -202,10 +195,15 @@
                 <div class="info-tag">UPDATE</div>
                 <div class="info-title">Ryzen 9 9950X3D搭載 10Gbpsサーバー提供準備完了</div>
             </div>
+            <div class="info-item">
+                <div class="info-date">2026.03.15</div>
+                <div class="info-tag">MEMBER</div>
+                <div class="info-title">「LIFE」「NYATSUME」のプロフィールを追加</div>
+            </div>
         </div>
     </section>
 
-    <section id="service">
+    <section id="service" style="background-color: #070707;">
         <span class="section-label">Our Service</span>
         <div class="service-grid">
             <div class="service-card" onclick="openService('hosting')">
@@ -235,17 +233,17 @@
         <span class="section-label">Selected Members</span>
         <div class="members-grid">
             
-            <div class="member-item" onclick="openDetail('shil', true)">
-                <div class="image-wrapper"><img src="./shil.png" alt="SHIL"></div>
+            <div class="member-item" onclick="openMember('shil')">
+                <div class="image-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
                 <div class="member-name">SHIL / 酒井</div>
             </div>
             
-            <div class="member-item" onclick="openDetail('life', false)">
+            <div class="member-item" onclick="openMember('life')">
                 <div class="image-wrapper"><img src="./zero.png" alt="LIFE"></div>
                 <div class="member-name">LIFE</div>
             </div>
             
-            <div class="member-item" onclick="openDetail('nyatsume', false)">
+            <div class="member-item" onclick="openMember('nyatsume')">
                 <div class="image-wrapper"><img src="./natume.png" alt="NYATSUME"></div>
                 <div class="member-name">NYATSUME</div>
             </div>
@@ -257,12 +255,11 @@
             <span class="section-label" style="margin-bottom: 20px;">Contact</span>
             <h2>Get In Touch</h2>
             <p style="color: #555; font-size: 0.9rem; letter-spacing: 0.1em;">お仕事の依頼、所属に関するお問い合わせは公式DMまで</p>
-            <span onclick="openDetail('shil', true)">または管理者「Shil」へ直接連絡 🡒</span>
+            <span onclick="openMember('shil')">または管理者「Shil」へ直接連絡 🡒</span>
         </div>
     </section>
 
-    
-<div id="detailOverlay" class="detail-overlay">
+    <div id="detailOverlay" class="detail-overlay">
         <div class="close-btn" onclick="closeDetail()">Back — Index</div>
         <div id="detailContent" class="detail-content">
             <div class="detail-img-box" id="detailImgBox">
@@ -272,6 +269,7 @@
                 <h2 id="innerName">NAME</h2>
                 <div id="innerColor" style="height: 1px; width: 40px; margin: 25px 0;"></div>
                 <p id="innerText">...</p>
+                <div id="specArea"></div>
                 <div id="snsArea" class="sns-links"></div>
             </div>
         </div>
@@ -283,8 +281,8 @@
             All Rights Reserved.
         </div>
         
-        <div class="shil-credit" onclick="openDetail('shil', true)" style="cursor: pointer;">
-            <img src="./shil.png" alt="Shil">
+        <div class="shil-credit" onclick="openMember('shil')" style="cursor: pointer;">
+            <img src="./shil.jpg" alt="Shil">
             <div class="shil-name">PROJECT MANAGED BY SHIL</div>
         </div>
     </footer>
@@ -294,13 +292,13 @@
             shil: {
                 name: "SHIL / 酒井",
                 text: "「Next Gear」の管理者。配信やサーバー運営のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談は、XのDMへ直接ご連絡ください。",
-                color: "var(--accent-shil)", img: "./shil.png",
+                color: "var(--accent-shil)", img: "./shil.jpg", // 💡 画像：shil.jpg に修正
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }],
-                isShil: true // Shilさん専用の特別なフラグ
+                linksShil: true // Shilさん専用のDMボタン風にするフラグ
             },
             life: {
                 name: "LIFE",
-                text: "ゲーム配信や雑談配信、ラジオ等ワイワイ楽しく配信しています！告知はなく急に始まるのでROMも歓迎覗きに来てね。",
+                text: "ゲーム配信や雑談配信、ラジオ等ワイワイ楽しく配信しています！告知はなく急に始まるのでやってるから行こう位で来てください。",
                 color: "var(--m1-color)", img: "./zero.png",
                 links: [
                     { label: "YOUTUBE", url: "https://t.co/6HemoVdTf8", icon: "fa-brands fa-youtube" },
@@ -322,92 +320,57 @@
         const serviceData = {
             hosting: {
                 name: "MULTI-HOSTING",
-                text: "10Gbps回線・Ryzen 9 9950X3D。夕方の混雑時でも速度が落ちにくく、安定した最高峰のスペックサーバー環境を提供します。データ転送量は無制限です。",
-                color: "#fff", specs: ["10Gbps回線", "Ryzen 9 9950X3D", "64GB RAM", "無制限"]
+                text: "10Gbps回線・Ryzen 9 9950X3D。最高峰スペックのストレスフリーな環境。",
+                color: "#fff", specs: ["10Gbps", "Ryzen 9 9950X3D", "64GB DDR5 RAM", "無制限"]
             },
             creative: {
-                name: "CREATIVE SUPPORT",
-                text: "動画編集、Live2D、配信オーバーレイ制作など、ビジュアル面からクリエイターのアイデンティティを形にします。",
+                name: "CREATIVE DESIGN",
+                text: "動画編集、Live2D、オーバーレイ制作など、ビジュアル面から個性を形にします。",
                 color: "#fff", specs: ["動画編集", "Live2D", "ビジュアルデザイン"]
             },
             tech: {
                 name: "STREAMING TECH",
-                text: "配信機材、PCスペックの最適化アドバイス。最新のテクノロジーを活用し、安定した活動をサポートします。",
+                text: "配信環境・PCスペックの最適化支援。最新テクノロジーで活動をサポート。",
                 color: "#fff", specs: ["OBS設定", "PC構成相談", "配信技術"]
             }
         };
 
-        function openDetail(id, isMemberOrShil) {
-            const data = isMemberOrShil ? memberData[id] : serviceData[id];
-            
+        function openMember(id) { showOverlay(memberData[id], true); }
+        function openService(id) { showOverlay(serviceData[id], false); }
+
+        function showOverlay(data, isMember) {
             document.getElementById('innerName').innerText = data.name;
             document.getElementById('innerText').style.whiteSpace = "pre-wrap"; 
             document.getElementById('innerText').innerText = data.text;
             document.getElementById('innerColor').style.backgroundColor = data.color;
-            
             const imgBox = document.getElementById('detailImgBox');
+            if(isMember) { imgBox.style.display = "block"; document.getElementById('innerImg').src = data.img; } else { imgBox.style.display = "none"; }
             const snsArea = document.getElementById('snsArea');
-            
-            // スペック表示をリセット
             snsArea.innerHTML = "";
-
-            if(isMemberOrShil) {
-                // メンバーまたはShilさんの詳細
-                imgBox.style.display = "block";
-                document.getElementById('innerImg').src = data.img;
-                
-                // Shilさんの時は画像を円形にする、などの特別な処理が可能
-                if(data.isShil) {
-                    // document.getElementById('innerImg').style.borderRadius = "50%"; // Shilさんだけ円形に
-                } else {
-                    // document.getElementById('innerImg').style.borderRadius = "4px"; // 通常
-                }
-
-                // SNSリンクを生成
-                if(data.links) {
-                    data.links.forEach(link => {
-                        const a = document.createElement('a');
-                        a.href = link.url; a.target = "_blank";
-                        a.innerHTML = `<i class="${link.icon}"></i>${link.label}`;
-                        
+            if(isMember && data.links) {
+                // 💡 メンバーのSNSリンク生成
+                data.links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.url; a.target = "_blank";
+                    
+                    if(data.linksShil) {
                         // ShilさんのDMボタン風のデザインにする
-                        if(data.isShil) {
-                            a.className = "shil-contact-btn";
-                            a.innerHTML = `OPEN DM — SHIL 🡒`;
-                            // 文字を元のlabelに戻す
-                            a.innerHTML = `<i class="fa-brands fa-x-twitter"></i>${link.label}`;
-                        }
-
-                        snsArea.appendChild(a);
-                    });
-                }
-            } else {
-                // サービス詳細
-                imgBox.style.display = "none";
-                
-                // スペックバッジを生成
-                if(data.specs) {
-                    data.specs.forEach(spec => {
-                        const span = document.createElement('span');
-                        span.className = "spec-badge";
-                        span.innerText = spec;
-                        snsArea.appendChild(span);
-                    });
-                }
+                        a.className = "shil-contact-btn"; // 💡 ここに特別なクラスを当てる
+                        a.innerHTML = `<i class="${link.icon}"></i>${link.label} 🡒`;
+                    } else {
+                        a.innerHTML = `<i class="${link.icon}"></i>${link.label}`;
+                    }
+                    snsArea.appendChild(a);
+                });
+            } else if(!isMember && data.specs) {
+                // 💡 サービス詳細のスペックバッジ生成
+                data.specs.forEach(s => { const span = document.createElement('span'); span.className = "spec-badge"; span.innerText = s; snsArea.appendChild(span); });
             }
-
             document.getElementById('detailOverlay').classList.add('open');
             document.body.style.overflow = 'hidden'; 
         }
 
-        function openService(id) {
-            openDetail(id, false);
-        }
-
-        function closeDetail() {
-            document.getElementById('detailOverlay').classList.remove('open');
-            document.body.style.overflow = 'auto';
-        }
+        function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); document.body.style.overflow = 'auto'; }
     </script>
 </body>
 </html>
