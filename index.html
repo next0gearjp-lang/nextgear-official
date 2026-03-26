@@ -11,7 +11,7 @@
             --text-main: #f0f0f0; 
             --text-sub: #666666;  
             --m1-color: #0088ff; 
-            --m2-color: #ff3366; 
+            --m2-color: #4CAF50; 
             --transition: 1.2s cubic-bezier(0.2, 1, 0.2, 1);
         }
 
@@ -19,12 +19,12 @@
             margin: 0;
             background-color: var(--bg-base);
             color: var(--text-main);
-            font-family: "Helvetica Neue", Arial, sans-serif;
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 💡 背景の流れる文字：さらに薄く、上品に */
+        /* 背景ギミック */
         .marquee-bg {
             position: fixed;
             top: 25%;
@@ -49,7 +49,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- HERO --- */
+        /* HERO */
         .hero {
             height: 70vh;
             display: flex;
@@ -72,7 +72,7 @@
             color: #fff;
         }
 
-        /* --- MEMBERS SECTION (ここを大幅調整) --- */
+        /* MEMBERS */
         .section-label {
             padding: 0 15%;
             font-size: 0.7rem;
@@ -86,29 +86,27 @@
             padding: 0 15% 150px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 100px; /* 余白を広く取る */
+            gap: 100px;
         }
 
         .member-item {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* 左寄せにして知的な印象に */
+            align-items: flex-start;
             transition: var(--transition);
             cursor: pointer;
             width: 100%;
-            max-width: 320px; /* 💡 画像の最大幅を制限（小さくする） */
+            max-width: 320px;
             margin: 0 auto;
         }
 
-        /* 互い違いの微調整（ReeL風のリズム） */
         .member-item:nth-child(even) { margin-top: 120px; }
 
         .image-wrapper {
             width: 100%;
             overflow: hidden;
-            aspect-ratio: 3 / 4; /* 少し縦長にしてシュッとさせる */
+            aspect-ratio: 3 / 4;
             background-color: #111;
-            border-radius: 2px;
         }
 
         .member-item img {
@@ -126,21 +124,22 @@
 
         .member-name {
             margin-top: 25px;
-            font-size: 1rem; /* 💡 文字も小さく、上品に */
+            font-size: 1rem;
             font-weight: 600;
             letter-spacing: 0.3em;
             color: #fff;
         }
 
-        /* --- DETAIL PANEL --- */
+        /* DETAIL PANEL */
         .detail-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-base);
             z-index: 100;
             display: flex;
-            transform: translateY(100%); /* 💡 下からスッと出てくる演出 */
+            transform: translateY(100%);
             transition: var(--transition);
+            overflow-y: auto;
         }
 
         .detail-overlay.open { transform: translateY(0); }
@@ -150,14 +149,39 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             padding: 10% 15%;
-            align-items: center;
+            align-items: start;
         }
 
-        .detail-text h2 { font-size: 3rem; margin: 0; font-weight: 800; color: #fff; }
-        .detail-text p { font-size: 1rem; line-height: 2; color: #aaa; margin-top: 30px; }
+        .detail-text h2 { font-size: 3rem; margin: 0; font-weight: 800; color: #fff; letter-spacing: 0.1em; }
+        .detail-text p { font-size: 0.9rem; line-height: 2; color: #aaa; margin-top: 30px; }
+
+        /* SNS Links Style */
+        .sns-links {
+            margin-top: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-bottom: 50px;
+        }
+
+        .sns-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            border-bottom: 1px solid #333;
+            padding-bottom: 3px;
+            transition: 0.3s;
+        }
+
+        .sns-links a:hover {
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            opacity: 0.7;
+        }
 
         .close-btn {
-            position: absolute;
+            position: fixed;
             top: 50px; right: 10%;
             cursor: pointer;
             font-size: 0.7rem;
@@ -165,6 +189,7 @@
             text-transform: uppercase;
             border-bottom: 1px solid #444;
             color: #888;
+            z-index: 101;
         }
 
         footer {
@@ -176,10 +201,11 @@
         }
 
         @media (max-width: 768px) {
-            .hero, .members-grid, .section-label { padding: 0 8%; }
             .members-grid { grid-template-columns: 1fr; gap: 60px; }
             .member-item:nth-child(even) { margin-top: 0; }
             .detail-content { grid-template-columns: 1fr; padding: 20% 8%; }
+            .detail-text h2 { font-size: 2.5rem; }
+            .close-btn { top: 30px; right: 8%; }
         }
     </style>
 </head>
@@ -187,7 +213,7 @@
 
     <div class="marquee-bg">
         <div class="marquee-inner">
-            NEXT GEAR SHIL LUA MIA / NEXT GEAR SHIL LUA MIA / 
+            NEXT GEAR SHIL LIFE NYATSUME / NEXT GEAR SHIL LIFE NYATSUME / 
         </div>
     </div>
 
@@ -199,17 +225,17 @@
     <p class="section-label">Selected Members</p>
     
     <section class="members-grid">
-        <div class="member-item" onclick="openDetail('lua')">
+        <div class="member-item" onclick="openDetail('life')">
             <div class="image-wrapper">
-                <img src="./member01.jpg" alt="LUA">
+                <img src="./zero.png" alt="LIFE">
             </div>
-            <div class="member-name">LUA</div>
+            <div class="member-name">LIFE</div>
         </div>
-        <div class="member-item" onclick="openDetail('mia')">
+        <div class="member-item" onclick="openDetail('nyatsume')">
             <div class="image-wrapper">
-                <img src="./member02.jpg" alt="MIA">
+                <img src="./natume.png" alt="NYATSUME">
             </div>
-            <div class="member-name">MIA</div>
+            <div class="member-name">NYATSUME</div>
         </div>
     </section>
 
@@ -224,6 +250,7 @@
                 <h2 id="innerName">NAME</h2>
                 <div id="innerColor" style="height: 1px; width: 40px; margin: 25px 0;"></div>
                 <p id="innerText">...</p>
+                <div id="snsArea" class="sns-links"></div>
             </div>
         </div>
     </div>
@@ -234,26 +261,57 @@
 
     <script>
         const memberData = {
-            lua: {
-                name: "LUA",
-                text: "るあです。Next Gearの技術担当。マイクラサーバーの設計から運用まで、目に見えないインフラを美しく整えます。",
+            life: {
+                name: "LIFE",
+                text: "ゲーム配信、雑談をメインに活動中！\n配信時間は夜がメイン！告知はなく急に始まるので「やってるから行こう」位の気軽さで来てください。\n飲み会配信やラジオもしてるので、ジュース片手に覗きに来てね。ROMも大歓迎です！",
                 color: "var(--m1-color)",
-                img: "./member01.jpg"
+                img: "./zero.png",
+                links: [
+                    { label: "X", url: "https://x.com/0life_game" },
+                    { label: "YOUTUBE", url: "https://t.co/6HemoVdTf8" },
+                    { label: "TWITCH", url: "https://t.co/4KlyfNtd5x" },
+                    { label: "TIKTOK", url: "https://www.tiktok.com/@user324520832" },
+                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/tz1xglj9o5cscso?t=Jl9HTW&utm_medium=url_text&utm_source=promotion" },
+                    { label: "LIT.LINK (RULES)", url: "https://t.co/w4wRHskof3" }
+                ]
             },
-            mia: {
-                name: "MIA",
-                text: "みあです。クリエイティブ支援を担当。動画編集やデザインを通じて、メンバーの個性を最大化させる表現を追求します。",
+            nyatsume: {
+                name: "NYATSUME",
+                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\n【基本配信時間】\n火水日：15時～25時のどこか（配信通知ON推奨！）\n\n【Game】\nAPEX / Minecraft / R.E.P.O. / ForzaHorizon / Switch / Among US / WoTB / Shadowverse(Los所属) / Fortnite / VALORANT / OW2 / Marvel Rivals / GTA V\n\n【Goal】\n・SNS合計フォロワー3000人\n・Twitch配信平均同接10人以上\n・ストグラに参加する\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
                 color: "var(--m2-color)",
-                img: "./member02.jpg"
+                img: "./natume.png",
+                links: [
+                    { label: "X", url: "https://x.com/Natume_1208" },
+                    { label: "TWITCH", url: "https://t.co/U65Dds4tE0" },
+                    { label: "YOUTUBE", url: "https://www.youtube.com/@%E3%81%AA%E3%82%83%E3%81%A4%E3%82%81" },
+                    { label: "TIKTOK", url: "https://www.tiktok.com/@natume_1208" },
+                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/yz10pr3nyqdn60a?t=lV0LIb&utm_medium=url_text&utm_source=promotion" },
+                    { label: "WISH LIST", url: "https://www.amazon.jp/hz/wishlist/ls/2EJG6OJG9CTPB?ref_=wl_share" },
+                    { label: "LIT.LINK", url: "https://t.co/s37Zw484HZ" }
+                ]
             }
         };
 
         function openDetail(id) {
             const data = memberData[id];
             document.getElementById('innerName').innerText = data.name;
+            document.getElementById('innerText').style.whiteSpace = "pre-wrap"; 
             document.getElementById('innerText').innerText = data.text;
             document.getElementById('innerImg').src = data.img;
             document.getElementById('innerColor').style.backgroundColor = data.color;
+            
+            const snsArea = document.getElementById('snsArea');
+            snsArea.innerHTML = "";
+            if(data.links) {
+                data.links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.href = link.url;
+                    a.target = "_blank";
+                    a.innerText = link.label;
+                    snsArea.appendChild(a);
+                });
+            }
+
             document.getElementById('detailOverlay').classList.add('open');
             document.body.style.overflow = 'hidden'; 
         }
