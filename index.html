@@ -13,7 +13,7 @@
             --text-sub: #888888;  
             --m1-color: #0088ff; 
             --m2-color: #4CAF50; 
-            --transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1); /* モーションを少し速く、鋭く */
+            --transition: 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         body {
@@ -53,7 +53,6 @@
             position: relative;
             padding-bottom: 5px;
         }
-        /* ナビゲーションのホバー：下線が伸びる */
         .nav-links a::after {
             content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
             background: #fff; transition: var(--transition);
@@ -69,7 +68,7 @@
         .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; }
         .hero h1 span { display: block; font-weight: 800; }
 
-        /* 💡 INFO モーション：背景がスッと浮かび上がる */
+        /* INFO */
         .info-list { margin-top: 40px; border-top: 1px solid #222; }
         .info-item { 
             padding: 30px 20px; 
@@ -79,15 +78,12 @@
             transition: var(--transition);
             cursor: default;
         }
-        .info-item:hover {
-            background-color: rgba(255, 255, 255, 0.03);
-            transform: translateX(10px); /* 少し右にずれる */
-        }
+        .info-item:hover { background-color: rgba(255, 255, 255, 0.03); transform: translateX(10px); }
         .info-date { font-size: 0.8rem; color: var(--text-sub); min-width: 100px; }
         .info-tag { font-size: 0.6rem; padding: 2px 8px; border: 1px solid #444; color: #888; transition: var(--transition); }
         .info-item:hover .info-tag { border-color: #fff; color: #fff; }
 
-        /* 💡 SERVICE モーション：カードが持ち上がり、光る */
+        /* 💡 SERVICE: ゲームサーバー対応を強化 */
         .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
         .service-card {
             background: #0a0a0a;
@@ -99,14 +95,23 @@
         .service-card:hover {
             background: #111;
             border-color: #333;
-            transform: translateY(-15px); /* 上に持ち上がる */
+            transform: translateY(-15px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
         .service-card i { font-size: 1.5rem; margin-bottom: 25px; color: #fff; opacity: 0.3; transition: var(--transition); }
-        .service-card:hover i { opacity: 1; transform: scale(1.2); }
-        .service-card h3 { font-size: 1.1rem; margin-bottom: 20px; letter-spacing: 0.1em; transition: var(--transition); }
-        .service-card:hover h3 { letter-spacing: 0.2em; }
+        .service-card:hover i { opacity: 1; transform: scale(1.1); }
+        .service-card h3 { font-size: 1.1rem; margin-bottom: 20px; letter-spacing: 0.1em; }
         .service-card p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
+        
+        /* 💡 ゲームアイコンのリスト */
+        .game-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            font-size: 1.2rem;
+            color: #444;
+        }
+        .service-card:hover .game-icons { color: #888; }
 
         /* MEMBERS GRID */
         .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; }
@@ -128,10 +133,9 @@
         .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #888; z-index: 2100; border-bottom: 1px solid #444; }
 
         /* CONTACT */
-        .contact-box { background-color: #080808; padding: 100px 40px; text-align: center; border: 1px solid #111; transition: var(--transition); }
-        .contact-box:hover { border-color: #222; background-color: #0a0a0a; }
+        .contact-box { background-color: #080808; padding: 100px 40px; text-align: center; border: 1px solid #111; }
         .contact-btn { display: inline-block; padding: 20px 60px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.3em; margin-top: 30px; transition: 0.4s; }
-        .contact-btn:hover { background: #fff; color: #000; transform: scale(1.05); }
+        .contact-btn:hover { background: #fff; color: #000; }
 
         footer { padding: 100px 15% 50px; font-size: 0.6rem; color: #333; letter-spacing: 0.2em; border-top: 1px solid #111; display: flex; justify-content: space-between; }
 
@@ -162,7 +166,7 @@
     <section class="hero">
         <p style="letter-spacing: 0.6em; color: #333; margin-bottom: 20px; font-size: 0.7rem;">MANAGED BY SHIL</p>
         <h1>NEXT<span>GEAR</span></h1>
-        <p style="color: #444; letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem;">CREATIVE LOGISTICS & STREAMING SUPPORT</p>
+        <p style="color: #444; letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem;">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
     </section>
 
     <section id="info">
@@ -176,7 +180,7 @@
             <div class="info-item">
                 <div class="info-date">2026.03.20</div>
                 <div class="info-tag">PROJECT</div>
-                <div class="info-title">次世代クリエイター支援プロジェクト始動</div>
+                <div class="info-title">マルチゲームサーバーホスティング対応開始</div>
             </div>
         </div>
     </section>
@@ -184,10 +188,17 @@
     <section id="service">
         <span class="section-label">Our Service</span>
         <div class="service-grid">
+            <!-- 💡 マルチサーバー対応のカード -->
             <div class="service-card">
-                <i class="fa-solid fa-server"></i>
-                <h3>Server Logistics</h3>
-                <p>ハイパフォーマンスなMinecraftサーバーの提供・運用保守。技術的な障壁を取り払い、クリエイティブに集中できる環境を構築します。</p>
+                <i class="fa-solid fa-cloud-sun"></i>
+                <h3>Multi-Server Hosting</h3>
+                <p>Minecraftをはじめ、ARK, Rust, Palworldなど多種多様なタイトルのサーバー構築・運用に対応。最新スペックのサーバーで快適な環境を提供します。</p>
+                <div class="game-icons">
+                    <i class="fa-solid fa-cube" title="Minecraft"></i>
+                    <i class="fa-solid fa-dragon" title="ARK"></i>
+                    <i class="fa-solid fa-person-rifle" title="Rust"></i>
+                    <i class="fa-solid fa-ghost" title="Palworld"></i>
+                </div>
             </div>
             <div class="service-card">
                 <i class="fa-solid fa-video"></i>
