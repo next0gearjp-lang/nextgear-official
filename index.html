@@ -6,54 +6,59 @@
     <title>NEXT GEAR | SHIL - LUA - MIA</title>
     <style>
         :root {
-            --bg-main: #eeeeee;    /* 質感のあるライトグレー */
-            --bg-dark: #0f0f0f;    /* パネルは深い黒 */
-            --text-main: #111111;
-            --text-sub: #999999;
-            --m1-color: #0088ff;   /* LUAさんのカラー（青） */
-            --m2-color: #ff3366;   /* MIAさんのカラー（ピンク系） */
+            /* 💡 背景をしっかりとしたグレーに設定 */
+            --bg-main: #d1d1d1;    
+            --bg-dark: #111111;    
+            --text-main: #1a1a1a;
+            --text-sub: #666;
+            --m1-color: #0088ff;   
+            --m2-color: #ff3366;   
             --transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        body {
+        /* 💡 サイト全体の背景色を強制 */
+        html, body {
             margin: 0;
-            background-color: var(--bg-main);
+            padding: 0;
+            background-color: var(--bg-main) !important;
             color: var(--text-main);
             font-family: 'Inter', -apple-system, sans-serif;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* 💡 ギミック：SHIL, LUA, MIAの名前が流れる斜め背景 */
-        .kanji-bg {
+        /* 💡 ギミック：名前が右から左へ無限に流れる背景 */
+        .scrolling-bg {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            opacity: 0.06; /* 絶妙な薄さ */
-            pointer-events: none;
             display: flex;
             align-items: center;
-            justify-content: center;
+            pointer-events: none;
             overflow: hidden;
         }
 
-        .kanji-scroll {
+        .scroll-text {
             display: flex;
-            font-size: 10rem;
-            font-weight: 900;
-            line-height: 1;
             white-space: nowrap;
-            color: #aaa;
-            transform: rotate(-12deg); 
-            animation: scrollText 30s linear infinite;
+            font-size: 15rem; /* 巨大な文字 */
+            font-weight: 900;
+            color: rgba(0, 0, 0, 0.05); /* グレー背景に馴染む薄い黒 */
+            transform: rotate(-10deg); /* 斜めにする */
         }
 
-        @keyframes scrollText {
-            0% { transform: rotate(-12deg) translateX(0%); }
-            100% { transform: rotate(-12deg) translateX(-50%); }
+        .scroll-text span {
+            display: inline-block;
+            padding-right: 50px;
+            animation: marquee 20s linear infinite; /* 20秒で一周 */
+        }
+
+        /* 💡 文字をループさせるアニメーション */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
         /* --- HERO --- */
@@ -78,13 +83,10 @@
             color: var(--text-sub);
             letter-spacing: 0.6em;
             text-transform: uppercase;
-            margin-top: 10px;
         }
 
-        /* --- MEMBERS SECTION --- */
-        .members-section {
-            padding: 60px 10%;
-        }
+        /* --- MEMBERS --- */
+        .members-section { padding: 40px 10%; }
         
         .member-nav {
             display: grid;
@@ -97,26 +99,21 @@
         .member-btn {
             background: #fff;
             border: none;
-            padding: 0;
             cursor: pointer;
             overflow: hidden;
-            border-radius: 4px; /* あえて少し角を残してシャープに */
+            border-radius: 8px;
             transition: var(--transition);
             aspect-ratio: 16 / 10;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        /* 互い違いのレイアウト */
-        .member-btn:nth-child(1) { transform: translateY(-15px); }
-        .member-btn:nth-child(2) { transform: translateY(15px); }
+        .member-btn:nth-child(1) { transform: translateY(-20px); }
+        .member-btn:nth-child(2) { transform: translateY(20px); }
 
         .member-btn img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-            transition: var(--transition);
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%); transition: var(--transition);
         }
 
         .member-btn:hover, .member-btn.active {
@@ -125,9 +122,7 @@
             z-index: 10;
         }
 
-        .member-btn:hover img, .member-btn.active img {
-            filter: grayscale(0%);
-        }
+        .member-btn:hover img, .member-btn.active img { filter: grayscale(0%); }
 
         /* --- DETAIL PANEL --- */
         .detail-container {
@@ -138,7 +133,7 @@
             transition: var(--transition);
             opacity: 0;
             background: var(--bg-dark);
-            border-radius: 8px;
+            border-radius: 12px;
             color: white;
         }
 
@@ -157,34 +152,29 @@
             animation: fadeIn 0.8s ease forwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .color-bar { height: 3px; width: 30px; margin-bottom: 20px; }
-
+        .color-bar { height: 4px; width: 40px; margin-bottom: 20px; }
         .m1-theme h2 { color: var(--m1-color); font-size: 2.5rem; margin: 0; }
         .m1-theme .color-bar { background: var(--m1-color); }
         .m2-theme h2 { color: var(--m2-color); font-size: 2.5rem; margin: 0; }
         .m2-theme .color-bar { background: var(--m2-color); }
 
-        .member-meta { color: #666; font-size: 0.9rem; margin-top: 5px; letter-spacing: 0.1em; }
+        footer { padding: 100px 0 40px; text-align: center; color: var(--text-sub); font-size: 0.7rem; letter-spacing: 0.2em; }
 
-        /* スマホ対応 */
         @media (max-width: 768px) {
             .member-nav { grid-template-columns: 1fr; }
             .member-btn:nth-child(1), .member-btn:nth-child(2) { transform: translateY(0); }
             .member-content { grid-template-columns: 1fr; }
-            .detail-container.open { padding: 30px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="kanji-bg">
-        <div class="kanji-scroll">
-            NEXT GEAR SHIL LUA MIA NEXT GEAR SHIL LUA MIA NEXT GEAR SHIL LUA MIA
+    <div class="scrolling-bg">
+        <div class="scroll-text">
+            <span>NEXT GEAR SHIL LUA MIA NEXT GEAR SHIL LUA MIA</span>
+            <span>NEXT GEAR SHIL LUA MIA NEXT GEAR SHIL LUA MIA</span>
         </div>
     </div>
 
@@ -204,18 +194,14 @@
         </div>
 
         <div id="detailPanel" class="detail-container">
-            
             <div id="member01" class="member-content m1-theme">
                 <img src="./member01.jpg" style="width:100%; border-radius:4px;">
                 <div>
                     <div class="color-bar"></div>
                     <h2>LUA</h2>
-                    <p class="member-meta">NEXT GEAR / MEMBER 01</p>
+                    <p style="color:#666; font-size:0.9rem;">NEXT GEAR / MEMBER 01</p>
                     <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
-                    <p style="line-height: 1.8; color: #ccc;">
-                        るあです。Next Gearのメンバーとして活動しています。<br>
-                        ここに詳しい自己紹介文を自由に入れてください。
-                    </p>
+                    <p>るあです。技術とクリエイティブでNext Gearを支えます。</p>
                 </div>
             </div>
 
@@ -224,38 +210,27 @@
                 <div>
                     <div class="color-bar"></div>
                     <h2>MIA</h2>
-                    <p class="member-meta">NEXT GEAR / MEMBER 02</p>
+                    <p style="color:#666; font-size:0.9rem;">NEXT GEAR / MEMBER 02</p>
                     <hr style="border:0; border-top:1px solid #222; margin:20px 0;">
-                    <p style="line-height: 1.8; color: #ccc;">
-                        みあです。Next Gearのメンバーとして活動しています。<br>
-                        ここに詳しい自己紹介文を自由に入れてください。
-                    </p>
+                    <p>みあです。最高のエンターテインメントを届けます。</p>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <footer style="padding: 100px 0 40px; text-align: center; color: var(--text-sub); font-size: 0.7rem; letter-spacing: 0.2em;">
-        &copy; 2026 NEXT GEAR / SHIL0ZER
-    </footer>
+    <footer>&copy; 2026 NEXT GEAR / SHIL0ZER</footer>
 
     <script>
         function openTab(btn, memberId) {
             const panel = document.getElementById('detailPanel');
             const contents = document.querySelectorAll('.member-content');
             const buttons = document.querySelectorAll('.member-btn');
-
             contents.forEach(content => content.classList.remove('active'));
             buttons.forEach(b => b.classList.remove('active'));
-
             document.getElementById(memberId).classList.add('active');
             btn.classList.add('active');
             panel.classList.add('open');
-
-            setTimeout(() => {
-                panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
+            setTimeout(() => { panel.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
         }
     </script>
 
