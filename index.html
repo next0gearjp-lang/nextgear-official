@@ -3,26 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEXT GEAR | 次世代クリエイター・VTuberサポート</title>
-    <!-- Tailwind CSS (デザインを自動でカッコよくする魔法のコード) -->
+    <title>NEXT GEAR | WE WILL MAKE IT HAPPEN. // CREATORS SUPPORT</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome (アイコン用) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* スムーズなスクロールとベースのフォント設定 */
+        /* 元のカッコいいサイバーなフォントとグラデーションを再現 */
         html { scroll-behavior: smooth; }
-        body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; }
-        .gradient-text {
-            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body { 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background: radial-gradient(circle at center, #0a1f44 0%, #03081a 100%);
+        }
+        /* サイバーなネオンテキストの光沢効果 */
+        .neon-text-blue {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.8), 0 0 20px rgba(79, 172, 254, 0.5);
+        }
+        .neon-text-cyan {
+            color: #4facfe;
+            text-shadow: 0 0 10px rgba(79, 172, 254, 0.8);
+        }
+        /* グロー効果付きのボーダー */
+        .glow-border {
+            border: 2px solid #1a3c7a;
+            box-shadow: 0 0 15px rgba(26, 60, 122, 0.5);
+            transition: all 0.3s ease;
+        }
+        .glow-border:hover {
+            border-color: #4facfe;
+            box-shadow: 0 0 25px rgba(79, 172, 254, 0.6);
+        }
+        /* ネオンボタン */
+        .neon-button-blue {
+            background: transparent;
+            border: 2px solid #4facfe;
+            color: #4facfe;
+            box-shadow: 0 0 10px rgba(79, 172, 254, 0.4);
+            transition: all 0.3s ease;
+        }
+        .neon-button-blue:hover {
+            background: #4facfe;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
+        }
+        .neon-button-green {
+            background: transparent;
+            border: 2px solid #34d399;
+            color: #34d399;
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+            transition: all 0.3s ease;
+        }
+        .neon-button-green:hover {
+            background: #34d399;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(52, 211, 153, 0.8);
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 antialiased">
+<body class="text-gray-100 antialiased">
 
-    <!-- ナビゲーションバー -->
-    <nav class="fixed w-full z-50 bg-gray-900/90 backdrop-blur border-b border-gray-800">
+    <nav class="fixed w-full z-50 bg-gray-950/80 backdrop-blur border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0 font-bold text-2xl tracking-wider">
@@ -30,126 +69,150 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#about" class="hover:text-blue-400 transition">特徴</a>
-                        <a href="#merit" class="hover:text-blue-400 transition">サポート内容</a>
-                        <a href="#apply" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full font-bold transition">今すぐ応募・相談</a>
+                        <a href="#about" class="hover:text-blue-400 transition">Support</a>
+                        <a href="#apply" class="hover:text-blue-400 transition">Contact</a>
+                        <a href="#apply" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full font-bold transition">応募/相談</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- ファーストビュー (ヒーローセクション) -->
-    <section class="pt-32 pb-20 md:pt-48 md:pb-32 px-4 text-center">
-        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
-            君の配信を、<br class="md:hidden"><span class="gradient-text">次のステージへ。</span>
-        </h1>
-        <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto font-medium leading-relaxed">
-            技術特化型クリエイターサポート『NEXT GEAR』始動。<br>
-            「機材がわからない」「動画編集の時間がない」そんな悩みはすべて丸投げでOK。<br>
-            私たちは技術の力で、あなたのクリエイター活動を裏から完全にバックアップします。
-        </p>
-        <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#apply" class="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-blue-500/30 transition transform hover:scale-105 flex items-center justify-center">
-                <i class="fa-brands fa-discord mr-2 text-xl"></i> Discordで気軽に相談 (無料)
-            </a>
-            <a href="#apply" class="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-full shadow-lg shadow-green-500/30 transition transform hover:scale-105 flex items-center justify-center">
-                <i class="fa-brands fa-line mr-2 text-xl"></i> LINEでサクッと質問
-            </a>
-        </div>
-        <p class="mt-4 text-sm text-gray-500">※無理な勧誘やノルマは一切ありません。まずは相談から！</p>
-    </section>
+    <section class="min-h-screen flex items-center justify-center pt-24 pb-16 px-4 text-center">
+        <div class="max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 neon-text-blue">
+                WE WILL MAKE IT HAPPEN.
+            </h1>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 neon-text-cyan">
+                // CREATORS SUPPORT
+            </h2>
+            
+            <p class="text-xl md:text-2xl font-bold mb-6 text-white">
+                君の配信を、次のステージへ。<br class="hidden md:block">技術特化型サポート『NEXT GEAR』始動。
+            </p>
+            <p class="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed mb-12">
+                「機材がわからない」「動画編集の時間がない」そんな悩みは丸投げでOK。<br class="hidden md:block">
+                私たちは技術の力で、あなたのクリエイター活動を裏から完全にバックアップします。
+            </p>
 
-    <!-- 圧倒的な3つのメリット (技術力をアピール) -->
-    <section id="about" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">NEXT GEARが提供する<br class="md:hidden">「3つの圧倒的サポート」</h2>
-                <p class="text-gray-400">あなたは「ただ楽しく配信するだけ」。面倒な裏方はすべて任せてください。</p>
+            <div class="mt-10 flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#apply" class="w-full sm:w-auto neon-button-blue font-bold py-4 px-10 rounded-full text-lg flex items-center justify-center transform hover:-translate-y-1">
+                    <i class="fa-brands fa-discord mr-3 text-2xl"></i> Discordで気軽に相談 (無料)
+                </a>
+                <a href="#apply" class="w-full sm:w-auto neon-button-green font-bold py-4 px-10 rounded-full text-lg flex items-center justify-center transform hover:-translate-y-1">
+                    <i class="fa-brands fa-line mr-3 text-2xl"></i> LINEでサクッと質問
+                </a>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- メリット1 -->
-                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition">
-                    <div class="w-14 h-14 bg-blue-900/50 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-headset text-2xl text-blue-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">配信環境＆VTuberデビュー支援</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Live2Dモデルの最適なセットアップや、OBS等の配信ツールの設定を技術スタッフが直接サポート。PCや機材の知識がゼロでも、すぐにハイクオリティな配信をスタートできます。
-                    </p>
-                </div>
-                <!-- メリット2 -->
-                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition">
-                    <div class="w-14 h-14 bg-purple-900/50 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-scissors text-2xl text-purple-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">切り抜き自動化＆SNS運用</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        長時間の配信アーカイブから、見どころを抽出して動画化するシステム環境をサポート。TikTokやYouTube Shorts向けのコンテンツを効率よく生み出し、集客を最大化します。
-                    </p>
-                </div>
-                <!-- メリット3 -->
-                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition">
-                    <div class="w-14 h-14 bg-green-900/50 rounded-lg flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-server text-2xl text-green-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-white">専属マルチプレイサーバー完備</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        所属クリエイター専用の、安定した24時間稼働マルチサーバー（Minecraft等）を提供。視聴者参加型企画や、他のクリエイターとの大規模なコラボ配信をいつでもストレスなく実施できます。
-                    </p>
-                </div>
-            </div>
+            <p class="mt-4 text-sm text-gray-500">※無理な勧誘やノルマは一切ありません。まずは相談から！</p>
         </div>
     </section>
 
-    <!-- 安心の所属条件 (ChatGPTの指摘を反映) -->
-    <section id="merit" class="py-20 bg-gray-900 border-t border-gray-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-white mb-10">クリエイター第一の、クリーンな契約体制</h2>
+    <section id="about" class="py-24 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-extrabold text-center mb-16 neon-text-blue">
+                Services
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="glow-border bg-gray-900/50 rounded-2xl p-8 transform hover:-translate-y-2">
+                    <div class="flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-headset text-4xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-white">
+                        Live Streaming Tech & VTuber
+                    </h3>
+                    <p class="text-sm text-gray-300 leading-relaxed text-center">
+                        Live2Dモデルのセットアップ、OBS等のツールの最適化。PC知識ゼロでも、すぐに高画質な配信をスタートできます。
+                    </p>
+                </div>
+
+                <div class="glow-border bg-gray-900/50 rounded-2xl p-8 transform hover:-translate-y-2">
+                    <div class="flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-scissors text-4xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-white">
+                        Clip Automation & SNS Support
+                    </h3>
+                    <p class="text-sm text-gray-300 leading-relaxed text-center">
+                        配信アーカイブから、見どころを抽出して動画化するシステム環境を提供。TikTokやShorts向け動画の集客を最大化します。
+                    </p>
+                </div>
+
+                <div class="glow-border bg-gray-900/50 rounded-2xl p-8 transform hover:-translate-y-2">
+                    <div class="flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-server text-4xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-white">
+                        Game Server & Hosting
+                    </h3>
+                    <p class="text-sm text-gray-300 leading-relaxed text-center">
+                        専属マルチサーバー(Minecraft等)の24時間稼働・保守。所属クリエイター専用の安定したコラボ環境を提供します。
+                    </p>
+                </div>
+
+                <div class="glow-border bg-gray-900/50 rounded-2xl p-8 transform hover:-translate-y-2">
+                    <div class="flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-code text-4xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-center text-white">
+                        Software & Web App Dev
+                    </h3>
+                    <p class="text-sm text-gray-300 leading-relaxed text-center">
+                        独自のフェイストラッキングアプリや、クリエイター向けWebサービスの構築など、技術的な独自アプリを開発します。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 border-t border-gray-800 bg-gray-950/50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 neon-text-cyan">
+                安心のクリエイター契約体制
+            </h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div class="p-6 bg-gray-800 rounded-xl">
-                    <i class="fa-solid fa-check-circle text-blue-500 text-3xl mb-3"></i>
-                    <h4 class="font-bold text-lg mb-2">配信ノルマ一切なし</h4>
-                    <p class="text-sm text-gray-400">自分のペースで活動可能。プライベートや学業・本業を優先できます。</p>
+                <div class="p-6 glow-border bg-gray-900 rounded-xl">
+                    <i class="fa-solid fa-check-circle text-blue-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2 text-white">配信ノルマ一切なし</h4>
+                    <p class="text-sm text-gray-400">自分のペースで活動可能。プライベートや本業を優先できます。</p>
                 </div>
-                <div class="p-6 bg-gray-800 rounded-xl">
-                    <i class="fa-solid fa-handshake text-blue-500 text-3xl mb-3"></i>
-                    <h4 class="font-bold text-lg mb-2">契約期間の縛りなし</h4>
+                <div class="p-6 glow-border bg-gray-900 rounded-xl">
+                    <i class="fa-solid fa-handshake text-blue-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2 text-white">契約期間の縛りなし</h4>
                     <p class="text-sm text-gray-400">不当な引き止めなどは行いません。お互いが納得できる関係を築きます。</p>
                 </div>
-                <div class="p-6 bg-gray-800 rounded-xl">
-                    <i class="fa-solid fa-coins text-blue-500 text-3xl mb-3"></i>
-                    <h4 class="font-bold text-lg mb-2">透明性の高い収益分配</h4>
+                <div class="p-6 glow-border bg-gray-900 rounded-xl">
+                    <i class="fa-solid fa-coins text-blue-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-lg mb-2 text-white">透明性の高い収益分配</h4>
                     <p class="text-sm text-gray-400">サポート内容に応じた明瞭な収益シェア。不透明な中抜きはしません。</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 応募アクション (一番下の強力な導線) -->
-    <section id="apply" class="py-24 bg-gradient-to-br from-blue-900 to-gray-900 text-center relative overflow-hidden">
-        <div class="relative z-10 max-w-3xl mx-auto px-4">
-            <h2 class="text-4xl font-extrabold text-white mb-6">まずは、話を聞いてみませんか？</h2>
-            <p class="text-xl text-blue-200 mb-10">
-                「自分でも応募していいのかな？」「ちょっと技術的な相談だけしたい」<br>
+    <section id="apply" class="py-24 px-4 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 neon-text-blue">
+                まずは、話を聞いてみませんか？
+            </h2>
+            <p class="text-lg text-gray-300 leading-relaxed mb-12">
+                「自分でも応募していいのかな？」「ちょっと技術的な相談だけしたい」<br class="hidden md:block">
                 そんな気軽なご相談も大歓迎です。以下の公式Discord、またはLINEからお声がけください。
             </p>
+            
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <!-- TODO: hrefの中にDiscordの招待URLを入れる -->
-                <a href="#" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-5 px-10 rounded-full shadow-2xl transition transform hover:-translate-y-1 text-lg flex items-center justify-center">
-                    <i class="fa-brands fa-discord text-2xl mr-3 text-blue-600"></i> 公式Discordに参加する
+                <a href="#" class="w-full sm:w-auto neon-button-blue font-bold py-4 px-10 rounded-full text-lg flex items-center justify-center transform hover:-translate-y-1">
+                    <i class="fa-brands fa-discord mr-3 text-2xl"></i> Discordで相談 (無料)
                 </a>
-                <!-- TODO: hrefの中にLINEの友達追加URLを入れる -->
-                <a href="#" class="bg-green-500 text-white hover:bg-green-400 font-bold py-5 px-10 rounded-full shadow-2xl transition transform hover:-translate-y-1 text-lg flex items-center justify-center">
-                    <i class="fa-brands fa-line text-2xl mr-3"></i> LINEでメッセージを送る
+                <a href="#" class="w-full sm:w-auto neon-button-green font-bold py-4 px-10 rounded-full text-lg flex items-center justify-center transform hover:-translate-y-1">
+                    <i class="fa-brands fa-line mr-3 text-2xl"></i> LINEでメッセージを送る
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- フッター (運営者情報・信頼性アップ) -->
-    <footer class="bg-black py-12 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 text-center">
+    <footer class="py-12 px-4 bg-black/50 border-t border-gray-800 text-center">
+        <div class="max-w-7xl mx-auto">
             <div class="text-2xl font-bold mb-6">
                 <span class="text-white">NEXT</span> <span class="text-blue-500">GEAR</span>
             </div>
@@ -157,13 +220,14 @@
                 <p>事業内容: クリエイターサポート事業 / Web・アプリケーション開発 / サーバー構築・保守</p>
                 <p>運営: NEXT GEAR (個人事業主)</p>
             </div>
-            <p class="text-gray-600 text-xs">&copy; 2026 NEXT GEAR. All rights reserved.</p>
+            <p class="text-gray-700 text-xs">
+                &copy; 2026 NEXT GEAR. All rights reserved.
+            </p>
         </div>
     </footer>
 
-    <!-- 右下の追従ボタン (スマホでも常に表示されて応募率爆上がり) -->
-    <a href="#apply" class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-500 text-white rounded-full p-4 shadow-xl shadow-blue-500/50 transition transform hover:scale-110 z-50 flex items-center justify-center group">
-        <i class="fa-solid fa-paper-plane text-xl group-hover:animate-bounce"></i>
+    <a href="#apply" class="fixed bottom-6 right-6 neon-button-blue rounded-full p-4 shadow-xl shadow-blue-500/30 transition transform hover:scale-110 z-50 flex items-center justify-center group">
+        <i class="fa-solid fa-paper-plane text-xl"></i>
         <span class="ml-2 font-bold hidden md:inline">応募・相談</span>
     </a>
 
