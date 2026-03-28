@@ -35,7 +35,6 @@
             --accent-shil: #888888; 
             --m1-color: #0088ff; 
             --m2-color: #4CAF50; 
-            /* より洗練され、ヌルっと止まるイージング曲線 */
             --transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -49,7 +48,7 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* 背景ギミック (GPUアクセラレーションを明示的に有効化) */
+        /* 背景ギミック (GPUアクセラレーション) */
         .marquee-bg {
             position: fixed; top: 25%; left: 0; width: 100%; z-index: -1;
             pointer-events: none; overflow: hidden; opacity: 0.015; 
@@ -62,17 +61,14 @@
         }
         @keyframes marquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
 
-        /* スクロール連動アニメーションのベース (初期状態を隠す) */
+        /* スクロール連動アニメーション */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
-        .fade-in-up.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in-up.active { opacity: 1; transform: translateY(0); }
 
         /* ナビゲーション */
         nav {
@@ -82,16 +78,13 @@
             backdrop-filter: blur(10px); transform: translateZ(0);
         }
         .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 0.2em; font-size: 1.2rem; position: relative; z-index: 2100; cursor: pointer; }
-        
         .nav-links { display: flex; gap: 40px; font-size: 0.7rem; letter-spacing: 0.2em; align-items: center; }
         .nav-links a { color: var(--text-main); text-decoration: none; opacity: 0.4; transition: var(--transition); padding-bottom: 5px; }
         .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
         .nav-entry-btn { color: #fff !important; border: 1px solid #444; padding: 8px 20px; border-radius: 20px; opacity: 1 !important; }
         .nav-entry-btn:hover { background: #fff; color: #000 !important; border-color: #fff; border-bottom: none !important; }
 
-        .hamburger {
-            display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2100; padding: 10px;
-        }
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2100; padding: 10px; }
         .hamburger span { width: 25px; height: 1px; background: #fff; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
@@ -112,11 +105,10 @@
         .transition-overlay.active .transition-logo { opacity: 1; transform: translateY(0) scale(1); }
         .transition-logo .logo-text { font-size: 1.2rem; font-weight: 900; letter-spacing: 0.2em; color: var(--text-main); }
 
-        /* セクション共通 */
         section { padding: 120px 15%; position: relative; }
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
-        /* HERO & オープニングアニメーション */
+        /* HERO */
         @keyframes fadeUpHero {
             0% { opacity: 0; transform: translate3d(0, 30px, 0); }
             100% { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -177,19 +169,20 @@
         .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; transition: var(--transition); }
         .member-item:hover .member-name { letter-spacing: 0.4em; color: #4facfe; }
 
-        /* COMPANY */
+        /* COMPANY (事業主情報の正直な開示) */
         .company-table { width: 100%; max-width: 800px; border-top: 1px solid #222; margin-top: 20px; }
         .company-row { display: flex; border-bottom: 1px solid #222; padding: 25px 0; transition: background 0.3s; }
         .company-row:hover { background: rgba(255,255,255,0.02); }
-        .company-th { width: 180px; font-size: 0.7rem; letter-spacing: 0.2em; color: #888; font-weight: normal; flex-shrink: 0; }
+        .company-th { width: 200px; font-size: 0.75rem; letter-spacing: 0.15em; color: #888; font-weight: normal; flex-shrink: 0; }
         .company-td { font-size: 0.9rem; color: #ccc; line-height: 1.8; letter-spacing: 0.05em; }
+        .info-pending { display: inline-block; padding: 4px 10px; background: rgba(255, 152, 0, 0.1); color: #ff9800; border: 1px solid rgba(255, 152, 0, 0.3); font-size: 0.65rem; border-radius: 2px; margin-top: 8px; letter-spacing: 0.1em; }
 
         /* CONTACT */
         .contact-box { background-color: var(--bg-sub); padding: 100px 40px; text-align: center; border: 1px solid #111; border-radius: 4px; }
         .contact-box h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 200; letter-spacing: 0.05em; }
         .contact-box p { color: #666; font-size: 0.85rem; letter-spacing: 0.1em; line-height: 2; max-width: 500px; margin: 0 auto 40px auto; }
 
-        /* DETAIL OVERLAY */
+        /* DETAIL OVERLAY (メンバー＆サービス用) */
         .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-base); z-index: 2000; display: flex; transform: translate3d(0, 100%, 0); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; will-change: transform; }
         .detail-overlay.open { transform: translate3d(0, 0, 0); }
         .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; gap: 80px; }
@@ -201,10 +194,10 @@
         .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #666; z-index: 2100; border-bottom: 1px solid #333; transition: color 0.3s; }
         .close-btn:hover { color: #fff; }
 
-        /* LEGAL OVERLAY */
+        /* LEGAL OVERLAY (規約・プライバシーポリシー用) */
         .legal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); z-index: 2500; display: flex; justify-content: center; align-items: flex-start; opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; padding: 100px 5%; transform: translateZ(0); will-change: opacity; }
         .legal-overlay.open { opacity: 1; pointer-events: auto; }
-        .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; transform: translateY(20px); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; }
+        .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; transform: translateY(20px); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; margin-bottom: 100px;}
         .legal-overlay.open .legal-content { transform: translateY(0); }
         .legal-content h2 { font-size: 1.8rem; color: #fff; letter-spacing: 0.1em; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
         .legal-content h3 { font-size: 1.1rem; color: #fff; margin: 40px 0 15px 0; }
@@ -217,7 +210,6 @@
         .floating-cta { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: #fff; color: #000; padding: 15px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.75rem; letter-spacing: 0.1em; box-shadow: 0 4px 15px rgba(255,255,255,0.1); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 10px; transform: translateZ(0); }
         .floating-cta:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
 
-        /* FOOTER */
         footer { padding: 120px 15% 50px; font-size: 0.65rem; color: #444; letter-spacing: 0.1em; border-top: 1px solid #111; display: flex; justify-content: space-between; align-items: flex-end; }
         .footer-links { margin-top: 20px; display: flex; gap: 20px; }
         .footer-links span { cursor: pointer; transition: 0.3s; border-bottom: 1px solid transparent; padding-bottom: 2px;}
@@ -239,6 +231,7 @@
             .btn-action { width: 100%; box-sizing: border-box; }
             .service-grid { grid-template-columns: 1fr; gap: 30px; }
             .management-profile { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .shil-wrapper { width: 120px; height: 120px; }
             .members-grid { grid-template-columns: 1fr; gap: 40px; }
             .member-item:nth-child(2) { margin-top: 0; }
             .company-row { flex-direction: column; gap: 10px; padding: 20px 0; }
@@ -255,7 +248,6 @@
 
     <div id="transitionOverlay" class="transition-overlay">
         <div class="transition-logo">
-            <!-- 💡 新規：ローディング画面用のミニマルSVGロゴ -->
             <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon points="20,80 20,20 45,20 80,70 80,80 55,80" fill="#f0f0f0"/>
                 <polygon points="80,20 80,60 55,25 55,20" fill="#0088ff"/>
@@ -265,7 +257,6 @@
     </div>
 
     <nav>
-        <!-- 💡 新規：ナビゲーション用のミニマルSVGロゴ -->
         <div class="logo" onclick="window.scrollTo(0,0)">
             <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <polygon points="20,80 20,20 45,20 80,70 80,80 55,80" fill="#f0f0f0"/>
@@ -299,7 +290,6 @@
         </div>
     </section>
 
-    <!-- 💡 以下、各コンテンツに fade-in-up クラスを追加し、スクロール連動でフワッと出す -->
     <section id="about">
         <span class="section-label fade-in-up">Our Mission</span>
         <div class="mission-text fade-in-up">
@@ -376,24 +366,25 @@
         </div>
     </section>
 
+    <!-- 💡 【重要】法人取引水準の誠実な事業主表記 -->
     <section id="company" style="background-color: #050505; border-top: 1px solid #111;">
-        <span class="section-label fade-in-up">Company Profile</span>
+        <span class="section-label fade-in-up">Company Profile & Legal Disclosure</span>
         <div class="company-table fade-in-up">
             <div class="company-row">
                 <div class="company-th">屋号 / 組織名</div>
                 <div class="company-td">NEXT GEAR （ネクストギア）</div>
             </div>
             <div class="company-row">
-                <div class="company-th">代表者</div>
-                <div class="company-td">SHIL （※本名につきましては、お取引の際等に遅滞なく開示いたします）</div>
+                <div class="company-th">代表者氏名</div>
+                <div class="company-td">[本名をご記入ください]<br><span style="font-size: 0.75rem; color: #888;">※運営責任者：SHIL</span></div>
             </div>
             <div class="company-row">
-                <div class="company-th">事業形態</div>
-                <div class="company-td">個人事業</div>
-            </div>
-            <div class="company-row">
-                <div class="company-th">設立年月</div>
-                <div class="company-td">2026年3月</div>
+                <div class="company-th">事業形態・登録番号</div>
+                <div class="company-td">
+                    個人事業主<br>
+                    <div class="info-pending"><i class="fa-solid fa-spinner fa-spin" style="margin-right:5px;"></i>各種登録手続・審査中</div>
+                    <div style="font-size: 0.75rem; color: #888; margin-top: 5px;">※現在、行政機関へ開業および適格請求書発行事業者等の登録申請を行っております。受理・番号発行が完了次第、速やかに本ページにて公開いたします。</div>
+                </div>
             </div>
             <div class="company-row">
                 <div class="company-th">事業内容</div>
@@ -406,10 +397,10 @@
             </div>
             <div class="company-row">
                 <div class="company-th">所在地</div>
-                <div class="company-td">日本国内<br><span style="font-size: 0.75rem; color: #888;">※事務所の正確な所在地につきましては、防犯上の理由によりWeb上での公開を控えております。ご請求に基づき遅滞なく開示いたします。</span></div>
+                <div class="company-td">日本国内<br><span style="font-size: 0.75rem; color: #888;">※事務所の正確な所在地につきましては、防犯上の理由によりWeb上での公開を控えさせていただいております。お取引企業様からのご請求に基づき、遅滞なく開示いたします。</span></div>
             </div>
             <div class="company-row">
-                <div class="company-th">お問い合わせ</div>
+                <div class="company-th">お問い合わせ窓口</div>
                 <div class="company-td">公式Discord、公式LINE、または代表X(Twitter)へのDMにて承っております。</div>
             </div>
         </div>
@@ -443,10 +434,11 @@
         </div>
     </div>
 
+    <!-- 規約モーダル -->
     <div id="legalOverlay" class="legal-overlay">
         <div class="legal-content">
             <i class="fa-solid fa-xmark legal-close" onclick="closeLegal()"></i>
-            <h2 id="legalTitle">Privacy Policy</h2>
+            <h2 id="legalTitle">Policy</h2>
             <div id="legalText"></div>
         </div>
     </div>
@@ -522,37 +514,119 @@
             }
         };
 
+        // 💡 【重要】法人契約水準に引き上げた本格的な法務データ
         const legalData = {
             privacy: {
                 title: "プライバシーポリシー",
                 html: `
-                    <p>NEXT GEAR（以下、「当組織」といいます。）は、クリエイターサポート事業、サーバーインフラ提供、および関連サービス（以下、「本サービス」といいます。）における、ユーザー及び所属クリエイターの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
-                    <h3>第1条（個人情報の取得）</h3>
-                    <p>当組織は、本サービスの提供にあたり、以下の個人情報を適法かつ公正な手段により取得します。</p>
-                    <ul><li>氏名、生年月日、住所、電話番号、メールアドレス等</li><li>Discord ID、LINEアカウント、その他SNSアカウント情報</li><li>サーバー利用に関わるIPアドレス、アクセスログ、端末情報</li><li>その他、当組織が定める入力フォームにてユーザーが入力する情報</li></ul>
-                    <h3>第2条（個人情報を収集・利用する目的）</h3>
+                    <p>NEXT GEAR（以下、「当組織」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
+                    
+                    <h3>第1条（個人情報）</h3>
+                    <p>「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報（個人識別情報）を指します。</p>
+                    
+                    <h3>第2条（個人情報の収集方法）</h3>
+                    <p>当組織は、ユーザーが利用登録またはお問合せをする際に氏名、生年月日、住所、電話番号、メールアドレス、Discord ID、銀行口座番号などの個人情報をお尋ねすることがあります。また、ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を、当組織の提携先（情報提供元、広告主、広告配信先などを含みます。）などから収集することがあります。</p>
+                    
+                    <h3>第3条（個人情報を収集・利用する目的）</h3>
                     <p>当組織が個人情報を収集・利用する目的は、以下のとおりです。</p>
-                    <ul><li>当組織サービスの提供・運営、および所属に関するオーディション等の選考のため</li><li>クリエイターのマネジメント業務、および案件等の紹介業務のため</li><li>ゲームサーバー等のインフラ構築、保守、不正アクセス防止のため</li><li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li><li>上記の利用目的に付随する目的</li></ul>
-                    <h3>第3条（個人情報の第三者提供）</h3>
+                    <ul>
+                        <li>当組織サービスの提供・運営、および所属クリエイターのマネジメント業務のため</li>
+                        <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
+                        <li>ユーザーが利用中のサービスの新機能、更新情報、キャンペーン等及び当組織が提供する他のサービスの案内のメールを送付するため</li>
+                        <li>メンテナンス、重要なお知らせなど必要に応じたご連絡のため</li>
+                        <li>利用規約に違反したユーザーや、不正・不当な目的でサービスを利用しようとするユーザーの特定をし、ご利用をお断りするため</li>
+                        <li>上記の利用目的に付随する目的</li>
+                    </ul>
+                    
+                    <h3>第4条（利用目的の変更）</h3>
+                    <p>当組織は、利用目的が変更前と関連性を有すると合理的に認められる場合に限り、個人情報の利用目的を変更するものとします。利用目的の変更を行った場合には、変更後の目的について、当組織所定の方法により、ユーザーに通知し、または本ウェブサイト上に公表するものとします。</p>
+                    
+                    <h3>第5条（個人情報の第三者提供）</h3>
                     <p>当組織は、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。</p>
-                    <ul><li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li><li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li></ul>
-                    <h3>第4条（お問い合わせ窓口）</h3>
-                    <p>本ポリシーに関するお問い合わせは、当組織の公式Discord、公式LINE、または代表X(Twitter)アカウントまでお願いいたします。</p>
+                    <ul>
+                        <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+                        <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+                        <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき</li>
+                    </ul>
+                    
+                    <h3>第6条（個人情報の開示・訂正・利用停止等）</h3>
+                    <p>当組織は、本人から個人情報の開示、訂正、追加、削除、利用停止等を求められたときは、本人確認を行った上で、遅滞なくこれに対応します。</p>
+
+                    <h3>第7条（安全管理措置）</h3>
+                    <p>当組織は、取得した個人情報について、漏えい、滅失またはき損の防止等、その管理のために必要かつ適切な安全管理措置を講じます。また、個人情報を取り扱う従業者や委託先（再委託先等を含みます。）に対して、必要かつ適切な監督を行います。</p>
+
+                    <h3>第8条（プライバシーポリシーの変更）</h3>
+                    <p>本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、ユーザーに通知することなく、変更することができるものとします。当組織が別途定める場合を除いて、変更後のプライバシーポリシーは、本ウェブサイトに掲載したときから効力を生じるものとします。</p>
+                    
+                    <h3>第9条（お問い合わせ窓口）</h3>
+                    <p>本ポリシーに関するお問い合わせは、当組織の公式Discord、公式LINE、または代表宛の連絡先までお願いいたします。</p>
+                    
                     <p style="margin-top:40px; text-align:right;">制定日：2026年3月</p>
                 `
             },
             terms: {
                 title: "利用規約",
                 html: `
-                    <p>この利用規約（以下、「本規約」といいます。）は、NEXT GEAR（以下、「当組織」といいます。）が提供するサービス（サーバー利用、クリエイターサポートを含み、これらに限りません。以下、「本サービス」といいます。）の利用条件を定めるものです。ご利用される皆様（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。</p>
+                    <p>この利用規約（以下、「本規約」といいます。）は、NEXT GEAR（以下、「当組織」といいます。）が提供するすべてのサービス（サーバーインフラの利用、クリエイターマネジメント業務、各種制作業務等を含みますが、これらに限られません。以下、「本サービス」といいます。）の利用条件を定めるものです。本サービスをご利用される皆様（以下、「ユーザー」といいます。）には、本規約に従って本サービスをご利用いただきます。</p>
+                    
                     <h3>第1条（適用）</h3>
-                    <p>本規約は、ユーザーと当組織との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>
+                    <p>本規約は、ユーザーと当組織との間の本サービスの利用に関わる一切の関係に適用されるものとします。当組織は本サービスに関し、本規約のほか、ご利用にあたってのルール等、各種の定め（以下、「個別規定」といいます。）をすることがあります。これら個別規定はその名称のいかんに関わらず、本規約の一部を構成するものとします。</p>
+                    
                     <h3>第2条（禁止事項）</h3>
                     <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
-                    <ul><li>法令または公序良俗に違反する行為</li><li>犯罪行為に関連する行為</li><li>当組織、本サービスの他のユーザー、または第三者のサーバーまたはネットワークの機能を破壊したり、妨害したりする行為</li><li>当組織のサービスの運営を妨害するおそれのある行為</li><li>他のユーザーに関する個人情報等を収集または蓄積する行為</li><li>その他、当組織が不適切と判断する行為</li></ul>
-                    <h3>第3条（免責事項）</h3>
-                    <p>当組織は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。</p>
-                    <p>当組織は、本サービスに起因してユーザーに生じたあらゆる損害について一切の責任を負いません。ただし、本サービスに関する当組織とユーザーとの間の契約（本規約を含みます。）が消費者契約法に定める消費者契約となる場合、この免責規定は適用されません。</p>
+                    <ul>
+                        <li>法令または公序良俗に違反する行為、または犯罪行為に関連する行為</li>
+                        <li>当組織、本サービスの他のユーザー、または第三者のサーバーまたはネットワークの機能を破壊したり、妨害したりする行為</li>
+                        <li>当組織のサービスの運営を妨害するおそれのある行為</li>
+                        <li>不正アクセスをし、またはこれを試みる行為</li>
+                        <li>他のユーザーに関する個人情報等を収集または蓄積する行為、または他のユーザーに成りすます行為</li>
+                        <li>当組織のサービスに関連して、反社会的勢力に対して直接または間接に利益を供与する行為</li>
+                        <li>当組織、本サービスの他のユーザーまたは第三者の知的財産権、肖像権、プライバシー、名誉その他の権利または利益を侵害する行為</li>
+                        <li>その他、当組織が不適切と判断する行為</li>
+                    </ul>
+                    
+                    <h3>第3条（本サービスの提供の停止等）</h3>
+                    <p>当組織は、以下のいずれかの事由があると判断した場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。</p>
+                    <ul>
+                        <li>本サービスにかかるコンピュータシステムの保守点検または更新を行う場合</li>
+                        <li>地震、落雷、火災、停電または天災などの不可抗力により、本サービスの提供が困難となった場合</li>
+                        <li>コンピュータまたは通信回線等が事故により停止した場合</li>
+                        <li>その他、当組織が本サービスの提供が困難と判断した場合</li>
+                    </ul>
+                    <p>当組織は、本サービスの提供の停止または中断により、ユーザーまたは第三者が被ったいかなる不利益または損害についても、一切の責任を負わないものとします。</p>
+
+                    <h3>第4条（知的財産権の帰属）</h3>
+                    <p>本サービスによって提供されるすべてのコンテンツ（画像、映像、文章、プログラム等）の著作権、特許権、商標権等の知的財産権は、当組織または正当な権利を有する第三者に帰属します。ユーザーは、これらを当組織の事前の書面による許諾なく、複製、転載、改変、配布等することはできません。</p>
+                    
+                    <h3>第5条（利用制限および登録抹消）</h3>
+                    <p>当組織は、ユーザーが以下のいずれかに該当する場合には、事前の通知なく、ユーザーに対して、本サービスの全部もしくは一部の利用を制限し、またはユーザーとしての登録を抹消することができるものとします。</p>
+                    <ul>
+                        <li>本規約のいずれかの条項に違反した場合</li>
+                        <li>登録事項に虚偽の事実があることが判明した場合</li>
+                        <li>当組織からの連絡に対し、一定期間返答がない場合</li>
+                        <li>その他、当組織が本サービスの利用を適当でないと判断した場合</li>
+                    </ul>
+                    <p>当組織は、本条に基づき当組織が行った行為によりユーザーに生じた損害について、一切の責任を負いません。</p>
+                    
+                    <h3>第6条（免責事項および損害賠償の制限）</h3>
+                    <p>当組織は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。<br>
+                    当組織は、本サービスに起因してユーザーに生じたあらゆる損害について、当組織の故意又は重過失による場合を除き、一切の責任を負いません。また、当組織が責任を負う場合であっても、当組織は、通常生じうる損害の範囲内でのみ賠償の責任を負うものとします。</p>
+                    
+                    <h3>第7条（反社会的勢力の排除）</h3>
+                    <p>ユーザーは、自己が暴力団、暴力団員、暴力団準構成員、暴力団関係企業、総会屋等、社会運動等標ぼうゴロまたは特殊知能暴力集団等、その他これらに準ずる者（以下これらを「反社会的勢力」といいます。）に該当しないこと、および次の各号のいずれにも該当しないことを表明し、かつ将来にわたっても該当しないことを確約します。</p>
+                    <ul>
+                        <li>反社会的勢力が経営を支配していると認められる関係を有すること</li>
+                        <li>反社会的勢力が経営に実質的に関与していると認められる関係を有すること</li>
+                        <li>自己、自社もしくは第三者の不正の利益を図る目的または第三者に損害を加える目的をもってする等、不当に反社会的勢力を利用していると認められる関係を有すること</li>
+                    </ul>
+                    <p>当組織は、ユーザーが前項の確約に違反した場合、事前の通知や催告を要せず、直ちに本サービスの利用を停止し、または契約を解除することができるものとします。</p>
+
+                    <h3>第8条（利用規約の変更）</h3>
+                    <p>当組織は、必要と判断した場合には、ユーザーに通知することなくいつでも本規約を変更することができるものとします。なお、本規約の変更後、本サービスの利用を開始した場合には、当該ユーザーは変更後の規約に同意したものとみなします。</p>
+                    
+                    <h3>第9条（準拠法・裁判管轄）</h3>
+                    <p>本規約の解釈にあたっては、日本法を準拠法とします。<br>本サービスに関して紛争が生じた場合には、当組織の所在地を管轄する地方裁判所を専属的合意管轄とします。</p>
+                    
                     <p style="margin-top:40px; text-align:right;">制定日：2026年3月</p>
                 `
             }
@@ -614,22 +688,15 @@
         function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); document.body.style.overflow = 'auto'; if(window.typingInterval) clearInterval(window.typingInterval); }
         function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('navLinks').classList.toggle('active'); }
 
-        // 💡 変更点：スタッガー（時間差）エフェクト対応の洗練されたObserver
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             let delayTime = 0;
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     if (entry.target.classList.contains('fade-in-up')) {
-                        // 画面に入った要素に順番にディレイをつけて発火
-                        setTimeout(() => {
-                            entry.target.classList.add('active');
-                        }, delayTime);
-                        delayTime += 150; // 0.15秒ずつずらして出現
-                        observer.unobserve(entry.target); // 一度出たら監視解除して軽量化
-                    } else {
-                        entry.target.classList.add('active');
-                    }
+                        setTimeout(() => { entry.target.classList.add('active'); }, delayTime);
+                        delayTime += 150; observer.unobserve(entry.target);
+                    } else { entry.target.classList.add('active'); }
                 }
             });
         }, observerOptions);
