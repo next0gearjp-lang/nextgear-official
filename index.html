@@ -159,16 +159,6 @@
         .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: #fff; border-bottom: 1px solid #444; padding-bottom: 3px; transition: 0.3s; }
         .management-profile:hover .view-details { border-bottom-color: #fff; }
 
-        /* MEMBERS GRID */
-        .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 700px; margin: 0 auto; }
-        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 280px; margin: 0 auto; transition: var(--transition); transform: translateZ(0); }
-        .member-item:nth-child(2) { margin-top: 80px; }
-        .image-wrapper { width: 100%; overflow: hidden; aspect-ratio: 3 / 4; background: #111; position: relative; border-radius: 2px; }
-        .member-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: filter, transform; }
-        .member-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
-        .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; transition: var(--transition); }
-        .member-item:hover .member-name { letter-spacing: 0.4em; color: #4facfe; }
-
         /* COMPANY (事業主情報の正直な開示) */
         .company-table { width: 100%; max-width: 800px; border-top: 1px solid #222; margin-top: 20px; }
         .company-row { display: flex; border-bottom: 1px solid #222; padding: 25px 0; transition: background 0.3s; }
@@ -232,8 +222,6 @@
             .service-grid { grid-template-columns: 1fr; gap: 30px; }
             .management-profile { flex-direction: column; text-align: center; padding: 40px 20px; }
             .shil-wrapper { width: 120px; height: 120px; }
-            .members-grid { grid-template-columns: 1fr; gap: 40px; }
-            .member-item:nth-child(2) { margin-top: 0; }
             .company-row { flex-direction: column; gap: 10px; padding: 20px 0; }
             .detail-content { grid-template-columns: 1fr; padding: 20% 6% 10%; gap: 40px; }
             .detail-img-box { display: none; }
@@ -276,7 +264,7 @@
 
     <div class="marquee-bg">
         <div class="marquee-inner">
-            NEXT GEAR SHIL LIFE NYATSUME NEXT GEAR SHIL LIFE NYATSUME / 
+            NEXT GEAR CREATIVE LOGISTICS NEXT GEAR CREATIVE LOGISTICS / 
         </div>
     </div>
 
@@ -348,20 +336,6 @@
                 <h3>SHIL</h3>
                 <p>「Next Gear」代表 / プロジェクトマネージャー。<br>クリエイターが『表現・配信』というコアな活動にのみ集中できるよう、全方位のロジスティクスを統括・支援します。</p>
                 <span class="view-details">VIEW PROFILE 🡒</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="members">
-        <span class="section-label fade-in-up">Selected Members</span>
-        <div class="members-grid">
-            <div class="member-item fade-in-up" onclick="openMember('life')">
-                <div class="image-wrapper"><img src="./zero.png" alt="LIFE"></div>
-                <div class="member-name">LIFE</div>
-            </div>
-            <div class="member-item fade-in-up" onclick="openMember('nyatsume')">
-                <div class="image-wrapper"><img src="./natume.png" alt="NYATSUME"></div>
-                <div class="member-name">NYATSUME</div>
             </div>
         </div>
     </section>
@@ -466,33 +440,6 @@
                 text: "「Next Gear」の代表・管理者。インフラ構築から配信支援のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談、サーバー構築等の技術的なお問い合わせは、X(Twitter)のDMへ直接ご連絡ください。",
                 color: "var(--accent-shil)", img: "./shil.jpg",
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }], linksShil: true
-            },
-            life: {
-                name: "LIFE",
-                text: "ゲーム配信、雑談をメインに活動中！\n配信時間は夜がメイン！告知はなく急に始まるので「やってるから行こう」位の気軽さで来てください。\n飲み会配信やラジオもしてるので、ジュース片手に覗きに来てね。ROMも大歓迎です！",
-                color: "var(--m1-color)", img: "./zero.png",
-                links: [
-                    { label: "X", url: "https://x.com/0life_game", icon: "fa-brands fa-x-twitter" },
-                    { label: "YOUTUBE", url: "https://t.co/6HemoVdTf8", icon: "fa-brands fa-youtube" },
-                    { label: "TWITCH", url: "https://t.co/4KlyfNtd5x", icon: "fa-brands fa-twitch" },
-                    { label: "TIKTOK", url: "https://www.tiktok.com/@user324520832", icon: "fa-brands fa-tiktok" },
-                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/tz1xglj9o5cscso?t=Jl9HTW&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
-                    { label: "LIT.LINK (RULES)", url: "https://t.co/w4wRHskof3", icon: "fa-solid fa-link" }
-                ]
-            },
-            nyatsume: {
-                name: "NYATSUME",
-                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\n【基本配信時間】\n火水日：15時～25時のどこか（配信通知ON推奨！）\n\n【Game】\nAPEX / Minecraft / R.E.P.O. / ForzaHorizon / Switch / Among US / WoTB / Shadowverse(Los所属) / Fortnite / VALORANT / OW2 / Marvel Rivals / GTA V\n\n【Goal】\n・SNS合計フォロワー3000人\n・Twitch配信平均同接10人以上\n・ストグラに参加する\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
-                color: "var(--m2-color)", img: "./natume.png",
-                links: [
-                    { label: "X", url: "https://x.com/Natume_1208", icon: "fa-brands fa-x-twitter" },
-                    { label: "TWITCH", url: "https://t.co/U65Dds4tE0", icon: "fa-brands fa-twitch" },
-                    { label: "YOUTUBE", url: "https://www.youtube.com/@%E3%81%AA%E3%82%83%E3%81%A4%E3%82%81", icon: "fa-brands fa-youtube" },
-                    { label: "TIKTOK", url: "https://www.tiktok.com/@natume_1208", icon: "fa-brands fa-tiktok" },
-                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/yz10pr3nyqdn60a?t=lV0LIb&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
-                    { label: "WISH LIST", url: "https://www.amazon.jp/hz/wishlist/ls/2EJG6OJG9CTPB?ref_=wl_share", icon: "fa-solid fa-gift" },
-                    { label: "LIT.LINK", url: "https://t.co/s37Zw484HZ", icon: "fa-solid fa-link" }
-                ]
             }
         };
 
@@ -514,7 +461,6 @@
             }
         };
 
-        // 💡 【重要】法人契約水準に引き上げた本格的な法務データ
         const legalData = {
             privacy: {
                 title: "プライバシーポリシー",
