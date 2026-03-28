@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
     <title>NEXT GEAR | Professional Creative Logistics</title>
+    <meta name="title" content="NEXT GEAR | Professional Creative Logistics">
+    <meta name="description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
+
+    <!-- Open Graph / Facebook / Discord -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nextgear-official.jp/">
+    <meta property="og:title" content="NEXT GEAR | Professional Creative Logistics">
+    <meta property="og:description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
+    <meta property="og:image" content="https://nextgear-official.jp/ogp.jpg">
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nextgear-official.jp/">
+    <meta property="twitter:title" content="NEXT GEAR | Professional Creative Logistics">
+    <meta property="twitter:description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
+    <meta property="twitter:image" content="https://nextgear-official.jp/ogp.jpg">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
             --bg-base: #050505; 
@@ -120,7 +141,7 @@
         .service-card p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
         .spec-badge { display: inline-block; padding: 5px 12px; background: #222; color: #fff; font-size: 0.65rem; letter-spacing: 0.1em; margin-right: 5px; margin-top: 5px; border-radius: 2px; }
 
-        /* POLICY (安心感・信頼要素) */
+        /* POLICY */
         .policy-card { background: transparent; padding: 40px 30px; border: 1px solid #222; border-radius: 2px; transition: var(--transition); }
         .policy-card:hover { border-color: #444; }
         .policy-card i { font-size: 1.5rem; margin-bottom: 20px; color: var(--text-main); opacity: 0.5; }
@@ -147,7 +168,7 @@
         .member-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
         .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; }
 
-        /* 💡 新規：COMPANY (会社概要テーブル) */
+        /* COMPANY */
         .company-table { width: 100%; max-width: 800px; border-top: 1px solid #222; margin-top: 20px; }
         .company-row { display: flex; border-bottom: 1px solid #222; padding: 25px 0; }
         .company-th { width: 180px; font-size: 0.7rem; letter-spacing: 0.2em; color: #888; font-weight: normal; flex-shrink: 0; }
@@ -158,7 +179,7 @@
         .contact-box h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 200; letter-spacing: 0.05em; }
         .contact-box p { color: #666; font-size: 0.85rem; letter-spacing: 0.1em; line-height: 2; max-width: 500px; margin: 0 auto 40px auto; }
 
-        /* DETAIL OVERLAY (メンバー＆サービス用) */
+        /* DETAIL OVERLAY */
         .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-base); z-index: 2000; display: flex; transform: translateY(100%); transition: var(--transition); overflow-y: auto; }
         .detail-overlay.open { transform: translateY(0); }
         .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; gap: 80px; }
@@ -169,7 +190,7 @@
         .sns-links a:hover { opacity: 0.7; border-bottom-color: #fff; transform: translateY(-2px); }
         .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #666; z-index: 2100; border-bottom: 1px solid #333; }
 
-        /* 💡 新規：LEGAL OVERLAY (規約・プライバシーポリシー用) */
+        /* LEGAL OVERLAY */
         .legal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); z-index: 2500; display: flex; justify-content: center; align-items: flex-start; opacity: 0; pointer-events: none; transition: 0.5s ease; overflow-y: auto; padding: 100px 5%; }
         .legal-overlay.open { opacity: 1; pointer-events: auto; }
         .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; }
@@ -220,7 +241,6 @@
 </head>
 <body>
 
-    <!-- トランジション用オーバーレイ -->
     <div id="transitionOverlay" class="transition-overlay">
         <div class="transition-logo">
             <i class="fa-solid fa-cloud-sun"></i> <div class="logo-text">NEXT GEAR</div>
@@ -331,7 +351,6 @@
         </div>
     </section>
 
-    <!-- 💡 新規実装：ガチの会社概要（Company Profile） -->
     <section id="company" style="background-color: #050505; border-top: 1px solid #111;">
         <span class="section-label">Company Profile</span>
         <div class="company-table">
@@ -383,7 +402,6 @@
         </div>
     </section>
 
-    <!-- メンバー＆サービス詳細用ポップアップ -->
     <div id="detailOverlay" class="detail-overlay">
         <div class="close-btn" onclick="closeDetail()">Back — Index</div>
         <div id="detailContent" class="detail-content">
@@ -400,14 +418,11 @@
         </div>
     </div>
 
-    <!-- 💡 新規実装：ガチのプライバシーポリシー用ポップアップ -->
     <div id="legalOverlay" class="legal-overlay">
         <div class="legal-content">
             <i class="fa-solid fa-xmark legal-close" onclick="closeLegal()"></i>
             <h2 id="legalTitle">Privacy Policy</h2>
-            <div id="legalText">
-                <!-- Javascriptで動的に規約テキストを流し込みます -->
-            </div>
+            <div id="legalText"></div>
         </div>
     </div>
 
@@ -415,7 +430,6 @@
         <div>
             &copy; 2026 NEXT GEAR.<br>All Rights Reserved.<br>
             <div class="footer-links">
-                <!-- 💡 規約を開くリンク -->
                 <span onclick="openLegal('terms')">利用規約</span>
                 <span onclick="openLegal('privacy')">プライバシーポリシー</span>
             </div>
@@ -440,26 +454,41 @@
                 name: "LIFE",
                 text: "ゲーム配信、雑談をメインに活動中！\n配信時間は夜がメイン！告知はなく急に始まるので「やってるから行こう」位の気軽さで来てください。\n飲み会配信やラジオもしてるので、ジュース片手に覗きに来てね。ROMも大歓迎です！",
                 color: "var(--m1-color)", img: "./zero.png",
-                links: [{ label: "X", url: "https://x.com/0life_game", icon: "fa-brands fa-x-twitter" }, { label: "YOUTUBE", url: "https://t.co/6HemoVdTf8", icon: "fa-brands fa-youtube" }, { label: "TWITCH", url: "https://t.co/4KlyfNtd5x", icon: "fa-brands fa-twitch" }]
+                links: [
+                    { label: "X", url: "https://x.com/0life_game", icon: "fa-brands fa-x-twitter" },
+                    { label: "YOUTUBE", url: "https://t.co/6HemoVdTf8", icon: "fa-brands fa-youtube" },
+                    { label: "TWITCH", url: "https://t.co/4KlyfNtd5x", icon: "fa-brands fa-twitch" },
+                    { label: "TIKTOK", url: "https://www.tiktok.com/@user324520832", icon: "fa-brands fa-tiktok" },
+                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/tz1xglj9o5cscso?t=Jl9HTW&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
+                    { label: "LIT.LINK (RULES)", url: "https://t.co/w4wRHskof3", icon: "fa-solid fa-link" }
+                ]
             },
             nyatsume: {
                 name: "NYATSUME",
-                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
+                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\n【基本配信時間】\n火水日：15時～25時のどこか（配信通知ON推奨！）\n\n【Game】\nAPEX / Minecraft / R.E.P.O. / ForzaHorizon / Switch / Among US / WoTB / Shadowverse(Los所属) / Fortnite / VALORANT / OW2 / Marvel Rivals / GTA V\n\n【Goal】\n・SNS合計フォロワー3000人\n・Twitch配信平均同接10人以上\n・ストグラに参加する\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
                 color: "var(--m2-color)", img: "./natume.png",
-                links: [{ label: "X", url: "https://x.com/Natume_1208", icon: "fa-brands fa-x-twitter" }, { label: "TWITCH", url: "https://t.co/U65Dds4tE0", icon: "fa-brands fa-twitch" }]
+                links: [
+                    { label: "X", url: "https://x.com/Natume_1208", icon: "fa-brands fa-x-twitter" },
+                    { label: "TWITCH", url: "https://t.co/U65Dds4tE0", icon: "fa-brands fa-twitch" },
+                    { label: "YOUTUBE", url: "https://www.youtube.com/@%E3%81%AA%E3%82%83%E3%81%A4%E3%82%81", icon: "fa-brands fa-youtube" },
+                    { label: "TIKTOK", url: "https://www.tiktok.com/@natume_1208", icon: "fa-brands fa-tiktok" },
+                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/yz10pr3nyqdn60a?t=lV0LIb&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
+                    { label: "WISH LIST", url: "https://www.amazon.jp/hz/wishlist/ls/2EJG6OJG9CTPB?ref_=wl_share", icon: "fa-solid fa-gift" },
+                    { label: "LIT.LINK", url: "https://t.co/s37Zw484HZ", icon: "fa-solid fa-link" }
+                ]
             }
         };
 
         const serviceData = {
             hosting: {
                 name: "MULTI-SERVER HOSTING",
-                text: "「ラグで負けた」「人が増えると重い」といったストレスを過去にする、実践型のホスティングサービスです。\n夕方の混雑時でも速度低下を起こさない専用回線と、現在考えうる最高峰のパーツ構成により、常に安定したプレイをお約束します。",
-                color: "#fff", specs: ["10Gbps Network", "Ryzen 9 9950X3D", "64GB RAM"]
+                text: "「ラグで負けた」「人が増えると重い」といったストレスを過去にする、実践型のホスティングサービスです。\n夕方の混雑時でも速度低下を起こさない専用回線と、現在考えうる最高峰のパーツ構成により、大規模なコミュニティサーバーからMODを大量に入れた重い環境まで、常に安定したプレイをお約束します。\n\n* Ryzen 9 9950X3D とは：\n現在ゲーミング用途で「最強」と評される最新のCPU（サーバーの頭脳）です。処理能力が桁違いに高く、プレイヤーが密集しても動作がカクつきません。\n\n* 10Gbps回線 とは：\n一般的なインターネットの「約10倍」の太さを持つ超高速回線です。データの渋滞が起きず、時間帯を問わずラグのない通信を維持します。\n\n* 64GB メモリ(RAM) とは：\nサーバーが作業をするための「机の広さ」です。これだけ広ければ、巨大なワールドデータや膨大な拡張データ（MOD）を読み込んでもサーバーが落ちる心配がありません。",
+                color: "#fff", specs: ["10Gbps Network", "Ryzen 9 9950X3D", "64GB RAM", "Unlimited Data"]
             },
             creative: {
                 name: "CREATIVE SUPPORT",
-                text: "制作に必要な外注費用や進行管理はすべてNext Gearが負担・担当します。クリエイターの皆様は費用や制作の手間を気にせず、「配信・収録」という活動そのものに100%集中していただけます。",
-                color: "#fff", specs: ["Total Branding", "Video Editing", "Live2D Setup"]
+                text: "あなただけの『世界観』づくりを、ビジュアル面からトータルでサポートします。\n\n制作に必要な外注費用や進行管理はすべてNext Gearが負担・担当します。クリエイターの皆様は費用や制作の手間を気にせず、「配信・収録」という活動そのものに100%集中していただけます。妥協せず、完全に納得いくまで一緒にクオリティを追求できる環境です。\n\n* 動画編集：\nYouTube本編からTikTok用のショート動画まで対応。視聴者を惹きつけるテンポの良い編集を、ご納得いただけるまで調整します。\n\n* 配信デザイン：\nオーバーレイ、待機画面、トランジションなど、各種デザインを統一感のある世界観で制作します。理想のイメージを形にするため、細部まで徹底的にこだわります。\n\n* Live2Dモデル導入：\nイラスト制作やモデリングに関わる外注手配・費用も当社でカバー。ソフトへの組み込みからOBSでの綺麗な魅せ方まで、活動のスタートを丁寧にサポートします。",
+                color: "#fff", specs: ["Total Branding", "Video Editing", "Stream Design", "Live2D Setup"]
             },
             tech: {
                 name: "STREAMING TECH",
@@ -468,39 +497,20 @@
             }
         };
 
-        // 💡 規約類のガチテキストデータ
         const legalData = {
             privacy: {
                 title: "プライバシーポリシー",
                 html: `
                     <p>NEXT GEAR（以下、「当組織」といいます。）は、クリエイターサポート事業、サーバーインフラ提供、および関連サービス（以下、「本サービス」といいます。）における、ユーザー及び所属クリエイターの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
-                    
                     <h3>第1条（個人情報の取得）</h3>
                     <p>当組織は、本サービスの提供にあたり、以下の個人情報を適法かつ公正な手段により取得します。</p>
-                    <ul>
-                        <li>氏名、生年月日、住所、電話番号、メールアドレス等</li>
-                        <li>Discord ID、LINEアカウント、その他SNSアカウント情報</li>
-                        <li>サーバー利用に関わるIPアドレス、アクセスログ、端末情報</li>
-                        <li>その他、当組織が定める入力フォームにてユーザーが入力する情報</li>
-                    </ul>
-
+                    <ul><li>氏名、生年月日、住所、電話番号、メールアドレス等</li><li>Discord ID、LINEアカウント、その他SNSアカウント情報</li><li>サーバー利用に関わるIPアドレス、アクセスログ、端末情報</li><li>その他、当組織が定める入力フォームにてユーザーが入力する情報</li></ul>
                     <h3>第2条（個人情報を収集・利用する目的）</h3>
                     <p>当組織が個人情報を収集・利用する目的は、以下のとおりです。</p>
-                    <ul>
-                        <li>当組織サービスの提供・運営、および所属に関するオーディション等の選考のため</li>
-                        <li>クリエイターのマネジメント業務、および案件等の紹介業務のため</li>
-                        <li>ゲームサーバー等のインフラ構築、保守、不正アクセス防止のため</li>
-                        <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
-                        <li>上記の利用目的に付随する目的</li>
-                    </ul>
-
+                    <ul><li>当組織サービスの提供・運営、および所属に関するオーディション等の選考のため</li><li>クリエイターのマネジメント業務、および案件等の紹介業務のため</li><li>ゲームサーバー等のインフラ構築、保守、不正アクセス防止のため</li><li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li><li>上記の利用目的に付随する目的</li></ul>
                     <h3>第3条（個人情報の第三者提供）</h3>
                     <p>当組織は、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。</p>
-                    <ul>
-                        <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
-                        <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li>
-                    </ul>
-
+                    <ul><li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li><li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li></ul>
                     <h3>第4条（お問い合わせ窓口）</h3>
                     <p>本ポリシーに関するお問い合わせは、当組織の公式Discord、公式LINE、または代表X(Twitter)アカウントまでお願いいたします。</p>
                     <p style="margin-top:40px; text-align:right;">制定日：2026年3月</p>
@@ -510,25 +520,14 @@
                 title: "利用規約",
                 html: `
                     <p>この利用規約（以下、「本規約」といいます。）は、NEXT GEAR（以下、「当組織」といいます。）が提供するサービス（サーバー利用、クリエイターサポートを含み、これらに限りません。以下、「本サービス」といいます。）の利用条件を定めるものです。ご利用される皆様（以下、「ユーザー」といいます。）には、本規約に従って、本サービスをご利用いただきます。</p>
-                    
                     <h3>第1条（適用）</h3>
                     <p>本規約は、ユーザーと当組織との間の本サービスの利用に関わる一切の関係に適用されるものとします。</p>
-                    
                     <h3>第2条（禁止事項）</h3>
                     <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
-                    <ul>
-                        <li>法令または公序良俗に違反する行為</li>
-                        <li>犯罪行為に関連する行為</li>
-                        <li>当組織、本サービスの他のユーザー、または第三者のサーバーまたはネットワークの機能を破壊したり、妨害したりする行為</li>
-                        <li>当組織のサービスの運営を妨害するおそれのある行為</li>
-                        <li>他のユーザーに関する個人情報等を収集または蓄積する行為</li>
-                        <li>その他、当組織が不適切と判断する行為</li>
-                    </ul>
-
+                    <ul><li>法令または公序良俗に違反する行為</li><li>犯罪行為に関連する行為</li><li>当組織、本サービスの他のユーザー、または第三者のサーバーまたはネットワークの機能を破壊したり、妨害したりする行為</li><li>当組織のサービスの運営を妨害するおそれのある行為</li><li>他のユーザーに関する個人情報等を収集または蓄積する行為</li><li>その他、当組織が不適切と判断する行為</li></ul>
                     <h3>第3条（免責事項）</h3>
                     <p>当組織は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。</p>
                     <p>当組織は、本サービスに起因してユーザーに生じたあらゆる損害について一切の責任を負いません。ただし、本サービスに関する当組織とユーザーとの間の契約（本規約を含みます。）が消費者契約法に定める消費者契約となる場合、この免責規定は適用されません。</p>
-                    
                     <p style="margin-top:40px; text-align:right;">制定日：2026年3月</p>
                 `
             }
@@ -546,7 +545,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        /* 既存の表示・アニメーション用スクリプト */
         function openMember(id) { showOverlay(memberData[id], true); }
         function openService(id) { showOverlay(serviceData[id], false); }
 
