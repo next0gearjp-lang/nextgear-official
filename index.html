@@ -4,26 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Primary Meta Tags -->
     <title>NEXT GEAR | Professional Creative Logistics</title>
     <meta name="title" content="NEXT GEAR | Professional Creative Logistics">
     <meta name="description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
 
-    <!-- Open Graph / Facebook / Discord -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nextgear-official.jp/">
     <meta property="og:title" content="NEXT GEAR | Professional Creative Logistics">
     <meta property="og:description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
     <meta property="og:image" content="https://nextgear-official.jp/ogp.jpg">
 
-    <!-- Twitter / X -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://nextgear-official.jp/">
     <meta property="twitter:title" content="NEXT GEAR | Professional Creative Logistics">
     <meta property="twitter:description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
     <meta property="twitter:image" content="https://nextgear-official.jp/ogp.jpg">
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
@@ -159,6 +155,16 @@
         .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: #fff; border-bottom: 1px solid #444; padding-bottom: 3px; transition: 0.3s; }
         .management-profile:hover .view-details { border-bottom-color: #fff; }
 
+        /* MEMBERS GRID */
+        .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 700px; margin: 0 auto; }
+        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 280px; margin: 0 auto; transition: var(--transition); transform: translateZ(0); }
+        .member-item:nth-child(2) { margin-top: 80px; }
+        .image-wrapper { width: 100%; overflow: hidden; aspect-ratio: 3 / 4; background: #111; position: relative; border-radius: 2px; }
+        .member-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: filter, transform; }
+        .member-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
+        .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; transition: var(--transition); }
+        .member-item:hover .member-name { letter-spacing: 0.4em; color: #4facfe; }
+
         /* COMPANY (事業主情報の正直な開示) */
         .company-table { width: 100%; max-width: 800px; border-top: 1px solid #222; margin-top: 20px; }
         .company-row { display: flex; border-bottom: 1px solid #222; padding: 25px 0; transition: background 0.3s; }
@@ -222,6 +228,8 @@
             .service-grid { grid-template-columns: 1fr; gap: 30px; }
             .management-profile { flex-direction: column; text-align: center; padding: 40px 20px; }
             .shil-wrapper { width: 120px; height: 120px; }
+            .members-grid { grid-template-columns: 1fr; gap: 40px; }
+            .member-item:nth-child(2) { margin-top: 0; }
             .company-row { flex-direction: column; gap: 10px; padding: 20px 0; }
             .detail-content { grid-template-columns: 1fr; padding: 20% 6% 10%; gap: 40px; }
             .detail-img-box { display: none; }
@@ -264,7 +272,7 @@
 
     <div class="marquee-bg">
         <div class="marquee-inner">
-            NEXT GEAR CREATIVE LOGISTICS NEXT GEAR CREATIVE LOGISTICS / 
+            NEXT GEAR SHIL NYATSUME NEXT GEAR SHIL NYATSUME / 
         </div>
     </div>
 
@@ -340,7 +348,16 @@
         </div>
     </section>
 
-    <!-- 💡 【重要】法人取引水準の誠実な事業主表記 -->
+    <section id="members">
+        <span class="section-label fade-in-up">Selected Members</span>
+        <div class="members-grid">
+            <div class="member-item fade-in-up" onclick="openMember('nyatsume')">
+                <div class="image-wrapper"><img src="./natume.png" alt="NYATSUME"></div>
+                <div class="member-name">NYATSUME</div>
+            </div>
+        </div>
+    </section>
+
     <section id="company" style="background-color: #050505; border-top: 1px solid #111;">
         <span class="section-label fade-in-up">Company Profile & Legal Disclosure</span>
         <div class="company-table fade-in-up">
@@ -408,7 +425,6 @@
         </div>
     </div>
 
-    <!-- 規約モーダル -->
     <div id="legalOverlay" class="legal-overlay">
         <div class="legal-content">
             <i class="fa-solid fa-xmark legal-close" onclick="closeLegal()"></i>
@@ -434,12 +450,27 @@
     <a href="#contact" class="floating-cta"><i class="fa-solid fa-paper-plane"></i> 応募 / 相談</a>
 
     <script>
+        // 💡 データ一覧からLIFEの情報を完全に削除しました
         const memberData = {
             shil: {
                 name: "SHIL",
                 text: "「Next Gear」の代表・管理者。インフラ構築から配信支援のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談、サーバー構築等の技術的なお問い合わせは、X(Twitter)のDMへ直接ご連絡ください。",
                 color: "var(--accent-shil)", img: "./shil.jpg",
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }], linksShil: true
+            },
+            nyatsume: {
+                name: "NYATSUME",
+                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\n【基本配信時間】\n火水日：15時～25時のどこか（配信通知ON推奨！）\n\n【Game】\nAPEX / Minecraft / R.E.P.O. / ForzaHorizon / Switch / Among US / WoTB / Shadowverse(Los所属) / Fortnite / VALORANT / OW2 / Marvel Rivals / GTA V\n\n【Goal】\n・SNS合計フォロワー3000人\n・Twitch配信平均同接10人以上\n・ストグラに参加する\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
+                color: "var(--m2-color)", img: "./natume.png",
+                links: [
+                    { label: "X", url: "https://x.com/Natume_1208", icon: "fa-brands fa-x-twitter" },
+                    { label: "TWITCH", url: "https://t.co/U65Dds4tE0", icon: "fa-brands fa-twitch" },
+                    { label: "YOUTUBE", url: "https://www.youtube.com/@%E3%81%AA%E3%82%83%E3%81%A4%E3%82%81", icon: "fa-brands fa-youtube" },
+                    { label: "TIKTOK", url: "https://www.tiktok.com/@natume_1208", icon: "fa-brands fa-tiktok" },
+                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/yz10pr3nyqdn60a?t=lV0LIb&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
+                    { label: "WISH LIST", url: "https://www.amazon.jp/hz/wishlist/ls/2EJG6OJG9CTPB?ref_=wl_share", icon: "fa-solid fa-gift" },
+                    { label: "LIT.LINK", url: "https://t.co/s37Zw484HZ", icon: "fa-solid fa-link" }
+                ]
             }
         };
 
