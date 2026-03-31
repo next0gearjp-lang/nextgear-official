@@ -6,18 +6,18 @@
     
     <title>NEXT GEAR | Professional Creative Logistics</title>
     <meta name="title" content="NEXT GEAR | Professional Creative Logistics">
-    <meta name="description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
+    <meta name="description" content="「一人では無理」をなくす。配信者が資金と技術の壁を越え、クリエイティビティに集中できる環境を提供するクリエイターサポート組織。">
 
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://nextgear-official.jp/">
     <meta property="og:title" content="NEXT GEAR | Professional Creative Logistics">
-    <meta property="og:description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
+    <meta property="og:description" content="「一人では無理」をなくす。配信者が資金と技術の壁を越え、クリエイティビティに集中できる環境を提供するクリエイターサポート組織。">
     <meta property="og:image" content="https://nextgear-official.jp/ogp.jpg">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://nextgear-official.jp/">
     <meta property="twitter:title" content="NEXT GEAR | Professional Creative Logistics">
-    <meta property="twitter:description" content="技術特化型クリエイターサポート『NEXT GEAR』。最高峰のサーバーインフラと洗練されたビジュアル制作で、次世代のクリエイティブを加速させます。">
+    <meta property="twitter:description" content="「一人では無理」をなくす。配信者が資金と技術の壁を越え、クリエイティビティに集中できる環境を提供するクリエイターサポート組織。">
     <meta property="twitter:image" content="https://nextgear-official.jp/ogp.jpg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -44,7 +44,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* 背景ギミック (GPUアクセラレーション) */
         .marquee-bg {
             position: fixed; top: 25%; left: 0; width: 100%; z-index: -1;
             pointer-events: none; overflow: hidden; opacity: 0.015; 
@@ -57,7 +56,6 @@
         }
         @keyframes marquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
 
-        /* スクロール連動アニメーション */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -66,7 +64,6 @@
         }
         .fade-in-up.active { opacity: 1; transform: translateY(0); }
 
-        /* ナビゲーション */
         nav {
             position: fixed; top: 0; width: 100%; padding: 25px 10%; display: flex;
             justify-content: space-between; align-items: center; z-index: 2000;
@@ -74,7 +71,7 @@
             backdrop-filter: blur(10px); transform: translateZ(0);
         }
         .logo { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 0.2em; font-size: 1.2rem; position: relative; z-index: 2100; cursor: pointer; }
-        .nav-links { display: flex; gap: 40px; font-size: 0.7rem; letter-spacing: 0.2em; align-items: center; }
+        .nav-links { display: flex; gap: 30px; font-size: 0.7rem; letter-spacing: 0.2em; align-items: center; }
         .nav-links a { color: var(--text-main); text-decoration: none; opacity: 0.4; transition: var(--transition); padding-bottom: 5px; }
         .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
         .nav-entry-btn { color: #fff !important; border: 1px solid #444; padding: 8px 20px; border-radius: 20px; opacity: 1 !important; }
@@ -85,7 +82,6 @@
         .hamburger.active span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
         .hamburger.active span:nth-child(2) { transform: translateY(-3.5px) rotate(-45deg); }
 
-        /* 場面転換トランジション */
         .transition-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
             background: radial-gradient(circle, rgba(10,10,10,0.98) 0%, rgba(5,5,5,1) 100%); 
@@ -104,7 +100,6 @@
         section { padding: 120px 15%; position: relative; }
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
-        /* HERO */
         @keyframes fadeUpHero {
             0% { opacity: 0; transform: translate3d(0, 30px, 0); }
             100% { opacity: 1; transform: translate3d(0, 0, 0); }
@@ -123,21 +118,22 @@
         .btn-line:hover { background: #06C755; color: #fff; box-shadow: 0 0 20px rgba(6, 199, 85, 0.3); transform: translateY(-3px); }
 
         /* ABOUT */
-        .mission-text { font-size: 2rem; line-height: 1.8; font-weight: 300; letter-spacing: 0.05em; max-width: 800px; color: #ccc; }
+        .mission-text { font-size: 1.8rem; line-height: 2; font-weight: 300; letter-spacing: 0.05em; max-width: 900px; color: #ccc; }
         .underline-magic { position: relative; display: inline-block; color: #fff; font-weight: 700; }
         .underline-magic::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #fff; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .underline-magic.active::after { width: 100%; }
 
-        /* SERVICE */
-        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
-        .service-card { background: #0a0a0a; padding: 60px 40px; border: 1px solid #111; transition: var(--transition); cursor: pointer; border-radius: 2px; transform: translateZ(0); will-change: transform, border-color; }
+        /* SERVICE - 4 pillars */
+        .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
+        .service-card { background: #0a0a0a; padding: 50px 40px; border: 1px solid #111; transition: var(--transition); cursor: pointer; border-radius: 2px; transform: translateZ(0); will-change: transform, border-color; display: flex; flex-direction: column; justify-content: flex-start; }
         .service-card:hover { border-color: #333; transform: translate3d(0, -10px, 0); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .service-card i { font-size: 1.5rem; margin-bottom: 25px; color: #fff; opacity: 0.3; transition: var(--transition); }
+        .service-card i { font-size: 1.8rem; margin-bottom: 25px; color: var(--m1-color); opacity: 0.5; transition: var(--transition); }
         .service-card:hover i { opacity: 1; transform: scale(1.1); }
-        .service-card h3 { font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 0.1em; }
-        .service-card p { font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 0.1em; color: #fff; }
+        .service-card p { font-size: 0.85rem; color: var(--text-sub); line-height: 1.8; margin: 0; }
 
-        /* POLICY */
+        /* POLICY (3 pillars) */
+        .policy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
         .policy-card { background: transparent; padding: 40px 30px; border: 1px solid #222; border-radius: 2px; transition: var(--transition); transform: translateZ(0); }
         .policy-card:hover { border-color: #444; background: rgba(255,255,255,0.02); }
         .policy-card i { font-size: 1.5rem; margin-bottom: 20px; color: var(--text-main); opacity: 0.5; }
@@ -145,15 +141,23 @@
         .policy-card p { font-size: 0.75rem; color: var(--text-sub); line-height: 1.8; }
 
         /* MANAGEMENT */
-        .management-profile { display: flex; align-items: center; gap: 50px; background: #0a0a0a; padding: 50px; border: 1px solid #111; cursor: pointer; transition: var(--transition); border-radius: 2px; margin-top: 20px; max-width: 900px; transform: translateZ(0); }
+        .management-profile { display: flex; align-items: flex-start; gap: 50px; background: #0a0a0a; padding: 50px; border: 1px solid #111; cursor: pointer; transition: var(--transition); border-radius: 2px; margin-top: 20px; max-width: 1000px; transform: translateZ(0); }
         .management-profile:hover { background: #111; border-color: #333; transform: translate3d(0, -5px, 0); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .shil-wrapper { width: 150px; height: 150px; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 1px solid #333; filter: grayscale(100%) brightness(0.8); transition: var(--transition); will-change: filter, transform; }
         .management-profile:hover .shil-wrapper { filter: grayscale(0%) brightness(1); transform: scale(1.05); border-color: #666; }
         .shil-wrapper img { width: 100%; height: 100%; object-fit: cover; }
         .management-info h3 { font-size: 1.5rem; margin: 0 0 15px 0; letter-spacing: 0.2em; color: #fff; }
-        .management-info p { color: var(--text-sub); font-size: 0.85rem; line-height: 1.8; margin: 0; }
-        .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: #fff; border-bottom: 1px solid #444; padding-bottom: 3px; transition: 0.3s; }
-        .management-profile:hover .view-details { border-bottom-color: #fff; }
+        .management-info p { color: var(--text-sub); font-size: 0.85rem; line-height: 1.9; margin: 0; }
+        .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--m1-color); border-bottom: 1px solid var(--m1-color); padding-bottom: 3px; transition: 0.3s; }
+        .management-profile:hover .view-details { color: #fff; border-bottom-color: #fff; }
+
+        /* ROADMAP */
+        .roadmap-table { width: 100%; max-width: 900px; border-collapse: collapse; margin-top: 30px; }
+        .roadmap-table th, .roadmap-table td { padding: 25px 20px; border-bottom: 1px solid #222; text-align: left; vertical-align: top; }
+        .roadmap-table th { color: #fff; width: 25%; font-weight: normal; letter-spacing: 0.1em; font-size: 0.9rem; }
+        .roadmap-table td { color: #ccc; line-height: 1.8; font-size: 0.85rem; }
+        .phase-badge { display: inline-block; padding: 4px 12px; border: 1px solid var(--m1-color); border-radius: 20px; font-size: 0.7rem; margin-right: 15px; color: var(--m1-color); font-weight: bold; }
+        .roadmap-table tr:hover td, .roadmap-table tr:hover th { background: rgba(255,255,255,0.02); }
 
         /* MEMBERS GRID */
         .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 700px; margin: 0 auto; }
@@ -165,7 +169,7 @@
         .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; transition: var(--transition); }
         .member-item:hover .member-name { letter-spacing: 0.4em; color: #4facfe; }
 
-        /* COMPANY (事業主情報の正直な開示) */
+        /* COMPANY */
         .company-table { width: 100%; max-width: 800px; border-top: 1px solid #222; margin-top: 20px; }
         .company-row { display: flex; border-bottom: 1px solid #222; padding: 25px 0; transition: background 0.3s; }
         .company-row:hover { background: rgba(255,255,255,0.02); }
@@ -178,7 +182,7 @@
         .contact-box h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 200; letter-spacing: 0.05em; }
         .contact-box p { color: #666; font-size: 0.85rem; letter-spacing: 0.1em; line-height: 2; max-width: 500px; margin: 0 auto 40px auto; }
 
-        /* DETAIL OVERLAY (メンバー＆サービス用) */
+        /* DETAIL OVERLAY */
         .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-base); z-index: 2000; display: flex; transform: translate3d(0, 100%, 0); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; will-change: transform; }
         .detail-overlay.open { transform: translate3d(0, 0, 0); }
         .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; gap: 80px; }
@@ -190,7 +194,7 @@
         .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #666; z-index: 2100; border-bottom: 1px solid #333; transition: color 0.3s; }
         .close-btn:hover { color: #fff; }
 
-        /* LEGAL OVERLAY (規約・プライバシーポリシー用) */
+        /* LEGAL OVERLAY */
         .legal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); z-index: 2500; display: flex; justify-content: center; align-items: flex-start; opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; padding: 100px 5%; transform: translateZ(0); will-change: opacity; }
         .legal-overlay.open { opacity: 1; pointer-events: auto; }
         .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; transform: translateY(20px); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; margin-bottom: 100px;}
@@ -225,9 +229,11 @@
             .hero h1 { font-size: 2.2rem; }
             .action-buttons { flex-direction: column; gap: 15px; }
             .btn-action { width: 100%; box-sizing: border-box; }
-            .service-grid { grid-template-columns: 1fr; gap: 30px; }
+            .service-grid, .policy-grid { grid-template-columns: 1fr; gap: 30px; }
             .management-profile { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .shil-wrapper { width: 120px; height: 120px; }
+            .shil-wrapper { width: 120px; height: 120px; margin: 0 auto; }
+            .roadmap-table th, .roadmap-table td { display: block; width: 100%; padding: 15px 10px; }
+            .roadmap-table th { border-bottom: none; padding-bottom: 0; }
             .members-grid { grid-template-columns: 1fr; gap: 40px; }
             .member-item:nth-child(2) { margin-top: 0; }
             .company-row { flex-direction: column; gap: 10px; padding: 20px 0; }
@@ -264,7 +270,8 @@
         <div class="nav-links" id="navLinks">
             <a href="#about">ABOUT</a>
             <a href="#service">SERVICE</a>
-            <a href="#management">MANAGEMENT</a>
+            <a href="#roadmap">ROADMAP</a>
+            <a href="#management">FOUNDER</a>
             <a href="#company">COMPANY</a>
             <a href="#contact" class="nav-entry-btn">ENTRY</a>
         </div>
@@ -272,7 +279,7 @@
 
     <div class="marquee-bg">
         <div class="marquee-inner">
-            NEXT GEAR SHIL NYATSUME NEXT GEAR SHIL NYATSUME / 
+            NEXT GEAR CREATIVE LOGISTICS NEXT GEAR CREATIVE LOGISTICS / 
         </div>
     </div>
 
@@ -286,38 +293,46 @@
         </div>
     </section>
 
+    <!-- 💡 Mission Update -->
     <section id="about">
-        <span class="section-label fade-in-up">Our Mission</span>
+        <span class="section-label fade-in-up">Brand Identity</span>
         <div class="mission-text fade-in-up">
-            クリエイターの表現を<span class="underline-magic">ロジスティクス（支援）</span>の側面から支え抜く。<br>
-            技術的な障壁を排除し、最高峰のサーバーインフラと洗練されたビジュアル制作で、<span class="underline-magic">次世代のクリエイティブを加速させる。</span>
+            <span style="font-weight: 800; color: #fff;">「一人では無理」をなくす。</span><br><br>
+            配信者が資金と技術の壁を越え、<span class="underline-magic">クリエイティビティに集中できる環境</span>を提供する。<br>
+            個人の才能が、組織のバックアップによって最大化される新しい配信文化を作る。
         </div>
     </section>
 
+    <!-- 💡 Service Pillars (4 axes) Update -->
     <section id="service" style="background-color: #070707;">
-        <span class="section-label fade-in-up">Our Service</span>
+        <span class="section-label fade-in-up">Service Pillars</span>
         <div class="service-grid">
-            <div class="service-card fade-in-up" onclick="openService('hosting')">
-                <i class="fa-solid fa-cloud-sun"></i>
-                <h3>Multi-Hosting</h3>
-                <p>10Gbps・Ryzen 9 9950X3D。最高峰スペックのストレスフリーな環境。</p>
+            <div class="service-card fade-in-up" onclick="openService('tech_creative')">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>Technical & Creative</h3>
+                <p>Live2D導入からOBS最適化、Next.jsを活用したWEBサイト構築まで、表現に必要な技術障壁を完全に排除します。</p>
             </div>
-            <div class="service-card fade-in-up" onclick="openService('creative')">
-                <i class="fa-solid fa-video"></i>
-                <h3>Creative Design</h3>
-                <p>Live2Dモデル導入から動画編集、配信デザインまで。世界観をトータルサポート。</p>
+            <div class="service-card fade-in-up" onclick="openService('hardware')">
+                <i class="fa-solid fa-server"></i>
+                <h3>Hardware & Infra</h3>
+                <p>ハイエンドPCから3画面モニター、吸音材等の環境整備まで。最高峰の機材とインフラをロジスティクスとして提供します。</p>
             </div>
-            <div class="service-card fade-in-up" onclick="openService('tech')">
-                <i class="fa-solid fa-microchip"></i>
-                <h3>Streaming Tech</h3>
-                <p>配信環境・PCスペックの最適化支援。最新テクノロジーで活動をサポート。</p>
+            <div class="service-card fade-in-up" onclick="openService('management')">
+                <i class="fa-solid fa-briefcase"></i>
+                <h3>Management & Back-office</h3>
+                <p>個人マネージャーによる予定管理、税理士連携による確定申告、商標権等の権利管理まで、裏方業務を全て代行します。</p>
+            </div>
+            <div class="service-card fade-in-up" onclick="openService('community')">
+                <i class="fa-solid fa-users"></i>
+                <h3>Community & Care</h3>
+                <p>クリエイターが孤立しない公式サーバーの運営と、メンタルケア・活動相談に応じるコンシェルジュ体制を完備しています。</p>
             </div>
         </div>
     </section>
 
     <section id="policy" style="border-top: 1px solid #111;">
         <span class="section-label fade-in-up">Creator Policy</span>
-        <div class="service-grid">
+        <div class="policy-grid">
             <div class="policy-card fade-in-up">
                 <i class="fa-solid fa-check-circle"></i>
                 <h3>配信ノルマ一切なし</h3>
@@ -326,7 +341,7 @@
             <div class="policy-card fade-in-up">
                 <i class="fa-solid fa-handshake"></i>
                 <h3>契約期間の縛りなし</h3>
-                <p>不当な引き止めなどは行いません。常にお互いが納得し、リスペクトできる関係を築きます。</p>
+                <p>不当な引き止めなどは行いません。指示を出す「事務所」ではなく、共に歩む「ギア（装備）」となります。</p>
             </div>
             <div class="policy-card fade-in-up">
                 <i class="fa-solid fa-coins"></i>
@@ -336,19 +351,40 @@
         </div>
     </section>
 
-    <section id="management" style="background-color: #030303;">
-        <span class="section-label fade-in-up">Project Management</span>
+    <!-- 💡 Roadmap Add -->
+    <section id="roadmap" style="background-color: #030303; border-top: 1px solid #111;">
+        <span class="section-label fade-in-up">Business Roadmap</span>
+        <table class="roadmap-table fade-in-up">
+            <tr>
+                <th><span class="phase-badge">Phase 1</span> 構築と共感</th>
+                <td>公式サイトのローンチ、初期パートナーの募集開始。<br>クリエイター向け機材接続・配信設定マニュアルの整備。</td>
+            </tr>
+            <tr>
+                <th><span class="phase-badge">Phase 2</span> 基盤の確立</th>
+                <td>法人化の完了。<br>税理士・専属イラストレーターとの正式提携によるバックオフィスとクリエイティブの信頼性向上。</td>
+            </tr>
+            <tr>
+                <th><span class="phase-badge">Phase 3</span> 拡張と進化</th>
+                <td>独自配信支援プラットフォーム（システム）の確立。<br>B2B機材スポンサー提携の拡大による、ハードウェア供給の加速。</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 💡 Founder's Resolve Update -->
+    <section id="management">
+        <span class="section-label fade-in-up">Message from Founder</span>
         <div class="management-profile fade-in-up" onclick="openMember('shil')">
             <div class="shil-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
             <div class="management-info">
                 <h3>SHIL</h3>
-                <p>「Next Gear」代表 / プロジェクトマネージャー。<br>クリエイターが『表現・配信』というコアな活動にのみ集中できるよう、全方位のロジスティクスを統括・支援します。</p>
-                <span class="view-details">VIEW PROFILE 🡒</span>
+                <p style="color: var(--m1-color); font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">【USP】「初心者に最も近い」技術支援</p>
+                <p>「Next Gear」代表。<br>私自身が「技術・知識なし」の状態からITスキルや機材研究を徹底し、Next.js等のモダン技術を習得してきた過程があります。だからこそ、難しい専門用語を使わず、誰よりも分かりやすく配信環境を言語化し、最適化を提供できます。<br>「学び続ける姿」を共有し、クリエイターと共に成長する伴走者であり続けます。</p>
+                <span class="view-details">VIEW FULL PROFILE 🡒</span>
             </div>
         </div>
     </section>
 
-    <section id="members">
+    <section id="members" style="background-color: #050505; border-top: 1px solid #111;">
         <span class="section-label fade-in-up">Selected Members</span>
         <div class="members-grid">
             <div class="member-item fade-in-up" onclick="openMember('nyatsume')">
@@ -358,7 +394,7 @@
         </div>
     </section>
 
-    <section id="company" style="background-color: #050505; border-top: 1px solid #111;">
+    <section id="company" style="background-color: #0a0a0a; border-top: 1px solid #111;">
         <span class="section-label fade-in-up">Company Profile & Legal Disclosure</span>
         <div class="company-table fade-in-up">
             <div class="company-row">
@@ -425,6 +461,7 @@
         </div>
     </div>
 
+    <!-- 規約モーダル -->
     <div id="legalOverlay" class="legal-overlay">
         <div class="legal-content">
             <i class="fa-solid fa-xmark legal-close" onclick="closeLegal()"></i>
@@ -450,12 +487,11 @@
     <a href="#contact" class="floating-cta"><i class="fa-solid fa-paper-plane"></i> 応募 / 相談</a>
 
     <script>
-        // 💡 データ一覧からLIFEの情報を完全に削除しました
         const memberData = {
             shil: {
                 name: "SHIL",
-                text: "「Next Gear」の代表・管理者。インフラ構築から配信支援のロジスティクス全体を監督しています。\nお仕事のご依頼や、チームに関するご相談、サーバー構築等の技術的なお問い合わせは、X(Twitter)のDMへ直接ご連絡ください。",
-                color: "var(--accent-shil)", img: "./shil.jpg",
+                text: "「Next Gear」の代表・管理者。\n\n私自身が「技術なし」から学び、Next.js等のスキルを習得していく過程を現在進行形で歩んでいます。だからこそ、クリエイターが直面する壁の高さが誰よりも分かります。\n\n指示を出すだけの「事務所」ではなく、共に学び、成長し、活動を加速させるための「ギア（装備）」として伴走します。法人化に向けた準備や、私自身の学習プロセスも包み隠さず発信し、誠実なサポートをお約束します。\n\nお仕事のご依頼や、チームに関するご相談は、X(Twitter)のDMへ直接ご連絡ください。",
+                color: "var(--m1-color)", img: "./shil.jpg",
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }], linksShil: true
             },
             nyatsume: {
@@ -474,21 +510,27 @@
             }
         };
 
+        // 💡 Service Data Update (4 axes)
         const serviceData = {
-            hosting: {
-                name: "MULTI-SERVER HOSTING",
-                text: "「ラグで負けた」「人が増えると重い」といったストレスを過去にする、実践型のホスティングサービスです。\n夕方の混雑時でも速度低下を起こさない専用回線と、現在考えうる最高峰のパーツ構成により、大規模なコミュニティサーバーからMODを大量に入れた重い環境まで、常に安定したプレイをお約束します。\n\n* Ryzen 9 9950X3D とは：\n現在ゲーミング用途で「最強」と評される最新のCPU（サーバーの頭脳）です。処理能力が桁違いに高く、プレイヤーが密集しても動作がカクつきません。\n\n* 10Gbps回線 とは：\n一般的なインターネットの「約10倍」の太さを持つ超高速回線です。データの渋滞が起きず、時間帯を問わずラグのない通信を維持します。\n\n* 64GB メモリ(RAM) とは：\nサーバーが作業をするための「机の広さ」です。これだけ広ければ、巨大なワールドデータや膨大な拡張データ（MOD）を読み込んでもサーバーが落ちる心配がありません。",
-                color: "#fff", specs: ["10Gbps Network", "Ryzen 9 9950X3D", "64GB RAM", "Unlimited Data"]
+            tech_creative: {
+                name: "TECHNICAL & CREATIVE",
+                text: "クリエイターの「やりたい」を技術力で形にします。\n\n* Live2D導入：キャラクター制作からトラッキング設定までのトータルサポート。\n* 配信設定：OBS Studioの最適化、ストリームキー管理、フェイストラッキング設定。\n* 音響構築：オーディオインターフェイスの設定、マイクのEQ/ノイズ調整。\n* WEB支援：Next.js等を活用した高機能な個人サイト・ポートフォリオの構築。",
+                color: "#fff", specs: ["Live2D", "OBS Tuning", "Audio Setup", "Next.js Web"]
             },
-            creative: {
-                name: "CREATIVE SUPPORT",
-                text: "あなただけの『世界観』づくりを、ビジュアル面からトータルでサポートします。\n\n制作に必要な外注費用や進行管理はすべてNext Gearが負担・担当します。クリエイターの皆様は費用や制作の手間を気にせず、「配信・収録」という活動そのものに100%集中していただけます。妥協せず、完全に納得いくまで一緒にクオリティを追求できる環境です。\n\n* 動画編集：\nYouTube本編からTikTok用のショート動画まで対応。視聴者を惹きつけるテンポの良い編集を、ご納得いただけるまで調整します。\n\n* 配信デザイン：\nオーバーレイ、待機画面、トランジションなど、各種デザインを統一感のある世界観で制作します。理想のイメージを形にするため、細部まで徹底的にこだわります。\n\n* Live2Dモデル導入：\nイラスト制作やモデリングに関わる外注手配・費用も当社でカバー。ソフトへの組み込みからOBSでの綺麗な魅せ方まで、活動のスタートを丁寧にサポートします。",
-                color: "#fff", specs: ["Total Branding", "Video Editing", "Stream Design", "Live2D Setup"]
+            hardware: {
+                name: "HARDWARE & INFRA",
+                text: "配信活動における「物理的な壁」を取り払います。\n\n* 機材提供：ハイエンドPC、3画面モニター、ストリームデック、キャプチャーボード等の貸与・提供。\n* ブランド選択制：Logicool, Razer, HyperXなどのカタログから、お好みのデバイスを選択可能。\n* 環境整備：防音・吸音材の導入サポート、配信特化型賃貸の相談、コンシューマーゲーム機の提供。",
+                color: "#fff", specs: ["High-end PC", "3 Monitors", "Device Choice", "Acoustics"]
             },
-            tech: {
-                name: "STREAMING TECH",
-                text: "配信機材の選定、OBS設定の最適化、PCスペックの構成相談など、技術的なバックアップを行います。配信のクオリティを底上げし、トラブルのない安定した活動を技術面から支えます。",
-                color: "#fff", specs: ["Streaming Tuning", "PC Construction", "Technical Support"]
+            management: {
+                name: "MANAGEMENT & BACK-OFFICE",
+                text: "クリエイターが「表現」にのみ集中できる防波堤となります。\n\n* 個人マネージャー：スケジュール管理、機材接続などの物理的なサポートを伴走して行います。\n* 専門家連携：税理士を通じた確定申告のサポート、商標権・権利管理の代行。\n* 制作支援：優良なイラストレーターの紹介、動画編集の代行、オリジナル編集プリセットの提供。",
+                color: "#fff", specs: ["Manager", "Tax & Legal", "Copyright", "Video Editing"]
+            },
+            community: {
+                name: "COMMUNITY & CARE",
+                text: "孤独になりがちな配信活動において、安心できる居場所を提供します。\n\n* 公式サーバー：会社運営の安全なコミュニティ（Discord等）での活動者同士の交流。\n* カウンセリング：メンタルケア、活動に関する悩み全般に応じるコンシェルジュ対応体制の構築。",
+                color: "#fff", specs: ["Official Server", "Mental Care", "Concierge"]
             }
         };
 
