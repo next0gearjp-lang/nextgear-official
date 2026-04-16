@@ -34,6 +34,10 @@
             --transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             background-color: var(--bg-base);
@@ -56,13 +60,15 @@
         }
         @keyframes marquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
 
+        /* こだわりのアニメーション：少し縮んだ状態からフワッと浮かび上がる */
         .fade-in-up {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
+            transform: translateY(40px) scale(0.98);
+            filter: blur(4px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform, filter;
         }
-        .fade-in-up.active { opacity: 1; transform: translateY(0); }
+        .fade-in-up.active { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
         nav {
             position: fixed; top: 0; width: 100%; padding: 25px 10%; display: flex;
@@ -74,8 +80,8 @@
         .nav-links { display: flex; gap: 30px; font-size: 0.7rem; letter-spacing: 0.2em; align-items: center; }
         .nav-links a { color: var(--text-main); text-decoration: none; opacity: 0.4; transition: var(--transition); padding-bottom: 5px; }
         .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
-        .nav-entry-btn { color: #fff !important; border: 1px solid #444; padding: 8px 20px; border-radius: 20px; opacity: 1 !important; }
-        .nav-entry-btn:hover { background: #fff; color: #000 !important; border-color: #fff; border-bottom: none !important; }
+        .nav-entry-btn { color: #fff !important; border: 1px solid #444; padding: 8px 20px; border-radius: 20px; opacity: 1 !important; transition: all 0.4s ease; }
+        .nav-entry-btn:hover { background: #fff; color: #000 !important; border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.3); }
 
         .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2100; padding: 10px; }
         .hamburger span { width: 25px; height: 1px; background: #fff; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -101,21 +107,21 @@
         .section-label { font-size: 0.7rem; letter-spacing: 0.5em; color: var(--text-sub); text-transform: uppercase; margin-bottom: 40px; display: block; }
 
         @keyframes fadeUpHero {
-            0% { opacity: 0; transform: translate3d(0, 30px, 0); }
-            100% { opacity: 1; transform: translate3d(0, 0, 0); }
+            0% { opacity: 0; transform: translate3d(0, 40px, 0) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
         }
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 15%; }
-        .hero-top-text { letter-spacing: 0.6em; color: #444; margin-bottom: 20px; font-size: 0.7rem; opacity: 0; animation: fadeUpHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.1s; will-change: opacity, transform; }
-        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; color: #fff; opacity: 0; animation: fadeUpHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.3s; will-change: opacity, transform; }
+        .hero-top-text { letter-spacing: 0.6em; color: #444; margin-bottom: 20px; font-size: 0.7rem; opacity: 0; animation: fadeUpHero 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.1s; will-change: opacity, transform, filter; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); margin: 0; font-weight: 200; letter-spacing: 0.15em; line-height: 1.1; color: #fff; opacity: 0; animation: fadeUpHero 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.3s; will-change: opacity, transform, filter; }
         .hero h1 span { display: block; font-weight: 800; }
-        .hero-sub { color: var(--text-sub); letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem; opacity: 0; animation: fadeUpHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.5s; will-change: opacity, transform; }
+        .hero-sub { color: var(--text-sub); letter-spacing: 0.5em; margin-top: 30px; font-size: 0.9rem; opacity: 0; animation: fadeUpHero 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.5s; will-change: opacity, transform, filter; }
         
-        .action-buttons { display: flex; gap: 20px; margin-top: 50px; opacity: 0; animation: fadeUpHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.7s; will-change: opacity, transform; }
-        .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 35px; font-size: 0.75rem; letter-spacing: 0.2em; text-decoration: none; border: 1px solid; transition: var(--transition); background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); cursor: pointer; transform: translateZ(0); }
+        .action-buttons { display: flex; gap: 20px; margin-top: 50px; opacity: 0; animation: fadeUpHero 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: 0.7s; will-change: opacity, transform, filter; }
+        .btn-action { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 35px; font-size: 0.75rem; letter-spacing: 0.2em; text-decoration: none; border: 1px solid; transition: var(--transition); background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); cursor: pointer; transform: translateZ(0); border-radius: 2px; }
         .btn-discord { border-color: #5865F2; color: #5865F2; }
-        .btn-discord:hover { background: #5865F2; color: #fff; box-shadow: 0 0 20px rgba(88, 101, 242, 0.3); transform: translateY(-3px); }
+        .btn-discord:hover { background: #5865F2; color: #fff; box-shadow: 0 0 20px rgba(88, 101, 242, 0.4); transform: translateY(-3px); }
         .btn-line { border-color: #06C755; color: #06C755; }
-        .btn-line:hover { background: #06C755; color: #fff; box-shadow: 0 0 20px rgba(6, 199, 85, 0.3); transform: translateY(-3px); }
+        .btn-line:hover { background: #06C755; color: #fff; box-shadow: 0 0 20px rgba(6, 199, 85, 0.4); transform: translateY(-3px); }
 
         /* ABOUT */
         .mission-text { font-size: 1.8rem; line-height: 2; font-weight: 300; letter-spacing: 0.05em; max-width: 900px; color: #ccc; }
@@ -123,51 +129,43 @@
         .underline-magic::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 0; height: 2px; background: #fff; transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .underline-magic.active::after { width: 100%; }
 
-        /* SERVICE - 4 pillars */
+        /* SERVICE */
         .service-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
-        .service-card { background: #0a0a0a; padding: 50px 40px; border: 1px solid #111; transition: var(--transition); cursor: pointer; border-radius: 2px; transform: translateZ(0); will-change: transform, border-color; display: flex; flex-direction: column; justify-content: flex-start; }
-        .service-card:hover { border-color: #333; transform: translate3d(0, -10px, 0); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .service-card { background: #0a0a0a; padding: 50px 40px; border: 1px solid #111; transition: var(--transition); cursor: pointer; border-radius: 4px; transform: translateZ(0); will-change: transform, border-color, box-shadow; display: flex; flex-direction: column; justify-content: flex-start; }
+        .service-card:hover { border-color: #333; transform: translate3d(0, -10px, 0) scale(1.02); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
         .service-card i { font-size: 1.8rem; margin-bottom: 25px; color: var(--m1-color); opacity: 0.5; transition: var(--transition); }
-        .service-card:hover i { opacity: 1; transform: scale(1.1); }
-        .service-card h3 { font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 0.1em; color: #fff; }
+        .service-card:hover i { opacity: 1; transform: scale(1.1) translateY(-5px); }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 20px; letter-spacing: 0.1em; color: #fff; transition: color 0.4s ease; }
+        .service-card:hover h3 { color: var(--m1-color); }
         .service-card p { font-size: 0.85rem; color: var(--text-sub); line-height: 1.8; margin: 0; }
 
-        /* POLICY (3 pillars) */
+        /* POLICY */
         .policy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 40px; }
-        .policy-card { background: transparent; padding: 40px 30px; border: 1px solid #222; border-radius: 2px; transition: var(--transition); transform: translateZ(0); }
-        .policy-card:hover { border-color: #444; background: rgba(255,255,255,0.02); }
-        .policy-card i { font-size: 1.5rem; margin-bottom: 20px; color: var(--text-main); opacity: 0.5; }
+        .policy-card { background: transparent; padding: 40px 30px; border: 1px solid #222; border-radius: 4px; transition: var(--transition); transform: translateZ(0); }
+        .policy-card:hover { border-color: #444; background: rgba(255,255,255,0.02); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        .policy-card i { font-size: 1.5rem; margin-bottom: 20px; color: var(--text-main); opacity: 0.5; transition: 0.4s; }
+        .policy-card:hover i { opacity: 1; color: var(--m2-color); transform: scale(1.1); }
         .policy-card h3 { font-size: 1rem; margin-bottom: 15px; letter-spacing: 0.1em; color: #fff; }
         .policy-card p { font-size: 0.75rem; color: var(--text-sub); line-height: 1.8; }
 
         /* MANAGEMENT */
-        .management-profile { display: flex; align-items: flex-start; gap: 50px; background: #0a0a0a; padding: 50px; border: 1px solid #111; cursor: pointer; transition: var(--transition); border-radius: 2px; margin-top: 20px; max-width: 1000px; transform: translateZ(0); }
-        .management-profile:hover { background: #111; border-color: #333; transform: translate3d(0, -5px, 0); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .management-profile { display: flex; align-items: flex-start; gap: 50px; background: #0a0a0a; padding: 50px; border: 1px solid #111; cursor: pointer; transition: var(--transition); border-radius: 4px; margin-top: 20px; max-width: 1000px; transform: translateZ(0); }
+        .management-profile:hover { background: #111; border-color: #333; transform: translate3d(0, -8px, 0); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
         .shil-wrapper { width: 150px; height: 150px; flex-shrink: 0; border-radius: 50%; overflow: hidden; border: 1px solid #333; filter: grayscale(100%) brightness(0.8); transition: var(--transition); will-change: filter, transform; }
         .management-profile:hover .shil-wrapper { filter: grayscale(0%) brightness(1); transform: scale(1.05); border-color: #666; }
         .shil-wrapper img { width: 100%; height: 100%; object-fit: cover; }
         .management-info h3 { font-size: 1.5rem; margin: 0 0 15px 0; letter-spacing: 0.2em; color: #fff; }
         .management-info p { color: var(--text-sub); font-size: 0.85rem; line-height: 1.9; margin: 0; }
         .view-details { display: inline-block; margin-top: 25px; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--m1-color); border-bottom: 1px solid var(--m1-color); padding-bottom: 3px; transition: 0.3s; }
-        .management-profile:hover .view-details { color: #fff; border-bottom-color: #fff; }
+        .management-profile:hover .view-details { color: #fff; border-bottom-color: #fff; transform: translateX(5px); }
 
         /* ROADMAP */
         .roadmap-table { width: 100%; max-width: 900px; border-collapse: collapse; margin-top: 30px; }
-        .roadmap-table th, .roadmap-table td { padding: 25px 20px; border-bottom: 1px solid #222; text-align: left; vertical-align: top; }
+        .roadmap-table th, .roadmap-table td { padding: 25px 20px; border-bottom: 1px solid #222; text-align: left; vertical-align: top; transition: 0.4s ease; }
         .roadmap-table th { color: #fff; width: 25%; font-weight: normal; letter-spacing: 0.1em; font-size: 0.9rem; }
         .roadmap-table td { color: #ccc; line-height: 1.8; font-size: 0.85rem; }
         .phase-badge { display: inline-block; padding: 4px 12px; border: 1px solid var(--m1-color); border-radius: 20px; font-size: 0.7rem; margin-right: 15px; color: var(--m1-color); font-weight: bold; }
-        .roadmap-table tr:hover td, .roadmap-table tr:hover th { background: rgba(255,255,255,0.02); }
-
-        /* MEMBERS GRID */
-        .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px; max-width: 700px; margin: 0 auto; }
-        .member-item { display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; width: 100%; max-width: 280px; margin: 0 auto; transition: var(--transition); transform: translateZ(0); }
-        .member-item:nth-child(2) { margin-top: 80px; }
-        .image-wrapper { width: 100%; overflow: hidden; aspect-ratio: 3 / 4; background: #111; position: relative; border-radius: 2px; }
-        .member-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) brightness(0.7); transition: 1s cubic-bezier(0.16, 1, 0.3, 1); will-change: filter, transform; }
-        .member-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
-        .member-name { margin-top: 20px; font-size: 0.9rem; letter-spacing: 0.3em; color: #fff; transition: var(--transition); }
-        .member-item:hover .member-name { letter-spacing: 0.4em; color: #4facfe; }
+        .roadmap-table tr:hover td, .roadmap-table tr:hover th { background: rgba(255,255,255,0.03); }
 
         /* COMPANY */
         .company-table { width: 100%; max-width: 800px; border-top: 1px solid #222; margin-top: 20px; }
@@ -178,37 +176,39 @@
         .info-pending { display: inline-block; padding: 4px 10px; background: rgba(255, 152, 0, 0.1); color: #ff9800; border: 1px solid rgba(255, 152, 0, 0.3); font-size: 0.65rem; border-radius: 2px; margin-top: 8px; letter-spacing: 0.1em; }
 
         /* CONTACT */
-        .contact-box { background-color: var(--bg-sub); padding: 100px 40px; text-align: center; border: 1px solid #111; border-radius: 4px; }
+        .contact-box { background-color: var(--bg-sub); padding: 100px 40px; text-align: center; border: 1px solid #111; border-radius: 4px; transition: var(--transition); }
+        .contact-box:hover { border-color: #333; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .contact-box h2 { font-size: 2.5rem; margin-bottom: 20px; font-weight: 200; letter-spacing: 0.05em; }
         .contact-box p { color: #666; font-size: 0.85rem; letter-spacing: 0.1em; line-height: 2; max-width: 500px; margin: 0 auto 40px auto; }
 
         /* DETAIL OVERLAY */
-        .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-base); z-index: 2000; display: flex; transform: translate3d(0, 100%, 0); transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; will-change: transform; }
-        .detail-overlay.open { transform: translate3d(0, 0, 0); }
+        .detail-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); backdrop-filter: blur(15px); z-index: 2000; display: flex; transform: translate3d(0, 100%, 0); opacity: 0; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease; overflow-y: auto; will-change: transform, opacity; }
+        .detail-overlay.open { transform: translate3d(0, 0, 0); opacity: 1; }
         .detail-content { width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; padding: 10% 15%; align-items: start; gap: 80px; }
         .detail-text h2 { font-size: 3.5rem; margin: 0; font-weight: 800; color: #fff; letter-spacing: 0.1em; }
         .detail-text p { font-size: 0.95rem; line-height: 2.2; color: #ccc; margin-top: 30px; }
         .sns-links { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 20px; padding-bottom: 50px; }
         .sns-links a { color: #fff; text-decoration: none; font-size: 0.7rem; border-bottom: 1px solid #333; padding-bottom: 5px; display: flex; align-items: center; gap: 8px; transition: 0.3s; transform: translateZ(0); }
         .sns-links a:hover { opacity: 0.7; border-bottom-color: #fff; transform: translateY(-2px); }
+        .spec-badge { display: inline-block; padding: 6px 16px; border: 1px solid #444; border-radius: 20px; font-size: 0.75rem; color: #bbb; background: rgba(255,255,255,0.05); }
         .close-btn { position: fixed; top: 50px; right: 10%; cursor: pointer; font-size: 0.7rem; color: #666; z-index: 2100; border-bottom: 1px solid #333; transition: color 0.3s; }
         .close-btn:hover { color: #fff; }
 
         /* LEGAL OVERLAY */
         .legal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); z-index: 2500; display: flex; justify-content: center; align-items: flex-start; opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; padding: 100px 5%; transform: translateZ(0); will-change: opacity; }
         .legal-overlay.open { opacity: 1; pointer-events: auto; }
-        .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; transform: translateY(20px); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; margin-bottom: 100px;}
-        .legal-overlay.open .legal-content { transform: translateY(0); }
+        .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; transform: translateY(40px) scale(0.98); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; margin-bottom: 100px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);}
+        .legal-overlay.open .legal-content { transform: translateY(0) scale(1); }
         .legal-content h2 { font-size: 1.8rem; color: #fff; letter-spacing: 0.1em; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
         .legal-content h3 { font-size: 1.1rem; color: #fff; margin: 40px 0 15px 0; }
         .legal-content p, .legal-content li { font-size: 0.85rem; line-height: 2; letter-spacing: 0.05em; margin-bottom: 15px; }
         .legal-content ul { padding-left: 20px; margin-bottom: 20px; }
         .legal-close { position: absolute; top: 40px; right: 40px; font-size: 1.5rem; color: #666; cursor: pointer; transition: 0.3s; }
-        .legal-close:hover { color: #fff; }
+        .legal-close:hover { color: #fff; transform: rotate(90deg); }
 
-        /* 右下追従ボタン */
+        /* 追従ボタン */
         .floating-cta { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: #fff; color: #000; padding: 15px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.75rem; letter-spacing: 0.1em; box-shadow: 0 4px 15px rgba(255,255,255,0.1); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 10px; transform: translateZ(0); }
-        .floating-cta:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,255,255,0.2); }
+        .floating-cta:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,255,255,0.3); background: #f0f0f0; }
 
         footer { padding: 120px 15% 50px; font-size: 0.65rem; color: #444; letter-spacing: 0.1em; border-top: 1px solid #111; display: flex; justify-content: space-between; align-items: flex-end; }
         .footer-links { margin-top: 20px; display: flex; gap: 20px; }
@@ -216,7 +216,7 @@
         .footer-links span:hover { color: #888; border-color: #888; }
         .shil-credit { text-align: right; }
         .shil-credit img { width: 60px; border-radius: 50%; border: 2px solid var(--accent-shil); transition: 0.4s; will-change: transform; }
-        .shil-credit:hover img { transform: rotate(15deg) scale(1.1); }
+        .shil-credit:hover img { transform: rotate(15deg) scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
         .shil-name { font-weight: 800; color: #666; font-size: 0.8rem; margin-top: 10px; }
 
         @media (max-width: 768px) {
@@ -234,8 +234,6 @@
             .shil-wrapper { width: 120px; height: 120px; margin: 0 auto; }
             .roadmap-table th, .roadmap-table td { display: block; width: 100%; padding: 15px 10px; }
             .roadmap-table th { border-bottom: none; padding-bottom: 0; }
-            .members-grid { grid-template-columns: 1fr; gap: 40px; }
-            .member-item:nth-child(2) { margin-top: 0; }
             .company-row { flex-direction: column; gap: 10px; padding: 20px 0; }
             .detail-content { grid-template-columns: 1fr; padding: 20% 6% 10%; gap: 40px; }
             .detail-img-box { display: none; }
@@ -293,7 +291,6 @@
         </div>
     </section>
 
-    <!-- 💡 Mission Update -->
     <section id="about">
         <span class="section-label fade-in-up">Brand Identity</span>
         <div class="mission-text fade-in-up">
@@ -303,7 +300,6 @@
         </div>
     </section>
 
-    <!-- 💡 Service Pillars (4 axes) Update -->
     <section id="service" style="background-color: #070707;">
         <span class="section-label fade-in-up">Service Pillars</span>
         <div class="service-grid">
@@ -351,7 +347,6 @@
         </div>
     </section>
 
-    <!-- 💡 Roadmap Add -->
     <section id="roadmap" style="background-color: #030303; border-top: 1px solid #111;">
         <span class="section-label fade-in-up">Business Roadmap</span>
         <table class="roadmap-table fade-in-up">
@@ -370,7 +365,6 @@
         </table>
     </section>
 
-    <!-- 💡 Founder's Resolve Update -->
     <section id="management">
         <span class="section-label fade-in-up">Message from Founder</span>
         <div class="management-profile fade-in-up" onclick="openMember('shil')">
@@ -380,16 +374,6 @@
                 <p style="color: var(--m1-color); font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">【USP】「初心者に最も近い」技術支援</p>
                 <p>「Next Gear」代表。<br>私自身が「技術・知識なし」の状態からITスキルや機材研究を徹底し、Next.js等のモダン技術を習得してきた過程があります。だからこそ、難しい専門用語を使わず、誰よりも分かりやすく配信環境を言語化し、最適化を提供できます。<br>「学び続ける姿」を共有し、クリエイターと共に成長する伴走者であり続けます。</p>
                 <span class="view-details">VIEW FULL PROFILE 🡒</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="members" style="background-color: #050505; border-top: 1px solid #111;">
-        <span class="section-label fade-in-up">Selected Members</span>
-        <div class="members-grid">
-            <div class="member-item fade-in-up" onclick="openMember('nyatsume')">
-                <div class="image-wrapper"><img src="./natume.png" alt="NYATSUME"></div>
-                <div class="member-name">NYATSUME</div>
             </div>
         </div>
     </section>
@@ -455,13 +439,12 @@
                 <h2 id="innerName">NAME</h2>
                 <div id="innerColor" style="height: 1px; width: 40px; margin: 25px 0;"></div>
                 <p id="innerText">...</p>
-                <div id="specArea"></div>
+                <div id="specArea" class="sns-links"></div>
                 <div id="snsArea" class="sns-links"></div>
             </div>
         </div>
     </div>
 
-    <!-- 規約モーダル -->
     <div id="legalOverlay" class="legal-overlay">
         <div class="legal-content">
             <i class="fa-solid fa-xmark legal-close" onclick="closeLegal()"></i>
@@ -493,24 +476,9 @@
                 text: "「Next Gear」の代表・管理者。\n\n私自身が「技術なし」から学び、Next.js等のスキルを習得していく過程を現在進行形で歩んでいます。だからこそ、クリエイターが直面する壁の高さが誰よりも分かります。\n\n指示を出すだけの「事務所」ではなく、共に学び、成長し、活動を加速させるための「ギア（装備）」として伴走します。法人化に向けた準備や、私自身の学習プロセスも包み隠さず発信し、誠実なサポートをお約束します。\n\nお仕事のご依頼や、チームに関するご相談は、X(Twitter)のDMへ直接ご連絡ください。",
                 color: "var(--m1-color)", img: "./shil.jpg",
                 links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }], linksShil: true
-            },
-            nyatsume: {
-                name: "NYATSUME",
-                text: "誕生日：12月8日\nAPEX感度：3200DPI 1.33\n\n【基本配信時間】\n火水日：15時～25時のどこか（配信通知ON推奨！）\n\n【Game】\nAPEX / Minecraft / R.E.P.O. / ForzaHorizon / Switch / Among US / WoTB / Shadowverse(Los所属) / Fortnite / VALORANT / OW2 / Marvel Rivals / GTA V\n\n【Goal】\n・SNS合計フォロワー3000人\n・Twitch配信平均同接10人以上\n・ストグラに参加する\n\nみどりとゲームが大好きで、ひとつの事に真っ直ぐ。気分屋で記憶力はおじいちゃんですが、毎日楽しく活動しています！",
-                color: "var(--m2-color)", img: "./natume.png",
-                links: [
-                    { label: "X", url: "https://x.com/Natume_1208", icon: "fa-brands fa-x-twitter" },
-                    { label: "TWITCH", url: "https://t.co/U65Dds4tE0", icon: "fa-brands fa-twitch" },
-                    { label: "YOUTUBE", url: "https://www.youtube.com/@%E3%81%AA%E3%82%83%E3%81%A4%E3%82%81", icon: "fa-brands fa-youtube" },
-                    { label: "TIKTOK", url: "https://www.tiktok.com/@natume_1208", icon: "fa-brands fa-tiktok" },
-                    { label: "MARSHMALLOW", url: "https://marshmallow-qa.com/yz10pr3nyqdn60a?t=lV0LIb&utm_medium=url_text&utm_source=promotion", icon: "fa-solid fa-cookie-bite" },
-                    { label: "WISH LIST", url: "https://www.amazon.jp/hz/wishlist/ls/2EJG6OJG9CTPB?ref_=wl_share", icon: "fa-solid fa-gift" },
-                    { label: "LIT.LINK", url: "https://t.co/s37Zw484HZ", icon: "fa-solid fa-link" }
-                ]
             }
         };
 
-        // 💡 Service Data Update (4 axes)
         const serviceData = {
             tech_creative: {
                 name: "TECHNICAL & CREATIVE",
@@ -689,6 +657,8 @@
             } else { imgBox.style.display = "none"; }
             
             const snsArea = document.getElementById('snsArea'); snsArea.innerHTML = "";
+            const specArea = document.getElementById('specArea'); specArea.innerHTML = "";
+            
             if(isMember && data.links) {
                 data.links.forEach(link => {
                     const a = document.createElement('a'); a.href = link.url; a.target = "_blank";
@@ -697,9 +667,9 @@
                     snsArea.appendChild(a);
                 });
             } else if(!isMember && data.specs) {
-                snsArea.style.opacity = "0"; snsArea.style.transition = "opacity 0.8s ease 1s"; 
-                data.specs.forEach(s => { const span = document.createElement('span'); span.className = "spec-badge"; span.innerText = s; snsArea.appendChild(span); });
-                setTimeout(() => { snsArea.style.opacity = "1"; }, 50);
+                specArea.style.opacity = "0"; specArea.style.transition = "opacity 0.8s ease 1s"; 
+                data.specs.forEach(s => { const span = document.createElement('span'); span.className = "spec-badge"; span.innerText = s; specArea.appendChild(span); });
+                setTimeout(() => { specArea.style.opacity = "1"; }, 50);
             }
             document.getElementById('detailOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; 
         }
@@ -707,7 +677,7 @@
         function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); document.body.style.overflow = 'auto'; if(window.typingInterval) clearInterval(window.typingInterval); }
         function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('navLinks').classList.toggle('active'); }
 
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
         const observer = new IntersectionObserver((entries) => {
             let delayTime = 0;
             entries.forEach(entry => {
@@ -729,10 +699,11 @@
                     const navLinks = document.getElementById('navLinks'); const hamburger = document.getElementById('hamburger');
                     if(navLinks.classList.contains('active')) { navLinks.classList.remove('active'); hamburger.classList.remove('active'); }
                     const overlay = document.getElementById('transitionOverlay'); overlay.classList.add('active');
-                    setTimeout(() => { window.scrollTo(0, targetElement.getBoundingClientRect().top + window.pageYOffset); overlay.classList.remove('active'); }, 800);
+                    setTimeout(() => { window.scrollTo(0, targetElement.getBoundingClientRect().top + window.pageYOffset); overlay.classList.remove('active'); }, 600);
                 }
             });
         });
     </script>
 </body>
+</html>
 </html>
