@@ -173,7 +173,6 @@
         .company-row:hover { background: rgba(255,255,255,0.02); }
         .company-th { width: 200px; font-size: 0.75rem; letter-spacing: 0.15em; color: #888; font-weight: normal; flex-shrink: 0; }
         .company-td { font-size: 0.9rem; color: #ccc; line-height: 1.8; letter-spacing: 0.05em; }
-        .info-pending { display: inline-block; padding: 4px 10px; background: rgba(255, 152, 0, 0.1); color: #ff9800; border: 1px solid rgba(255, 152, 0, 0.3); font-size: 0.65rem; border-radius: 2px; margin-top: 8px; letter-spacing: 0.1em; }
 
         /* CONTACT */
         .contact-box { background-color: var(--bg-sub); padding: 100px 40px; text-align: center; border: 1px solid #111; border-radius: 4px; transition: var(--transition); }
@@ -195,9 +194,23 @@
         .close-btn:hover { color: #fff; }
 
         /* LEGAL OVERLAY */
-        .legal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); z-index: 2500; display: flex; justify-content: center; align-items: flex-start; opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow-y: auto; padding: 100px 5%; transform: translateZ(0); will-change: opacity; }
+        .legal-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(5,5,5,0.98); backdrop-filter: blur(10px); 
+            z-index: 2500; display: flex; justify-content: center; align-items: flex-start; 
+            opacity: 0; pointer-events: none; transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+            overflow-y: auto; padding: 100px 5%; transform: translateZ(0); will-change: opacity; 
+            box-sizing: border-box;
+        }
         .legal-overlay.open { opacity: 1; pointer-events: auto; }
-        .legal-content { max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; padding: 60px; color: #ccc; transform: translateY(40px) scale(0.98); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; margin-bottom: 100px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);}
+        .legal-content { 
+            max-width: 800px; width: 100%; background: #0a0a0a; border: 1px solid #222; 
+            padding: 60px; color: #ccc; transform: translateY(40px) scale(0.98); 
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; 
+            margin-bottom: 100px; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-sizing: border-box;
+            word-break: break-word;
+        }
         .legal-overlay.open .legal-content { transform: translateY(0) scale(1); }
         .legal-content h2 { font-size: 1.8rem; color: #fff; letter-spacing: 0.1em; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
         .legal-content h3 { font-size: 1.1rem; color: #fff; margin: 40px 0 15px 0; }
@@ -393,8 +406,7 @@
                 <div class="company-th">事業形態・登録番号</div>
                 <div class="company-td">
                     個人事業主<br>
-                    <div class="info-pending"><i class="fa-solid fa-spinner fa-spin" style="margin-right:5px;"></i>各種登録手続・審査中</div>
-                    <div style="font-size: 0.75rem; color: #888; margin-top: 5px;">※現在、行政機関へ開業および適格請求書発行事業者等の登録申請を行っております。受理・番号発行が完了次第、速やかに本ページにて公開いたします。</div>
+                    適格請求書発行事業者登録番号：T0000000000000 <!-- ※ここをご自身の番号に書き換えてください -->
                 </div>
             </div>
             <div class="company-row">
@@ -705,5 +717,4 @@
         });
     </script>
 </body>
-</html>
 </html>
