@@ -60,7 +60,7 @@
         }
         @keyframes marquee { 0% { transform: translate3d(0,0,0); } 100% { transform: translate3d(-50%,0,0); } }
 
-        /* こだわりのアニメーション：少し縮んだ状態からフワッと浮かび上がる */
+        /* こだわりのアニメーション */
         .fade-in-up {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -82,6 +82,12 @@
         .nav-links a:hover { opacity: 1; border-bottom: 1px solid #fff; }
         .nav-entry-btn { color: #fff !important; border: 1px solid #444; padding: 8px 20px; border-radius: 20px; opacity: 1 !important; transition: all 0.4s ease; }
         .nav-entry-btn:hover { background: #fff; color: #000 !important; border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.3); }
+
+        /* 言語切り替えボタンスタイル */
+        .lang-switcher { display: flex; gap: 8px; align-items: center; margin-left: 10px; }
+        .lang-btn { background: transparent; border: 1px solid #444; color: var(--text-sub); border-radius: 20px; padding: 4px 10px; font-size: 0.65rem; cursor: pointer; transition: 0.3s; letter-spacing: 0.1em; }
+        .lang-btn:hover { border-color: #fff; color: #fff; }
+        .lang-btn.active { background: #fff; color: #000; font-weight: bold; border-color: #fff; }
 
         .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 2100; padding: 10px; }
         .hamburger span { width: 25px; height: 1px; background: #fff; transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -212,509 +218,51 @@
             word-break: break-word;
         }
         .legal-overlay.open .legal-content { transform: translateY(0) scale(1); }
-        .legal-content h2 { font-size: 1.8rem; color: #fff; letter-spacing: 0.1em; margin-bottom: 40px; border-bottom: 1px solid #333; padding-bottom: 20px; }
-        .legal-content h3 { font-size: 1.1rem; color: #fff; margin: 40px 0 15px 0; }
-        .legal-content p, .legal-content li { font-size: 0.85rem; line-height: 2; letter-spacing: 0.05em; margin-bottom: 15px; }
-        .legal-content ul { padding-left: 20px; margin-bottom: 20px; }
-        .legal-close { position: absolute; top: 40px; right: 40px; font-size: 1.5rem; color: #666; cursor: pointer; transition: 0.3s; }
-        .legal-close:hover { color: #fff; transform: rotate(90deg); }
+        .legal-content h2 { font-size: 1.8rem; color: #fff; letter-spacing: 0.1em;サイトへの言語切り替え（Language）欄の追加ですね。現在デフォルトとなっているであろう「日本語」に、「英語」と「韓国語」を追加したドロップダウンメニューのコンポーネントを作成しました。
 
-        /* 追従ボタン */
-        .floating-cta { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: #fff; color: #000; padding: 15px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.75rem; letter-spacing: 0.1em; box-shadow: 0 4px 15px rgba(255,255,255,0.1); transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 10px; transform: translateZ(0); }
-        .floating-cta:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(255,255,255,0.3); background: #f0f0f0; }
+以下のコードをコピーして、プロジェクト内の新しいファイル（例: `LanguageSwitcher.jsx` または `LanguageSwitcher.tsx`）に貼り付けてください。
 
-        footer { padding: 120px 15% 50px; font-size: 0.65rem; color: #444; letter-spacing: 0.1em; border-top: 1px solid #111; display: flex; justify-content: space-between; align-items: flex-end; }
-        .footer-links { margin-top: 20px; display: flex; gap: 20px; }
-        .footer-links span { cursor: pointer; transition: 0.3s; border-bottom: 1px solid transparent; padding-bottom: 2px;}
-        .footer-links span:hover { color: #888; border-color: #888; }
-        .shil-credit { text-align: right; }
-        .shil-credit img { width: 60px; border-radius: 50%; border: 2px solid var(--accent-shil); transition: 0.4s; will-change: transform; }
-        .shil-credit:hover img { transform: rotate(15deg) scale(1.1); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
-        .shil-name { font-weight: 800; color: #666; font-size: 0.8rem; margin-top: 10px; }
+```jsx
+"use client"; // App Router環境でクライアントサイドの処理を行うための宣言
 
-        @media (max-width: 768px) {
-            nav { padding: 20px 6%; }
-            .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(15px); flex-direction: column; justify-content: center; align-items: center; gap: 50px; font-size: 1.2rem; opacity: 0; pointer-events: none; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); transform: translateZ(0); }
-            .nav-links.active { opacity: 1; pointer-events: auto; }
-            .nav-entry-btn { font-size: 1.2rem !important; margin-top: 20px; padding: 15px 40px; }
-            section, .hero { padding: 80px 6%; }
-            .hero h1 { font-size: 2.2rem; }
-            .action-buttons { flex-direction: column; gap: 15px; }
-            .btn-action { width: 100%; box-sizing: border-box; }
-            .service-grid, .policy-grid { grid-template-columns: 1fr; gap: 30px; }
-            .management-profile { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .shil-wrapper { width: 120px; height: 120px; margin: 0 auto; }
-            .roadmap-table th, .roadmap-table td { display: block; width: 100%; padding: 15px 10px; }
-            .roadmap-table th { border-bottom: none; padding-bottom: 0; }
-            .company-row { flex-direction: column; gap: 10px; padding: 20px 0; }
-            .detail-content { grid-template-columns: 1fr; padding: 20% 6% 10%; gap: 40px; }
-            .detail-img-box { display: none; }
-            .legal-content { padding: 40px 20px; }
-            footer { padding: 80px 6% 100px; flex-direction: column; gap: 30px; align-items: flex-start; }
-            .shil-credit { text-align: left; }
-            .floating-cta { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 0.65rem; }
-        }
-    </style>
-</head>
-<body>
+import { useRouter } from "next/navigation";
 
-    <div id="transitionOverlay" class="transition-overlay">
-        <div class="transition-logo">
-            <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="20,80 20,20 45,20 80,70 80,80 55,80" fill="#f0f0f0"/>
-                <polygon points="80,20 80,60 55,25 55,20" fill="#0088ff"/>
-            </svg>
-            <div class="logo-text">NEXT GEAR</div>
-        </div>
+export default function LanguageSwitcher() {
+  const router = useRouter();
+
+  const handleLanguageChange = (e) => {
+    const selectedLang = e.target.value;
+    
+    // ここに言語切り替えのルーティング処理を記述します
+    // 例: 現在のパスの先頭に言語コードを付与して遷移する（/en/about など）
+    // ※実際のi18nライブラリ（next-intlなど）の設定に合わせて変更してください
+    console.log(`言語が ${selectedLang} に変更されました`);
+    
+    // シンプルな画面遷移の例:
+    // router.push(`/${selectedLang}`); 
+  };
+
+  return (
+    <div style={{ display: "inline-block", margin: "10px 0" }}>
+      <select
+        onChange={handleLanguageChange}
+        defaultValue="ja"
+        style={{
+          padding: "8px 12px",
+          borderRadius: "6px",
+          border: "1px solid #d1d5db",
+          backgroundColor: "#ffffff",
+          color: "#374151",
+          fontSize: "14px",
+          cursor: "pointer",
+          outline: "none",
+          boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
+        }}
+      >
+        <option value="ja">🇯🇵 日本語 (Japanese)</option>
+        <option value="en">🇺🇸 English (英語)</option>
+        <option value="ko">🇰🇷 한국어 (韓国語)</option>
+      </select>
     </div>
-
-    <nav>
-        <div class="logo" onclick="window.scrollTo(0,0)">
-            <svg width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="20,80 20,20 45,20 80,70 80,80 55,80" fill="#f0f0f0"/>
-                <polygon points="80,20 80,60 55,25 55,20" fill="#0088ff"/>
-            </svg>
-            NEXT GEAR
-        </div>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span></div>
-        <div class="nav-links" id="navLinks">
-            <a href="#about">ABOUT</a>
-            <a href="#service">SERVICE</a>
-            <a href="#roadmap">ROADMAP</a>
-            <a href="#management">FOUNDER</a>
-            <a href="#company">COMPANY</a>
-            <a href="#contact" class="nav-entry-btn">ENTRY</a>
-        </div>
-    </nav>
-
-    <div class="marquee-bg">
-        <div class="marquee-inner">
-            NEXT GEAR CREATIVE LOGISTICS NEXT GEAR CREATIVE LOGISTICS / 
-        </div>
-    </div>
-
-    <section class="hero">
-        <p class="hero-top-text">MANAGED BY SHIL</p>
-        <h1>NEXT<span>GEAR</span></h1>
-        <p class="hero-sub">CREATIVE LOGISTICS & MULTI-SERVER HOSTING</p>
-        <div class="action-buttons">
-            <a href="https://discord.gg/U8QM8qgC4W" target="_blank" rel="noopener noreferrer" class="btn-action btn-discord"><i class="fa-brands fa-discord text-lg"></i> JOIN DISCORD</a>
-            <a href="https://lin.ee/v5UoTJX" target="_blank" rel="noopener noreferrer" class="btn-action btn-line"><i class="fa-brands fa-line text-lg"></i> ADD LINE</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <span class="section-label fade-in-up">Brand Identity</span>
-        <div class="mission-text fade-in-up">
-            <span style="font-weight: 800; color: #fff;">「一人では無理」をなくす。</span><br><br>
-            配信者が資金と技術の壁を越え、<span class="underline-magic">クリエイティビティに集中できる環境</span>を提供する。<br>
-            個人の才能が、組織のバックアップによって最大化される新しい配信文化を作る。
-        </div>
-    </section>
-
-    <section id="service" style="background-color: #070707;">
-        <span class="section-label fade-in-up">Service Pillars</span>
-        <div class="service-grid">
-            <div class="service-card fade-in-up" onclick="openService('tech_creative')">
-                <i class="fa-solid fa-laptop-code"></i>
-                <h3>Technical & Creative</h3>
-                <p>Live2D導入からOBS最適化、Next.jsを活用したWEBサイト構築まで、表現に必要な技術障壁を完全に排除します。</p>
-            </div>
-            <div class="service-card fade-in-up" onclick="openService('hardware')">
-                <i class="fa-solid fa-server"></i>
-                <h3>Hardware & Infra</h3>
-                <p>ハイエンドPCから3画面モニター、吸音材等の環境整備まで。最高峰の機材とインフラをロジスティクスとして提供します。</p>
-            </div>
-            <div class="service-card fade-in-up" onclick="openService('management')">
-                <i class="fa-solid fa-briefcase"></i>
-                <h3>Management & Back-office</h3>
-                <p>個人マネージャーによる予定管理、税理士連携による確定申告、商標権等の権利管理まで、裏方業務を全て代行します。</p>
-            </div>
-            <div class="service-card fade-in-up" onclick="openService('community')">
-                <i class="fa-solid fa-users"></i>
-                <h3>Community & Care</h3>
-                <p>クリエイターが孤立しない公式サーバーの運営と、メンタルケア・活動相談に応じるコンシェルジュ体制を完備しています。</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="policy" style="border-top: 1px solid #111;">
-        <span class="section-label fade-in-up">Creator Policy</span>
-        <div class="policy-grid">
-            <div class="policy-card fade-in-up">
-                <i class="fa-solid fa-check-circle"></i>
-                <h3>配信ノルマ一切なし</h3>
-                <p>自分のペースで活動可能。プライベートや学業・本業を優先し、無理なく活動を続けられます。</p>
-            </div>
-            <div class="policy-card fade-in-up">
-                <i class="fa-solid fa-handshake"></i>
-                <h3>契約期間の縛りなし</h3>
-                <p>不当な引き止めなどは行いません。指示を出す「事務所」ではなく、共に歩む「ギア（装備）」となります。</p>
-            </div>
-            <div class="policy-card fade-in-up">
-                <i class="fa-solid fa-coins"></i>
-                <h3>透明な収益分配</h3>
-                <p>サポート内容に応じた明瞭な収益シェア。不透明な中抜きは一切せず、クリーンな環境を提供します。</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap" style="background-color: #030303; border-top: 1px solid #111;">
-        <span class="section-label fade-in-up">Business Roadmap</span>
-        <table class="roadmap-table fade-in-up">
-            <tr>
-                <th><span class="phase-badge">Phase 1</span> 構築と共感</th>
-                <td>公式サイトのローンチ、初期パートナーの募集開始。<br>クリエイター向け機材接続・配信設定マニュアルの整備。</td>
-            </tr>
-            <tr>
-                <th><span class="phase-badge">Phase 2</span> 基盤の確立</th>
-                <td>法人化の完了。<br>税理士・専属イラストレーターとの正式提携によるバックオフィスとクリエイティブの信頼性向上。</td>
-            </tr>
-            <tr>
-                <th><span class="phase-badge">Phase 3</span> 拡張と進化</th>
-                <td>独自配信支援プラットフォーム（システム）の確立。<br>B2B機材スポンサー提携の拡大による、ハードウェア供給の加速。</td>
-            </tr>
-        </table>
-    </section>
-
-    <section id="management">
-        <span class="section-label fade-in-up">Message from Founder</span>
-        <div class="management-profile fade-in-up" onclick="openMember('shil')">
-            <div class="shil-wrapper"><img src="./shil.jpg" alt="SHIL"></div>
-            <div class="management-info">
-                <h3>SHIL</h3>
-                <p style="color: var(--m1-color); font-weight: bold; margin-bottom: 10px; font-size: 0.8rem;">【USP】「初心者に最も近い」技術支援</p>
-                <p>「Next Gear」代表。<br>私自身が「技術・知識なし」の状態からITスキルや機材研究を徹底し、Next.js等のモダン技術を習得してきた過程があります。だからこそ、難しい専門用語を使わず、誰よりも分かりやすく配信環境を言語化し、最適化を提供できます。<br>「学び続ける姿」を共有し、クリエイターと共に成長する伴走者であり続けます。</p>
-                <span class="view-details">VIEW FULL PROFILE 🡒</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="company" style="background-color: #0a0a0a; border-top: 1px solid #111;">
-        <span class="section-label fade-in-up">Company Profile & Legal Disclosure</span>
-        <div class="company-table fade-in-up">
-            <div class="company-row">
-                <div class="company-th">屋号 / 組織名</div>
-                <div class="company-td">NEXT GEAR （ネクストギア）</div>
-            </div>
-            <div class="company-row">
-                <div class="company-th">代表者氏名</div>
-                <div class="company-td">[本名につきましては契約時に提示させていただきます]<br><span style="font-size: 0.75rem; color: #888;">※運営責任者：SHIL</span></div>
-            </div>
-            <div class="company-row">
-                <div class="company-th">事業形態・登録番号</div>
-                <div class="company-td">
-                    個人事業主<br>
-                    適格請求書発行事業者登録番号：T0000000000000 <!-- ※ここをご自身の番号に書き換えてください -->
-                </div>
-            </div>
-            <div class="company-row">
-                <div class="company-th">事業内容</div>
-                <div class="company-td">
-                    1. クリエイター・VTuberのマネジメント及び活動支援業務<br>
-                    2. サーバーインフラの構築・保守・運用業務（ゲームサーバー等）<br>
-                    3. 映像制作、Live2Dモデリング、配信デザイン業務全般<br>
-                    4. Webサイト・アプリケーションの企画・開発業務
-                </div>
-            </div>
-            <div class="company-row">
-                <div class="company-th">所在地</div>
-                <div class="company-td">日本国内<br><span style="font-size: 0.75rem; color: #888;">※事務所の正確な所在地につきましては、防犯上の理由によりWeb上での公開を控えさせていただいております。お取引企業様からのご請求に基づき、遅滞なく開示いたします。</span></div>
-            </div>
-            <div class="company-row">
-                <div class="company-th">お問い合わせ窓口</div>
-                <div class="company-td">公式Discord、公式LINE、または代表X(Twitter)へのDMにて承っております。</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" style="background-color: #070707; border-top: 1px solid #111;">
-        <div class="contact-box fade-in-up">
-            <span class="section-label" style="margin-bottom: 20px;">Contact / Entry</span>
-            <h2>まずは、話を聞いてみませんか？</h2>
-            <p>「自分でも応募していいのかな？」「技術的な相談だけしたい」<br>そんな気軽なご相談も大歓迎です。以下の公式Discord、またはLINEからお声がけください。</p>
-            <div class="action-buttons" style="justify-content: center; margin-top: 0; opacity: 1; animation: none;">
-                <a href="https://discord.gg/U8QM8qgC4W" target="_blank" rel="noopener noreferrer" class="btn-action btn-discord"><i class="fa-brands fa-discord text-lg"></i> 公式Discordに参加</a>
-                <a href="https://lin.ee/v5UoTJX" target="_blank" rel="noopener noreferrer" class="btn-action btn-line"><i class="fa-brands fa-line text-lg"></i> LINEでメッセージ</a>
-            </div>
-        </div>
-    </section>
-
-    <div id="detailOverlay" class="detail-overlay">
-        <div class="close-btn" onclick="closeDetail()">Back — Index</div>
-        <div id="detailContent" class="detail-content">
-            <div class="detail-img-box" id="detailImgBox">
-                <img id="innerImg" src="" style="width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 4px;">
-            </div>
-            <div class="detail-text">
-                <h2 id="innerName">NAME</h2>
-                <div id="innerColor" style="height: 1px; width: 40px; margin: 25px 0;"></div>
-                <p id="innerText">...</p>
-                <div id="specArea" class="sns-links"></div>
-                <div id="snsArea" class="sns-links"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="legalOverlay" class="legal-overlay">
-        <div class="legal-content">
-            <i class="fa-solid fa-xmark legal-close" onclick="closeLegal()"></i>
-            <h2 id="legalTitle">Policy</h2>
-            <div id="legalText"></div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="fade-in-up">
-            &copy; 2026 NEXT GEAR.<br>All Rights Reserved.<br>
-            <div class="footer-links">
-                <span onclick="openLegal('terms')">利用規約</span>
-                <span onclick="openLegal('privacy')">プライバシーポリシー</span>
-            </div>
-        </div>
-        <div class="shil-credit fade-in-up" onclick="openMember('shil')" style="cursor: pointer;">
-            <img src="./shil.jpg" alt="Shil">
-            <div class="shil-name">PROJECT MANAGED BY SHIL</div>
-        </div>
-    </footer>
-
-    <a href="#contact" class="floating-cta"><i class="fa-solid fa-paper-plane"></i> 応募 / 相談</a>
-
-    <script>
-        const memberData = {
-            shil: {
-                name: "SHIL",
-                text: "「Next Gear」の代表・管理者。\n\n私自身が「技術なし」から学び、Next.js等のスキルを習得していく過程を現在進行形で歩んでいます。だからこそ、クリエイターが直面する壁の高さが誰よりも分かります。\n\n指示を出すだけの「事務所」ではなく、共に学び、成長し、活動を加速させるための「ギア（装備）」として伴走します。法人化に向けた準備や、私自身の学習プロセスも包み隠さず発信し、誠実なサポートをお約束します。\n\nお仕事のご依頼や、チームに関するご相談は、X(Twitter)のDMへ直接ご連絡ください。",
-                color: "var(--m1-color)", img: "./shil.jpg",
-                links: [{ label: "X (FOLLOW — SHIL)", url: "https://x.com/shildao_", icon: "fa-brands fa-x-twitter" }], linksShil: true
-            }
-        };
-
-        const serviceData = {
-            tech_creative: {
-                name: "TECHNICAL & CREATIVE",
-                text: "クリエイターの「やりたい」を技術力で形にします。\n\n* Live2D導入：キャラクター制作からトラッキング設定までのトータルサポート。\n* 配信設定：OBS Studioの最適化、ストリームキー管理、フェイストラッキング設定。\n* 音響構築：オーディオインターフェイスの設定、マイクのEQ/ノイズ調整。\n* WEB支援：Next.js等を活用した高機能な個人サイト・ポートフォリオの構築。",
-                color: "#fff", specs: ["Live2D", "OBS Tuning", "Audio Setup", "Next.js Web"]
-            },
-            hardware: {
-                name: "HARDWARE & INFRA",
-                text: "配信活動における「物理的な壁」を取り払います。\n\n* 機材提供：ハイエンドPC、3画面モニター、ストリームデック、キャプチャーボード等の貸与・提供。\n* ブランド選択制：Logicool, Razer, HyperXなどのカタログから、お好みのデバイスを選択可能。\n* 環境整備：防音・吸音材の導入サポート、配信特化型賃貸の相談、コンシューマーゲーム機の提供。",
-                color: "#fff", specs: ["High-end PC", "3 Monitors", "Device Choice", "Acoustics"]
-            },
-            management: {
-                name: "MANAGEMENT & BACK-OFFICE",
-                text: "クリエイターが「表現」にのみ集中できる防波堤となります。\n\n* 個人マネージャー：スケジュール管理、機材接続などの物理的なサポートを伴走して行います。\n* 専門家連携：税理士を通じた確定申告のサポート、商標権・権利管理の代行。\n* 制作支援：優良なイラストレーターの紹介、動画編集の代行、オリジナル編集プリセットの提供。",
-                color: "#fff", specs: ["Manager", "Tax & Legal", "Copyright", "Video Editing"]
-            },
-            community: {
-                name: "COMMUNITY & CARE",
-                text: "孤独になりがちな配信活動において、安心できる居場所を提供します。\n\n* 公式サーバー：会社運営の安全なコミュニティ（Discord等）での活動者同士の交流。\n* カウンセリング：メンタルケア、活動に関する悩み全般に応じるコンシェルジュ対応体制の構築。",
-                color: "#fff", specs: ["Official Server", "Mental Care", "Concierge"]
-            }
-        };
-
-        const legalData = {
-            privacy: {
-                title: "プライバシーポリシー",
-                html: `
-                    <p>NEXT GEAR（以下、「当組織」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
-                    
-                    <h3>第1条（個人情報）</h3>
-                    <p>「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報（個人識別情報）を指します。</p>
-                    
-                    <h3>第2条（個人情報の収集方法）</h3>
-                    <p>当組織は、ユーザーが利用登録またはお問合せをする際に氏名、生年月日、住所、電話番号、メールアドレス、Discord ID、銀行口座番号などの個人情報をお尋ねすることがあります。また、ユーザーと提携先などとの間でなされたユーザーの個人情報を含む取引記録や決済に関する情報を、当組織の提携先（情報提供元、広告主、広告配信先などを含みます。）などから収集することがあります。</p>
-                    
-                    <h3>第3条（個人情報を収集・利用する目的）</h3>
-                    <p>当組織が個人情報を収集・利用する目的は、以下のとおりです。</p>
-                    <ul>
-                        <li>当組織サービスの提供・運営、および所属クリエイターのマネジメント業務のため</li>
-                        <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
-                        <li>ユーザーが利用中のサービスの新機能、更新情報、キャンペーン等及び当組織が提供する他のサービスの案内のメールを送付するため</li>
-                        <li>メンテナンス、重要なお知らせなど必要に応じたご連絡のため</li>
-                        <li>利用規約に違反したユーザーや、不正・不当な目的でサービスを利用しようとするユーザーの特定をし、ご利用をお断りするため</li>
-                        <li>上記の利用目的に付随する目的</li>
-                    </ul>
-                    
-                    <h3>第4条（利用目的の変更）</h3>
-                    <p>当組織は、利用目的が変更前と関連性を有すると合理的に認められる場合に限り、個人情報の利用目的を変更するものとします。利用目的の変更を行った場合には、変更後の目的について、当組織所定の方法により、ユーザーに通知し、または本ウェブサイト上に公表するものとします。</p>
-                    
-                    <h3>第5条（個人情報の第三者提供）</h3>
-                    <p>当組織は、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。</p>
-                    <ul>
-                        <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
-                        <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合であって、本人の同意を得ることが困難であるとき</li>
-                        <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合であって、本人の同意を得ることにより当該事務の遂行に支障を及ぼすおそれがあるとき</li>
-                    </ul>
-                    
-                    <h3>第6条（個人情報の開示・訂正・利用停止等）</h3>
-                    <p>当組織は、本人から個人情報の開示、訂正、追加、削除、利用停止等を求められたときは、本人確認を行った上で、遅滞なくこれに対応します。</p>
-
-                    <h3>第7条（安全管理措置）</h3>
-                    <p>当組織は、取得した個人情報について、漏えい、滅失またはき損の防止等、その管理のために必要かつ適切な安全管理措置を講じます。また、個人情報を取り扱う従業者や委託先（再委託先等を含みます。）に対して、必要かつ適切な監督を行います。</p>
-
-                    <h3>第8条（プライバシーポリシーの変更）</h3>
-                    <p>本ポリシーの内容は、法令その他本ポリシーに別段の定めのある事項を除いて、ユーザーに通知することなく、変更することができるものとします。当組織が別途定める場合を除いて、変更後のプライバシーポリシーは、本ウェブサイトに掲載したときから効力を生じるものとします。</p>
-                    
-                    <h3>第9条（お問い合わせ窓口）</h3>
-                    <p>本ポリシーに関するお問い合わせは、当組織の公式Discord、公式LINE、または代表宛の連絡先までお願いいたします。</p>
-                    
-                    <p style="margin-top:40px; text-align:right;">制定日：2026年3月</p>
-                `
-            },
-            terms: {
-                title: "利用規約",
-                html: `
-                    <p>この利用規約（以下、「本規約」といいます。）は、NEXT GEAR（以下、「当組織」といいます。）が提供するすべてのサービス（サーバーインフラの利用、クリエイターマネジメント業務、各種制作業務等を含みますが、これらに限られません。以下、「本サービス」といいます。）の利用条件を定めるものです。本サービスをご利用される皆様（以下、「ユーザー」といいます。）には、本規約に従って本サービスをご利用いただきます。</p>
-                    
-                    <h3>第1条（適用）</h3>
-                    <p>本規約は、ユーザーと当組織との間の本サービスの利用に関わる一切の関係に適用されるものとします。当組織は本サービスに関し、本規約のほか、ご利用にあたってのルール等、各種の定め（以下、「個別規定」といいます。）をすることがあります。これら個別規定はその名称のいかんに関わらず、本規約の一部を構成するものとします。</p>
-                    
-                    <h3>第2条（禁止事項）</h3>
-                    <p>ユーザーは、本サービスの利用にあたり、以下の行為をしてはなりません。</p>
-                    <ul>
-                        <li>法令または公序良俗に違反する行為、または犯罪行為に関連する行為</li>
-                        <li>当組織、本サービスの他のユーザー、または第三者のサーバーまたはネットワークの機能を破壊したり、妨害したりする行為</li>
-                        <li>当組織のサービスの運営を妨害するおそれのある行為</li>
-                        <li>不正アクセスをし、またはこれを試みる行為</li>
-                        <li>他のユーザーに関する個人情報等を収集または蓄積する行為、または他のユーザーに成りすます行為</li>
-                        <li>当組織のサービスに関連して、反社会的勢力に対して直接または間接に利益を供与する行為</li>
-                        <li>当組織、本サービスの他のユーザーまたは第三者の知的財産権、肖像権、プライバシー、名誉その他の権利または利益を侵害する行為</li>
-                        <li>その他、当組織が不適切と判断する行為</li>
-                    </ul>
-                    
-                    <h3>第3条（本サービスの提供の停止等）</h3>
-                    <p>当組織は、以下のいずれかの事由があると判断した場合、ユーザーに事前に通知することなく本サービスの全部または一部の提供を停止または中断することができるものとします。</p>
-                    <ul>
-                        <li>本サービスにかかるコンピュータシステムの保守点検または更新を行う場合</li>
-                        <li>地震、落雷、火災、停電または天災などの不可抗力により、本サービスの提供が困難となった場合</li>
-                        <li>コンピュータまたは通信回線等が事故により停止した場合</li>
-                        <li>その他、当組織が本サービスの提供が困難と判断した場合</li>
-                    </ul>
-                    <p>当組織は、本サービスの提供の停止または中断により、ユーザーまたは第三者が被ったいかなる不利益または損害についても、一切の責任を負わないものとします。</p>
-
-                    <h3>第4条（知的財産権の帰属）</h3>
-                    <p>本サービスによって提供されるすべてのコンテンツ（画像、映像、文章、プログラム等）の著作権、特許権、商標権等の知的財産権は、当組織または正当な権利を有する第三者に帰属します。ユーザーは、これらを当組織の事前の書面による許諾なく、複製、転載、改変、配布等することはできません。</p>
-                    
-                    <h3>第5条（利用制限および登録抹消）</h3>
-                    <p>当組織は、ユーザーが以下のいずれかに該当する場合には、事前の通知なく、ユーザーに対して、本サービスの全部もしくは一部の利用を制限し、またはユーザーとしての登録を抹消することができるものとします。</p>
-                    <ul>
-                        <li>本規約のいずれかの条項に違反した場合</li>
-                        <li>登録事項に虚偽の事実があることが判明した場合</li>
-                        <li>当組織からの連絡に対し、一定期間返答がない場合</li>
-                        <li>その他、当組織が本サービスの利用を適当でないと判断した場合</li>
-                    </ul>
-                    <p>当組織は、本条に基づき当組織が行った行為によりユーザーに生じた損害について、一切の責任を負いません。</p>
-                    
-                    <h3>第6条（免責事項および損害賠償の制限）</h3>
-                    <p>当組織は、本サービスに事実上または法律上の瑕疵（安全性、信頼性、正確性、完全性、有効性、特定の目的への適合性、セキュリティなどに関する欠陥、エラーやバグ、権利侵害などを含みます。）がないことを明示的にも黙示的にも保証しておりません。<br>
-                    当組織は、本サービスに起因してユーザーに生じたあらゆる損害について、当組織の故意又は重過失による場合を除き、一切の責任を負いません。また、当組織が責任を負う場合であっても、当組織は、通常生じうる損害の範囲内でのみ賠償の責任を負うものとします。</p>
-                    
-                    <h3>第7条（反社会的勢力の排除）</h3>
-                    <p>ユーザーは、自己が暴力団、暴力団員、暴力団準構成員、暴力団関係企業、総会屋等、社会運動等標ぼうゴロまたは特殊知能暴力集団等、その他これらに準ずる者（以下これらを「反社会的勢力」といいます。）に該当しないこと、および次の各号のいずれにも該当しないことを表明し、かつ将来にわたっても該当しないことを確約します。</p>
-                    <ul>
-                        <li>反社会的勢力が経営を支配していると認められる関係を有すること</li>
-                        <li>反社会的勢力が経営に実質的に関与していると認められる関係を有すること</li>
-                        <li>自己、自社もしくは第三者の不正の利益を図る目的または第三者に損害を加える目的をもってする等、不当に反社会的勢力を利用していると認められる関係を有すること</li>
-                    </ul>
-                    <p>当組織は、ユーザーが前項の確約に違反した場合、事前の通知や催告を要せず、直ちに本サービスの利用を停止し、または契約を解除することができるものとします。</p>
-
-                    <h3>第8条（利用規約の変更）</h3>
-                    <p>当組織は、必要と判断した場合には、ユーザーに通知することなくいつでも本規約を変更することができるものとします。なお、本規約の変更後、本サービスの利用を開始した場合には、当該ユーザーは変更後の規約に同意したものとみなします。</p>
-                    
-                    <h3>第9条（準拠法・裁判管轄）</h3>
-                    <p>本規約の解釈にあたっては、日本法を準拠法とします。<br>本サービスに関して紛争が生じた場合には、当組織の所在地を管轄する地方裁判所を専属的合意管轄とします。</p>
-                    
-                    <p style="margin-top:40px; text-align:right;">制定日：2026年3月</p>
-                `
-            }
-        };
-
-        function openLegal(type) {
-            document.getElementById('legalTitle').innerText = legalData[type].title;
-            document.getElementById('legalText').innerHTML = legalData[type].html;
-            document.getElementById('legalOverlay').classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLegal() {
-            document.getElementById('legalOverlay').classList.remove('open');
-            document.body.style.overflow = 'auto';
-        }
-
-        function openMember(id) { showOverlay(memberData[id], true); }
-        function openService(id) { showOverlay(serviceData[id], false); }
-
-        function showOverlay(data, isMember) {
-            document.getElementById('innerName').innerText = data.name;
-            document.getElementById('innerColor').style.backgroundColor = data.color;
-            const textElement = document.getElementById('innerText');
-            textElement.style.whiteSpace = "pre-wrap"; textElement.innerText = ""; 
-            
-            const fullText = data.text; let charIndex = 0;
-            if(window.typingInterval) clearInterval(window.typingInterval);
-            setTimeout(() => {
-                window.typingInterval = setInterval(() => {
-                    textElement.innerText = fullText.substring(0, charIndex + 1) + (charIndex < fullText.length - 1 ? " █" : "");
-                    charIndex++;
-                    if (charIndex >= fullText.length) { clearInterval(window.typingInterval); textElement.innerText = fullText; }
-                }, 10); 
-            }, 400);
-
-            const imgBox = document.getElementById('detailImgBox');
-            if(isMember) { 
-                imgBox.style.display = "block"; document.getElementById('innerImg').src = data.img; 
-                document.getElementById('innerImg').style.borderRadius = data.linksShil ? "50%" : "4px";
-            } else { imgBox.style.display = "none"; }
-            
-            const snsArea = document.getElementById('snsArea'); snsArea.innerHTML = "";
-            const specArea = document.getElementById('specArea'); specArea.innerHTML = "";
-            
-            if(isMember && data.links) {
-                data.links.forEach(link => {
-                    const a = document.createElement('a'); a.href = link.url; a.target = "_blank";
-                    a.className = data.linksShil ? "shil-contact-btn" : "";
-                    a.innerHTML = `<i class="${link.icon}"></i>${link.label}` + (data.linksShil ? " 🡒" : "");
-                    snsArea.appendChild(a);
-                });
-            } else if(!isMember && data.specs) {
-                specArea.style.opacity = "0"; specArea.style.transition = "opacity 0.8s ease 1s"; 
-                data.specs.forEach(s => { const span = document.createElement('span'); span.className = "spec-badge"; span.innerText = s; specArea.appendChild(span); });
-                setTimeout(() => { specArea.style.opacity = "1"; }, 50);
-            }
-            document.getElementById('detailOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeDetail() { document.getElementById('detailOverlay').classList.remove('open'); document.body.style.overflow = 'auto'; if(window.typingInterval) clearInterval(window.typingInterval); }
-        function toggleMenu() { document.getElementById('hamburger').classList.toggle('active'); document.getElementById('navLinks').classList.toggle('active'); }
-
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-        const observer = new IntersectionObserver((entries) => {
-            let delayTime = 0;
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('fade-in-up')) {
-                        setTimeout(() => { entry.target.classList.add('active'); }, delayTime);
-                        delayTime += 150; observer.unobserve(entry.target);
-                    } else { entry.target.classList.add('active'); }
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.underline-magic, .fade-in-up').forEach(el => observer.observe(el));
-
-        document.querySelectorAll('.nav-links a[href^="#"], .floating-cta').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault(); const targetId = this.getAttribute('href'); const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    const navLinks = document.getElementById('navLinks'); const hamburger = document.getElementById('hamburger');
-                    if(navLinks.classList.contains('active')) { navLinks.classList.remove('active'); hamburger.classList.remove('active'); }
-                    const overlay = document.getElementById('transitionOverlay'); overlay.classList.add('active');
-                    setTimeout(() => { window.scrollTo(0, targetElement.getBoundingClientRect().top + window.pageYOffset); overlay.classList.remove('active'); }, 600);
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+  );
+}
